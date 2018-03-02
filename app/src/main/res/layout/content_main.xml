@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".MainActivity"
+        tools:showIn="@layout/activity_main">
+
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/progress_wheel"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:matProg_barColor="#5588FF"
+            app:matProg_progressIndeterminate="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello 2222222!" />
+
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/interpolated"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            app:matProg_barColor="#5588FF"
+            app:matProg_fillRadius="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello 33333333!" />
+
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/linear"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            app:matProg_barColor="#5588FF"
+            app:matProg_fillRadius="false"
+            app:matProg_linearProgress="true" />
+
+        <Button
+            android:id="@+id/test1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test1" />
+
+        <Button
+            android:id="@+id/test2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test2" />
+
+        <Button
+            android:id="@+id/test_anim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test_anim" />
+
+        <Button
+            android:id="@+id/pie_chart_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pie_chart_test" />
+
+        <Button
+            android:id="@+id/horizontal_bar_chart_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="horizontal_bar_chart_test" />
+
+        <Button
+            android:id="@+id/chart_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="horizontal_bar_chart_test" />
+
+        <Button
+            android:id="@+id/vector_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vector_test" />
+
+        <Button
+            android:id="@+id/half_circle_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="half_circle_test" />
+
+        <Button
+            android:id="@+id/view_pager_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="view_pager_test" />
+
+        <Button
+            android:id="@+id/scroll_number_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="scroll_number_test" />
+
+        <Button
+            android:id="@+id/alarm_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="alarm_test" />
+
+        <Button
+            android:id="@+id/mid_autumn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mid_autumn" />
+
+        <Button
+            android:id="@+id/keyboard_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="keyboard_test" />
+
+        <Button
+            android:id="@+id/badge_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="badge_test" />
+
+        <Button
+            android:id="@+id/btn_person_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn_person_edit" />
+
+        <Button
+            android:id="@+id/btn_drag_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn_drag_recycler" />
+
+        <Button
+            android:id="@+id/btn_heart_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn_heart_test" />
+
+        <Button
+            android:id="@+id/btn_progress_notification_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn_progress_notification_test" />
+
+        <Button
+            android:id="@+id/btn_view_test_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn_view_test_test" />
+
+        <Button
+            android:id="@+id/btn_handler_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn_handler_test" />
+
+        <Button
+            android:id="@+id/btn_bottom_sheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn_bottom_sheet" />
+
+        <Button
+            android:id="@+id/btn_watermark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn_watermark"
+            android:textAllCaps="true" />
+
+    </LinearLayout>
+</ScrollView>
