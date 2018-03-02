@@ -5,3 +5,11 @@
 .DS_Store
 /build
 /captures
+*.iml
+app/src/main/res/drawable-hdpi/.svn/props/
+app/src/main/res/drawable-hdpi/.svn/tmp/
+app/src/main/res/drawable-xhdpi/.svn/props/
+app/src/main/res/drawable-xhdpi/.svn/tmp/
+app/src/main/res/drawable-xxhdpi/.svn/props/
+app/src/main/res/drawable-xxhdpi/.svn/tmp/
+emojicon/libs/
