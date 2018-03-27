@@ -1,11 +1,13 @@
 package com.test.devilsen.test;
 
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 public class TestJava {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         int value = 10;
 //        System.out.println(value << 1);
 //        System.out.println(value >> 1);
@@ -41,14 +43,33 @@ public class TestJava {
 //
 //        int b = Integer.highestOneBit(a);
 
-        ArrayList<String> list = new ArrayList<>(2);
+//        ArrayList<String> list = new ArrayList<>(2);
+//
+//        for (int i = 0; i < 8; i++) {
+//            list.add("ss" + i);
+//        }
+//
+//        System.out.println(list.size());
 
-        for (int i = 0; i < 8; i++) {
-            list.add("ss" + i);
+        ArrayList<Movie> list = new ArrayList<>();
+        for (int i = 0; i <10; i++) {
+            list.add(new Movie("title " + i, "name " + i));
         }
 
-        System.out.println(list.size());
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.toJSONArray();
+        JSONArray jsonArray = new JSONArray(list);
+        System.out.println(jsonArray.toString());
+    }
 
+    static class Movie {
+        public String title;
+        public String name;
+
+        public Movie(String title, String name) {
+            this.title = title;
+            this.name = name;
+        }
     }
 
     private static void getHigh() {
