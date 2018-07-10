@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 
@@ -59,5 +60,30 @@ public class HeartTestActivity extends AppCompatActivity {
         anim.start();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.e("aaa","onSaveInstanceState");
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("aaa","onPause");
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("aaa","onStop");
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e("aaa","onDestroy");
+
+    }
 }

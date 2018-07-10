@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,8 +31,11 @@ import com.test.devilsen.test.chart.mpandroid.PieChatActivity;
 import com.test.devilsen.test.doubanAnim.AnimActivity;
 import com.test.devilsen.test.handlertest.HandlerTestActivity;
 import com.test.devilsen.test.image.HeartTestActivity;
+import com.test.devilsen.test.imkeyboard.ImKeyboardActivity;
 import com.test.devilsen.test.midautumn.PropagandaActivity;
 import com.test.devilsen.test.notification.ProgressActivity;
+import com.test.devilsen.test.parcelable.ParcelableActivity;
+import com.test.devilsen.test.parcelable.TestBean;
 import com.test.devilsen.test.scrollnumber.ScrollActivity;
 import com.test.devilsen.test.viewpager.ViewPagerActivity;
 import com.test.devilsen.test.viewtest.ViewTestActivity;
@@ -64,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button handlerBtn;
     private Button bottomSheetBtn;
     private Button waterMarkBtn;
+    private Button parcelableTestBtn;
+    private Button imInputTestBtn;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -99,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         handlerBtn = (Button) findViewById(R.id.btn_handler_test);
         bottomSheetBtn = findViewById(R.id.btn_bottom_sheet);
         waterMarkBtn = findViewById(R.id.btn_watermark);
+        parcelableTestBtn = findViewById(R.id.btn_parcelable_test);
+        imInputTestBtn = findViewById(R.id.btn_im_input_test);
 
         progeress.setProgress(0.5f);
         progeress2.setProgress(0.1f);
@@ -125,6 +133,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         handlerBtn.setOnClickListener(this);
         bottomSheetBtn.setOnClickListener(this);
         waterMarkBtn.setOnClickListener(this);
+        parcelableTestBtn.setOnClickListener(this);
+        imInputTestBtn.setOnClickListener(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -262,6 +272,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_watermark:
                 Intent intent18 = new Intent(this, WaterMarkActivity.class);
                 startActivity(intent18);
+                break;
+
+            case R.id.btn_parcelable_test:
+                Intent intent19 = new Intent(this, ParcelableActivity.class);
+                TestBean bean = new TestBean();
+                bean.setName("aaa");
+                bean.setAge(12);
+                Log.e("data", bean.toString());
+                intent19.putExtra("data", bean);
+                startActivity(intent19);
+                break;
+
+            case R.id.btn_im_input_test:
+                Intent intent20 = new Intent(this, ImKeyboardActivity.class);
+                startActivity(intent20);
                 break;
         }
     }

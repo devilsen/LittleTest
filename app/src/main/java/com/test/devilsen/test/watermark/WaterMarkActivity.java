@@ -3,6 +3,7 @@ package com.test.devilsen.test.watermark;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.test.devilsen.test.R;
 
@@ -22,5 +23,18 @@ public class WaterMarkActivity extends AppCompatActivity {
         WaterMarkView waterMarkView = findViewById(R.id.watermark);
 
         waterMarkView.setText("liuzhenshisb");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("aaaa","onStop");
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e("aaaa","onDestroy");
     }
 }

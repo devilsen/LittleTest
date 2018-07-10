@@ -3,12 +3,12 @@ package com.test.devilsen.test.acm;
 import java.util.Arrays;
 
 /**
- * desc :
+ * desc : 堆排序
  * date : 2018/4/3
  *
  * @author : dongSen
  */
-public class HeapSort {
+public class HeapSort implements SortInterface {
 
     public static void main(String args[]) {
         int[] arr = {7, 8, 9, 4, 5, 6, 3, 2, 1};
@@ -43,7 +43,7 @@ public class HeapSort {
             heapify(a, a.length, i);
     }
 
-    static void heap(int a[]) {
+    static int[] heap(int a[]) {
         buildheap(a);
         for (int i = a.length - 1; i >= 1; i--) {
             int temp = a[0];
@@ -51,5 +51,12 @@ public class HeapSort {
             a[i] = temp;
             heapify(a, i, 0);
         }
+
+        return a;
+    }
+
+    @Override
+    public int[] sort(int[] a) {
+        return heap(a);
     }
 }
