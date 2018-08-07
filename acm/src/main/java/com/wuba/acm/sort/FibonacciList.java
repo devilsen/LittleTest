@@ -1,4 +1,4 @@
-package com.test.devilsen.test.acm;
+package com.wuba.acm.sort;
 
 /**
  * desc :
@@ -7,6 +7,7 @@ package com.test.devilsen.test.acm;
  * @author : dongSen
  */
 public class FibonacciList {
+
 
     public static void main(String[] args) {
         for (int i = 1; i < 10; i++) {
