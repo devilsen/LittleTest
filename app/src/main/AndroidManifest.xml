@@ -91,6 +91,12 @@
         <activity android:name=".managertest.WindowManagerTestActivity" />
 
         <receiver android:name=".alarm.AlarmActivity$AlarmReceiver" />
+
+        <provider
+            android:name="com.test.devilsen.test.multiprocess.sp.sphelper.SPContentProvider"
+            android:authorities="com.wuba.crm"
+            android:exported="false" />
+
     </application>
 
 </manifest>
