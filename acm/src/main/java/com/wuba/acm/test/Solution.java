@@ -17,29 +17,62 @@ public class Solution {
 //        listNode.next.next.next = new ListNode(4);
 //        listNode.next.next.next.next = new ListNode(5);
 
-        ListNode result = solution.middleNode(listNode);
+        int[] nums = new int[]{1, 3, 2};
+        solution.nextPermutation(nums);
 
-//        System.out.println(index);
+//        System.out.println(result);
 //        for (int i = 0; i < strings.size(); i++) {
 //            System.out.println(strings.get(i));
 //        }
-        while (result != null) {
-            System.out.println(result.val);
-            result = result.next;
+//        while (result != null) {
+//            System.out.println(result.val);
+//            result = result.next;
+//        }
+    }
+
+    public void nextPermutation(int[] nums) {
+        int i = nums.length - 1;
+
+        for (; i >= 1; i--) {
+            if (nums[i] > nums[i - 1]) { //find first number which is smaller than it's after number
+                break;
+            }
+        }
+
+        if (i != 0) {
+            swap(nums, i - 1); //if the number exist,which means that the nums not like{5,4,3,2,1}
+        }
+        reverse(nums, i);
+    }
+
+    private void reverse(int[] a, int i) {//reverse the number after the number we have found
+        int first = i;
+        int last = a.length - 1;
+        while (first < last) {
+            int t = a[first];
+            a[first] = a[last];
+            a[last] = t;
+            first++;
+            last--;
         }
     }
 
-    public ListNode middleNode(ListNode head) {
-        ListNode first = head;
-        ListNode second = head;
-
-        while (second != null && second.next != null) {
-            first = first.next;
-            second = second.next.next;
+    private void swap(int[] a, int i) {
+        for (int j = a.length - 1; j > i; j--) {
+            if (a[j] > a[i]) {
+                int t = a[j];
+                a[j] = a[i];
+                a[i] = t;
+                break;
+            }
         }
-        return first;
     }
 
+    private void print(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            System.out.println(nums[i]);
+        }
+    }
 }
 
 

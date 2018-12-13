@@ -1,9 +1,9 @@
 package com.wuba.acm.sort;
 
 /**
- * desc :
+ * desc : 插入排序
  * date : 2018/3/28
- *
+ * 插入排序要比冒泡稍好，主要是因为交换的时候，插入只需要一次交换，而冒泡需要三次
  * @author : dongSen
  */
 public class InsertSort {
@@ -13,23 +13,29 @@ public class InsertSort {
         int[] a = new int[]{3, 9, 1, 4, 5, 2};
 //        sort(a);
 
-        binaryInsertSort(a, 0, a.length - 1);
+//        binaryInsertSort(a, 0, a.length - 1);
 
+        sort(a);
         for (int n : a) {
-            System.out.println(n);
+            System.out.print(n + " ");
         }
     }
 
     private static void sort(int[] arr) {
-        int temp, j;
+        if (arr.length < 2)
+            return;
+
         for (int i = 1; i < arr.length; i++) {
-            temp = arr[i];
-            j = i;
-            while (j > 0 && temp < arr[j - 1]) {
-                arr[j] = arr[j - 1];
-                j--;
+            int value = arr[i];
+            int j = i - 1;
+            for (; j >= 0; j--) {
+                if (arr[j] <= value) {
+                    break;
+                } else {
+                    arr[j + 1] = arr[j];
+                }
             }
-            arr[j] = temp;
+            arr[j + 1] = value;
         }
     }
 
