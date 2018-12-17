@@ -17,9 +17,10 @@ public class Solution {
 //        listNode.next.next.next = new ListNode(4);
 //        listNode.next.next.next.next = new ListNode(5);
 
-        int[] nums = new int[]{1, 3, 2};
-        solution.nextPermutation(nums);
+        int[] nums = new int[]{4, 5, 6, 7, 0, 1, 2};
+        int i = solution.search(nums, 1);
 
+        System.out.println(i);
 //        System.out.println(result);
 //        for (int i = 0; i < strings.size(); i++) {
 //            System.out.println(strings.get(i));
@@ -30,42 +31,30 @@ public class Solution {
 //        }
     }
 
-    public void nextPermutation(int[] nums) {
-        int i = nums.length - 1;
+    public int search(int[] nums, int target) {
+        if (nums.length == 0) return -1;
+        int low = 0, high = nums.length - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (nums[mid] == target) return mid;
 
-        for (; i >= 1; i--) {
-            if (nums[i] > nums[i - 1]) { //find first number which is smaller than it's after number
-                break;
+            if (nums[mid] == nums[low]) {
+                low++;
+            } else if (nums[mid] > nums[low]) {
+                if (nums[mid] > target && nums[low] <= target) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            } else {
+                if (nums[mid] < target && nums[high] >= target) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
             }
         }
-
-        if (i != 0) {
-            swap(nums, i - 1); //if the number exist,which means that the nums not like{5,4,3,2,1}
-        }
-        reverse(nums, i);
-    }
-
-    private void reverse(int[] a, int i) {//reverse the number after the number we have found
-        int first = i;
-        int last = a.length - 1;
-        while (first < last) {
-            int t = a[first];
-            a[first] = a[last];
-            a[last] = t;
-            first++;
-            last--;
-        }
-    }
-
-    private void swap(int[] a, int i) {
-        for (int j = a.length - 1; j > i; j--) {
-            if (a[j] > a[i]) {
-                int t = a[j];
-                a[j] = a[i];
-                a[i] = t;
-                break;
-            }
-        }
+        return -1;
     }
 
     private void print(int[] nums) {

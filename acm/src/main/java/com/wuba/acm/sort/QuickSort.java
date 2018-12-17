@@ -1,82 +1,53 @@
 package com.wuba.acm.sort;
 
-import java.util.ArrayList;
-
 /**
- * desc :
+ * desc : 快速排序
  * date : 2018/3/21
+ * 不稳定  时间:O(nlogn) 空间:O(1)
  *
  * @author : dongSen
  */
 public class QuickSort {
 
     public static void main(String[] args) {
-//        int[] a = {7, 10, 3, 5, 4, 6, 2, 8, 1, 9};
-//        quickSort(a, 1, 10);
-//        for (int anA : a)
-//            System.out.print(anA + " ");
-
-//        ArrayList<String> list = new ArrayList<>(1000);
-//        for (int i = 0; i < 1000000; i++) {
-//            list.add(String.valueOf(i));
-//        }
-//
-//        forTest(list);
-//        forTest2(list);
-
-//        double aaa = 2.11;
-//        double test = 2.01 * aaa;
-//        System.out.println(test);
+        int[] a = {7, 10, 3, 5, 4, 6, 2, 8, 1, 9};
+        quickSort(a, a.length);
+        for (int anA : a)
+            System.out.print(anA + " ");
     }
 
-    private static void forTest(ArrayList<String> list) {
-        long begin = System.currentTimeMillis();
-        for (int i = 0; i < list.size(); i++) {
-
-        }
-
-        long end = System.currentTimeMillis();
-
-        System.out.println("fori  " + (end - begin) + "ms");
+    // 快速排序，a是数组，n表示数组的大小
+    public static void quickSort(int[] a, int n) {
+        quickSortInternally(a, 0, n - 1);
     }
 
-    private static void forTest2(ArrayList<String> list) {
-        long begin = System.currentTimeMillis();
-        for (String text : list) {
+    // 快速排序递归函数，p,r为下标
+    private static void quickSortInternally(int[] a, int p, int r) {
+        if (p >= r) return;
 
-        }
-
-        long end = System.currentTimeMillis();
-
-        System.out.println("foreach  " + (end - begin) + "ms");
+        int q = partition(a, p, r); // 获取分区点
+        quickSortInternally(a, p, q - 1);
+        quickSortInternally(a, q + 1, r);
     }
 
-    private static int Partition(int[] a, int p, int r) {
-        int x = a[r - 1];
-        int i = p - 1;
-        int temp;
-        for (int j = p; j <= r - 1; j++) {
-            if (a[j - 1] <= x) {
-                // 交换(a[j-1],a[i]);
-                temp = a[j - 1];
-                a[j - 1] = a[i];
-                a[i] = temp;
-                i++;
+    private static int partition(int[] a, int p, int r) {
+        int pivot = a[r];
+        int i = p;
+        for (int j = p; j < r; ++j) {
+            if (a[j] < pivot) {
+                int tmp = a[i];
+                a[i] = a[j];
+                a[j] = tmp;
+                ++i;
             }
         }
-        //交换(a[r-1],a[i]);
-        temp = a[r - 1];
-        a[r - 1] = a[i];
-        a[i] = temp;
-        return i + 1;
-    }
 
-    private static void quickSort(int[] a, int p, int r) {
-        if (p < r) {
-            int q = Partition(a, p, r);
-            quickSort(a, p, q - 1);
-            quickSort(a, q + 1, r);
-        }
+        int tmp = a[i];
+        a[i] = a[r];
+        a[r] = tmp;
+
+        System.out.println("i=" + i);
+        return i;
     }
 
 }
