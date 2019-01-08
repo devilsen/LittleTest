@@ -5,7 +5,7 @@ package com.wuba.acm.search;
  * date : 2018/12/17
  *
  * @author : dongSen
- *
+ * <p>
  * 二分查找应用场景的局限性
  * 首先，二分查找依赖的是顺序表结构，简单点说就是数组。
  * 其次，二分查找针对的是有序数据。
@@ -36,7 +36,7 @@ public class BinarySearch {
     public static int search2(int[] nums, int low, int high, int value) {
         if (low > high) return -1;
 
-        int middle = low + ((low + high) >> 1);
+        int middle = low + ((high - low) >> 1);
         if (nums[middle] == value) {
             return middle;
         } else if (nums[middle] < value) {
@@ -44,6 +44,25 @@ public class BinarySearch {
         } else {
             return search2(nums, low, middle - 1, value);
         }
+    }
+
+    public static int searchtest(int[] nums, int value) {
+        int low = 0;
+        int high = nums.length - 1;
+
+        while (low <= high) {
+            int middle = low + (high - low) / 2;
+            if (nums[middle] == value) {
+                return middle;
+            } else if (nums[middle] < value) {
+                low = middle + 1;
+            } else {
+                high = middle -1 ;
+            }
+        }
+
+        return -1;
+
     }
 
 }
