@@ -89,6 +89,7 @@
 
         <activity android:name=".parcelable.ParcelableActivity" />
         <activity android:name=".managertest.WindowManagerTestActivity" />
+        <activity android:name=".recyclerview.ItemAnimationTestActivity" />
 
         <receiver android:name=".alarm.AlarmActivity$AlarmReceiver" />
 
