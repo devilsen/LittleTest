@@ -26,8 +26,6 @@ import com.test.devilsen.test.applist.RecyclerTestActivity;
 import com.test.devilsen.test.badgeicon.BadgeTestActivity;
 import com.test.devilsen.test.bottomsheet.BottomSheetActivity;
 import com.test.devilsen.test.chart.ChartTestActivity;
-import com.test.devilsen.test.chart.mpandroid.HorizLineChatActivity;
-import com.test.devilsen.test.chart.mpandroid.PieChatActivity;
 import com.test.devilsen.test.doubanAnim.AnimActivity;
 import com.test.devilsen.test.handlertest.HandlerTestActivity;
 import com.test.devilsen.test.image.HeartTestActivity;
@@ -227,12 +225,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(in);
                 break;
             case R.id.pie_chart_test:
-                Intent intent = new Intent(this, PieChatActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(this, PieChatActivity.class);
+//                startActivity(intent);
                 break;
             case R.id.horizontal_bar_chart_test:
-                Intent intent1 = new Intent(this, HorizLineChatActivity.class);
-                startActivity(intent1);
+//                Intent intent1 = new Intent(this, HorizLineChatActivity.class);
+//                startActivity(intent1);
                 break;
             case R.id.chart_test:
                 Intent intent2 = new Intent(this, ChartTestActivity.class);
