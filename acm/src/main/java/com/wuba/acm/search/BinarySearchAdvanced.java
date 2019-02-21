@@ -9,6 +9,9 @@ package com.wuba.acm.search;
  * 变体二：查找最后一个值等于给定值的元素
  * 变体三：查找第一个大于等于给定值的元素
  * 变体四：查找最后一个小于等于给定值的元素
+ *
+ * https://time.geekbang.org/column/article/42520
+ * https://time.geekbang.org/column/article/42733
  */
 public class BinarySearchAdvanced {
 
@@ -51,7 +54,7 @@ public class BinarySearchAdvanced {
         int high = n - 1;
 
         while (low <= high) {
-            int mid = low + ((low + high) >> 1);
+            int mid = low + ((high - low) >> 1);
             if (a[mid] > value) {
                 high = mid - 1;
             } else if (a[mid] < value) {
@@ -75,7 +78,7 @@ public class BinarySearchAdvanced {
         int high = n - 1;
 
         while (low <= high) {
-            int mid = low + ((low + high) >> 1);
+            int mid = low + ((high - low) >> 1);
             if (a[mid] < value) {
                 low = mid + 1;
             } else {
@@ -97,7 +100,7 @@ public class BinarySearchAdvanced {
         int high = n - 1;
 
         while (low <= high) {
-            int mid = low + ((low + high) >> 1);
+            int mid = low + ((high - low) >> 1);
             if (a[mid] > value) {
                 high = mid - 1;
             } else {
