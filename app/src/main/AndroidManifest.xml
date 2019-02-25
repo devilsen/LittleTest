@@ -90,6 +90,7 @@
         <activity android:name=".parcelable.ParcelableActivity" />
         <activity android:name=".managertest.WindowManagerTestActivity" />
         <activity android:name=".recyclerview.ItemAnimationTestActivity" />
+        <activity android:name=".aidl.client.ClientActivity" />
 
         <receiver android:name=".alarm.AlarmActivity$AlarmReceiver" />
 
@@ -97,6 +98,17 @@
             android:name="com.test.devilsen.test.multiprocess.sp.sphelper.SPContentProvider"
             android:authorities="com.wuba.crm"
             android:exported="false" />
+
+        <service
+            android:name="com.test.devilsen.test.aidl.server.EasyService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote">
+
+            <intent-filter>
+                <action android:name="com.devilsen.test.IEasyService"/>
+            </intent-filter>
+        </service>
 
     </application>
 
