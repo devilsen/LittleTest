@@ -183,5 +183,12 @@
             android:onClick="itemAnimTest"
             android:textAllCaps="true" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="btn_aidl_test"
+            android:onClick="itemAidlTest"
+            android:textAllCaps="true" />
+
     </LinearLayout>
 </ScrollView>

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.test.devilsen.test.HalfCircle.TestActivity;
+import com.test.devilsen.test.aidl.client.ClientActivity;
 import com.test.devilsen.test.alarm.AlarmActivity;
 import com.test.devilsen.test.applist.RecyclerTestActivity;
 import com.test.devilsen.test.badgeicon.BadgeTestActivity;
@@ -339,6 +340,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void itemAnimTest(View view) {
         Intent intent = new Intent(this, ItemAnimationTestActivity.class);
+        startActivity(intent);
+    }
+
+    public void itemAidlTest(View view) {
+        Intent intent = new Intent(this, ClientActivity.class);
         startActivity(intent);
     }
 }
