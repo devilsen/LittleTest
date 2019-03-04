@@ -14,16 +14,13 @@ import java.util.concurrent.TimeUnit;
 public class Test {
 
 
-    public static void main(String[] args) throws Exception {
-
-        //(1)线程池单个线程，线程池队列元素个数为1
+    public static void main(String[] args) {
         ThreadPoolExecutor executorService = new ThreadPoolExecutor(
-                2, 1,
+                1, 1,
                 1L, TimeUnit.SECONDS,
                 new ArrayBlockingQueue<Runnable>(1),
                 new ThreadPoolExecutor.DiscardOldestPolicy());
 
-        //(2)添加任务one
         executorService.execute(new Runnable() {
             @Override
             public void run() {
@@ -37,24 +34,18 @@ public class Test {
             }
         });
 
-        //(3)添加任务two
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("start runnable 2");
-            }
-        });
+        for (int i = 2; i < 6; i++) {
+            final int finalI = i;
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("start runnable " + finalI);
+                }
+            });
+        }
 
-        //(4)添加任务three
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("start runnable 3");
-            }
-        });
+        executorService.shutdown();
 
-        executorService.shutdown();//(8)关闭线程池，阻塞直到所有任务执行完毕
-
-        System.out.println("task finish ------");//(5)等待任务one执行完毕
+        System.out.println("main finish ------");
     }
 }
