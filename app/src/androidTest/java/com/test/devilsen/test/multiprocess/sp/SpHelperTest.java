@@ -1,13 +1,10 @@
 package com.test.devilsen.test.multiprocess.sp;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
-
-import com.test.devilsen.test.multiprocess.sp.sphelper.SPHelper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +24,7 @@ public class SpHelperTest {
     @Test
     public void useAppContext() throws Exception {
         Context appContext = InstrumentationRegistry.getTargetContext();
-        SPHelper.init((Application) appContext.getApplicationContext());
+//        SPHelper.init((Application) appContext.getApplicationContext());
 
         Random random = new Random();
         ArrayList<Integer> list = new ArrayList<>();
@@ -36,9 +33,9 @@ public class SpHelperTest {
         }
 
         long start = System.currentTimeMillis();
-        for (int i = 0; i < 100; i++) {
-            SPHelper.save("key" + list.get(i), i);
-        }
+//        for (int i = 0; i < 100; i++) {
+//            SPHelper.save("key" + list.get(i), i);
+//        }
         long end = System.currentTimeMillis();
         Log.e("ExampleInstrumentedTest", "SPHelper takes " + (end - start) + " millis");
 
