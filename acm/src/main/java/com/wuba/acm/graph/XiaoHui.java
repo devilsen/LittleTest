@@ -55,6 +55,16 @@ public class XiaoHui {
         }
     }
 
+    private static void dfs1(Graph graph, int start, boolean[] visited) {
+        System.out.println(graph.vertexes[start].data);
+        visited[start] = true;
+        for (int index : graph.lists[start]) {
+            if (!visited[start]) {
+                dfs1(graph, index, visited);
+            }
+        }
+    }
+
     /**
      * 广度优先遍历
      */
@@ -71,6 +81,23 @@ public class XiaoHui {
             visited[front] = true;
             for (int index : graph.lists[front]) {
                 queue.offer(index);
+            }
+        }
+    }
+
+    private static void bfs1(Graph graph, int start, boolean[] visited, LinkedList<Integer> queue) {
+        queue.offer(start);
+
+        while (!queue.isEmpty()) {
+            int front = queue.poll();
+            if (visited[front]) {
+                continue;
+            }
+
+            System.out.println(graph.vertexes[front].data);
+            visited[front] = true;
+            for (int i = 0; i < graph.lists[front].size(); i++) {
+                queue.offer(graph.lists[front].get(i));
             }
         }
     }

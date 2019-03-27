@@ -41,6 +41,8 @@ import com.test.devilsen.test.viewpager.ViewPagerActivity;
 import com.test.devilsen.test.viewtest.ViewTestActivity;
 import com.test.devilsen.test.watermark.WaterMarkActivity;
 
+import me.sam.practice.view.ViewMainActivity;
+
 /**
  * ii.                                         ;9ABH,
  * SA391,                                    .r9GG35&G
@@ -345,6 +347,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void itemAidlTest(View view) {
         Intent intent = new Intent(this, ClientActivity.class);
+        startActivity(intent);
+    }
+
+    public void openViewPractice(View view) {
+        Intent intent = new Intent(this, ViewMainActivity.class);
         startActivity(intent);
     }
 }

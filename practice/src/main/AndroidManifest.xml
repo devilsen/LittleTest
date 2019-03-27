@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.sam.practice" >
+
+    <application>
+
+        <activity android:name="me.sam.practice.view.ViewMainActivity" />
+
+        <activity android:name=".view.xfermode.XfermodeTestActivity"/>
+
+        <activity android:name=".view.spark.SparkTestActivity" />
+
+    </application>
+
+</manifest>

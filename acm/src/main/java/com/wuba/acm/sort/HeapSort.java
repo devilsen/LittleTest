@@ -1,62 +1,88 @@
 package com.wuba.acm.sort;
 
-import java.util.Arrays;
-
 /**
  * desc : 堆排序
  * date : 2018/4/3
  *
  * @author : dongSen
+ * <p>
+ * https://mp.weixin.qq.com/s/t-GkSN5EEL-lplM65OeSig
  */
 public class HeapSort implements SortInterface {
 
-    public static void main(String args[]) {
-        int[] arr = {7, 8, 9, 4, 5, 6, 3, 2, 1};
+    private void HeapAdjust(int[] array, int parent, int length) {
+        int temp = array[parent]; // temp保存当前父节点
+        int child = 2 * parent + 1; // 先获得左孩子
 
-        System.out.println(Arrays.toString(arr));
+        while (child < length) {
+            // 如果有右孩子结点，并且右孩子结点的值大于左孩子结点，则选取右孩子结点
+            if (child + 1 < length && array[child] < array[child + 1]) {
+                child++;
+            }
 
-        heap(arr);
+            // 如果父结点的值已经大于孩子结点的值，则直接结束
+            if (temp >= array[child])
+                break;
 
-        System.out.println(Arrays.toString(arr));
+            // 把孩子结点的值赋给父结点
+            array[parent] = array[child];
+
+            // 选取孩子结点的左孩子结点,继续向下筛选
+            parent = child;
+            child = 2 * child + 1;
+        }
+
+        array[parent] = temp;
     }
 
-    static void heapify(int a[], int n, int i) {
-        int max, child;
-        child = 2 * i + 1;
-        max = i;
-        if (child < n)
-            if (a[child] > a[max])
-                max = child;
-        if (child + 1 < n)
-            if (a[child + 1] > a[max])
-                max = child + 1;
-        if (max != i) {
-            int temp = a[i];
-            a[i] = a[max];
-            a[max] = temp;
-            heapify(a, n, max);
+    private void heapSort(int[] list) {
+        // 循环建立初始堆
+        for (int i = list.length / 2; i >= 0; i--) {
+            HeapAdjust(list, i, list.length);
+        }
+
+        // 进行n-1次循环，完成排序
+        for (int i = list.length - 1; i > 0; i--) {
+            // 最后一个元素和第一元素进行交换
+            int temp = list[i];
+            list[i] = list[0];
+            list[0] = temp;
+
+            // 筛选 R[0] 结点，得到i-1个结点的堆
+            HeapAdjust(list, 0, i);
+            System.out.format("第 %d 趟: 	", list.length - i);
+            printPart(list, 0, list.length - 1);
         }
     }
 
-    static void buildheap(int a[]) {
-        for (int i = a.length / 2 - 1; i >= 0; i--)
-            heapify(a, a.length, i);
+    // 打印序列
+    private void printPart(int[] list, int begin, int end) {
+        for (int i = 0; i < begin; i++) {
+            System.out.print("	");
+        }
+        for (int i = begin; i <= end; i++) {
+            System.out.print(list[i] + "	");
+        }
+        System.out.println();
     }
 
-    static int[] heap(int a[]) {
-        buildheap(a);
-        for (int i = a.length - 1; i >= 1; i--) {
-            int temp = a[0];
-            a[0] = a[i];
-            a[i] = temp;
-            heapify(a, i, 0);
-        }
+    public static void main(String[] args) {
+        // 初始化一个序列
+        int[] array = {
+                1, 3, 4, 5, 2, 6, 9, 7, 8, 0
+        };
 
-        return a;
+        // 调用快速排序方法
+        HeapSort heap = new HeapSort();
+        System.out.print("排序前:	");
+        heap.printPart(array, 0, array.length - 1);
+        heap.heapSort(array);
+        System.out.print("排序后:	");
+        heap.printPart(array, 0, array.length - 1);
     }
 
     @Override
     public int[] sort(int[] a) {
-        return heap(a);
+        return new int[0];
     }
 }

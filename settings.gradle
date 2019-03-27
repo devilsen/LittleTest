@@ -1,1 +1,1 @@
-include ':app', ':emojicon', ':acm', ':view'
+include ':app', ':emojicon', ':acm', ':view', ':practice'
