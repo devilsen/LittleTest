@@ -1,9 +1,12 @@
 package com.test.devilsen.test;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 
 import com.squareup.leakcanary.RefWatcher;
+import com.test.devilsen.test.screen.Density;
 
 /**
  * desc :
@@ -25,6 +28,43 @@ public class MyApplication extends Application {
 //        }
 //        watcher = LeakCanary.install(this);
         // Normal app init code...
+
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+                Density.setDensity(activity);
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+
+            }
+        });
     }
 
     public static RefWatcher getRefWatcher(Context context) {
