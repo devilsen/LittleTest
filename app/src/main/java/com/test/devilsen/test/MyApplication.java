@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.squareup.leakcanary.RefWatcher;
-import com.test.devilsen.test.screen.Density;
 
 /**
  * desc :
@@ -32,7 +31,7 @@ public class MyApplication extends Application {
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-                Density.setDensity(activity);
+//                Density.setDensity(activity);
             }
 
             @Override

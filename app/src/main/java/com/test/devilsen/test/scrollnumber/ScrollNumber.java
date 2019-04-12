@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.Interpolator;
@@ -129,27 +130,26 @@ public class ScrollNumber extends View {
 
         drawSelf(canvas);
 
-        if (mOffset == 400) {
-            drawNext(canvas);
-            next++;
+        if (mOffset > 400) {
+//            drawNext(canvas);
         }
 
-        if (mOffset == 800) {
-            self = next;
+        if (mOffset >= 1200) {
+            self++;
             startAnim();
         }
-        if (self == 9) {
-            next = 0;
+        if (self == 10) {
+            self = 0;
         }
     }
 
     private void drawSelf(Canvas canvas) {
-        canvas.drawText(self + "", mTextCenterX, mOffset, mPaint);
+        canvas.drawText(self + "", mTextCenterX, mOffset- mTextHeight, mPaint);
 
     }
 
     private void drawNext(Canvas canvas) {
-        canvas.drawText(next + "", mTextCenterX, mOffset + mTextHeight + 200, mPaint);
+        canvas.drawText((self) + "", mTextCenterX, mOffset - mTextHeight - 100, mPaint);
     }
 
 
@@ -160,14 +160,13 @@ public class ScrollNumber extends View {
     }
 
     private void startAnim() {
-        ValueAnimator animator = ValueAnimator.ofFloat(0, 800).setDuration(500);
+        ValueAnimator animator = ValueAnimator.ofFloat(0, 1200).setDuration(800);
         animator.setInterpolator(new LinearInterpolator());
-//        animator.setRepeatCount(10);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 mOffset = (float) animation.getAnimatedValue();
-//                Log.e("mOffset", mOffset + "");
+                Log.e("mOffset", mOffset + "");
                 invalidate();
             }
         });

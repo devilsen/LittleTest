@@ -15,6 +15,7 @@ import android.util.DisplayMetrics;
 public class Density {
 
     private static final float WIDTH = 720;
+    private static final float HEIGHT = 1280;
 
     private static float appDensity;//屏幕密度
     private static float appScaleDensity;//字体缩放比例
@@ -48,7 +49,12 @@ public class Density {
             });
         }
 
-        float targetDensity = displayMetrics.widthPixels / WIDTH; // 1080 / 720 = 1.5
+        float targetDensity;
+        if (displayMetrics.widthPixels < displayMetrics.heightPixels) {
+            targetDensity = displayMetrics.widthPixels / WIDTH; // 1080 / 720 = 1.5
+        } else {
+            targetDensity = displayMetrics.widthPixels / HEIGHT; // 1080 / 720 = 1.5
+        }
         float targetScaleDensity = targetDensity * (appScaleDensity / appDensity);
         int targetDensityDpi = (int) (targetDensity * 160);
 
