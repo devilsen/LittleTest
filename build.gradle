@@ -10,7 +10,7 @@ project.ext {
     targetSdkVersion = 28
     versionCode = 1
     versionName = "1.0.0"
-    kotlin_version = "1.3.0"
+    kotlin_version = "1.3.21"
     abortOnLintError = false
     checkLintRelease = false
     abortOnLintError = false
@@ -21,6 +21,18 @@ project.ext {
     libSupportDesign = "com.android.support:design:${supportVersion}"
     libCardview = "com.android.support:cardview-v7:${supportVersion}"
     libPercent = "com.android.support:percent:${supportVersion}"
+}
+
+ext {
+    buildToolsVersion = "28.0.3"
+    androidxLibVersion = "1.0.0"
+    coreVersion = "1.2.0-alpha03"
+    extJUnitVersion = "1.1.1-alpha03"
+    runnerVersion = "1.2.0-alpha03"
+    rulesVersion = "1.2.0-alpha03"
+    espressoVersion = "3.2.0-alpha03"
+    extJUnitVersion = "1.1.1-alpha03"
+    extTruthVersion = "1.2.0-alpha03"
 }
 
 buildscript {
@@ -38,7 +50,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.android.tools.build:gradle:3.3.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong

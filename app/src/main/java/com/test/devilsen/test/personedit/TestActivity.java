@@ -6,10 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.test.devilsen.test.R;
-
-import io.github.rockerhieu.emojicon.EmojiconEditText;
 
 /**
  * author : dongSen
@@ -23,7 +22,7 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_edit_text);
 
-        EmojiconEditText textView = (EmojiconEditText) findViewById(R.id.edit_emojicon);
+        EditText textView = findViewById(R.id.edit_emojicon);
 
 //        textView.setText(MisTextHandler.makeData());
 ////        textView.setMovementMethod(LinkMovementMethod.getInstance());
