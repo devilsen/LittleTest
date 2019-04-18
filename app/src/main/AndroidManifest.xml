@@ -87,6 +87,7 @@
         <activity android:name=".managertest.WindowManagerTestActivity" />
         <activity android:name=".recyclerview.ItemAnimationTestActivity" />
         <activity android:name=".aidl.client.ClientActivity" />
+        <activity android:name=".activity.FullScreenActivity" />
 
         <receiver android:name=".alarm.AlarmActivity$AlarmReceiver" />
 

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.test.devilsen.test.HalfCircle.TestActivity;
+import com.test.devilsen.test.activity.FullScreenActivity;
 import com.test.devilsen.test.aidl.client.ClientActivity;
 import com.test.devilsen.test.alarm.AlarmActivity;
 import com.test.devilsen.test.applist.RecyclerTestActivity;
@@ -352,6 +353,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void openViewPractice(View view) {
         Intent intent = new Intent(this, ViewMainActivity.class);
+        startActivity(intent);
+    }
+
+    public void fullScreen(View view) {
+        Intent intent = new Intent(this, FullScreenActivity.class);
         startActivity(intent);
     }
 }
