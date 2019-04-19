@@ -1,12 +1,15 @@
-package me.sam.uitest;
+package me.sam.uitest.basic;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
+import me.sam.uitest.MainActivity;
+import me.sam.uitest.R;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -20,26 +23,38 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
  * desc : 主界面测试
  * date : 2019/4/16
  *
- * @author : dongSen
+ * @author : 官方例子
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class MainActivityTest {
+public class BasicActivityTest {
 
 
-    public static final String STRING_TO_BE_TYPED = "Espresso";
+    public static final String STRING_TO_BE_TYPED = "Hello";
 
     /**
      * Use {@link ActivityScenarioRule} to create and launch the activity under test, and close it
      * after test completes. This is a replacement for {@link androidx.test.rule.ActivityTestRule}.
      */
-    @Rule public ActivityScenarioRule<MainActivity> activityScenarioRule
+    @Rule
+    public ActivityScenarioRule<MainActivity> activityScenarioRule
             = new ActivityScenarioRule<>(MainActivity.class);
+
+//    @Before
+//    public void launchActivity() {
+//        ActivityScenario.launch(MainActivity.class);
+//    }
+
+    private void openActivity() {
+        onView(withId(R.id.button_test_basic)).perform(click());
+    }
 
     @Test
     public void changeText_sameActivity() {
+        openActivity();
+        onView(ViewMatchers.withId(R.id.editTextUserInput)).perform(click());
         // Type text and then press the button.
-        onView(withId(R.id.editTextUserInput))
+        onView(ViewMatchers.withId(R.id.editTextUserInput))
                 .perform(typeText(STRING_TO_BE_TYPED), closeSoftKeyboard());
         onView(withId(R.id.changeTextBt)).perform(click());
 
@@ -49,7 +64,9 @@ public class MainActivityTest {
 
     @Test
     public void changeText_newActivity() {
+        openActivity();
         // Type text and then press the button.
+        onView(ViewMatchers.withId(R.id.editTextUserInput)).perform(click());
         onView(withId(R.id.editTextUserInput)).perform(typeText(STRING_TO_BE_TYPED),
                 closeSoftKeyboard());
         onView(withId(R.id.activityChangeTextBtn)).perform(click());

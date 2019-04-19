@@ -1,56 +1,47 @@
 package me.sam.uitest;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import me.sam.uitest.basic.BasicTestActivity;
+import me.sam.uitest.idling.IdlingTestActivity;
+import me.sam.uitest.intent.IntentTestActivity;
+import me.sam.uitest.recycler.RecyclerViewTestActivity;
 
 /**
  * desc : 主界面
- * date : 2019/4/16
+ * date : 2019/4/19
  *
  * @author : dongSen
  */
-public class MainActivity extends Activity implements View.OnClickListener {
-
-
-    // The TextView used to display the message inside the Activity.
-    private TextView mTextView;
-
-    // The EditText where the user types the message.
-    private EditText mEditText;
+public class MainActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Set the listeners for the buttons.
-        findViewById(R.id.changeTextBt).setOnClickListener(this);
-        findViewById(R.id.activityChangeTextBtn).setOnClickListener(this);
-
-        mTextView = (TextView) findViewById(R.id.textToBeChanged);
-        mEditText = (EditText) findViewById(R.id.editTextUserInput);
     }
 
-    @Override
-    public void onClick(View view) {
-        // Get the text from the EditText view.
-        final String text = mEditText.getText().toString();
+    public void onBasic(View view) {
+        Intent intent = new Intent(this, BasicTestActivity.class);
+        startActivity(intent);
+    }
 
-        final int changeTextBtId = R.id.changeTextBt;
-        final int activityChangeTextBtnId = R.id.activityChangeTextBtn;
+    public void onIntent(View view) {
+        Intent intent = new Intent(this, IntentTestActivity.class);
+        startActivity(intent);
+    }
 
-        if (view.getId() == changeTextBtId) {
-            // First button's interaction: set a text in a text view.
-            mTextView.setText(text);
-        } else if (view.getId() == activityChangeTextBtnId) {
-            // Second button's interaction: start an activity and send a message to it.
-            Intent intent = ShowTextActivity
-                    .newStartIntent(this, text);
-            startActivity(intent);
-        }
+    public void onRecycler(View view) {
+        Intent intent = new Intent(this, RecyclerViewTestActivity.class);
+        startActivity(intent);
+    }
+
+    public void onIdling(View view) {
+        Intent intent = new Intent(this, IdlingTestActivity.class);
+        startActivity(intent);
     }
 }
