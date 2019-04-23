@@ -18,10 +18,7 @@ import me.sam.uitest.R;
  */
 public class BasicTestActivity extends AppCompatActivity implements View.OnClickListener {
 
-    // The TextView used to display the message inside the Activity.
     private TextView mTextView;
-
-    // The EditText where the user types the message.
     private EditText mEditText;
 
     @Override
@@ -29,7 +26,6 @@ public class BasicTestActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_test);
 
-        // Set the listeners for the buttons.
         findViewById(R.id.changeTextBt).setOnClickListener(this);
         findViewById(R.id.activityChangeTextBtn).setOnClickListener(this);
 
@@ -46,10 +42,10 @@ public class BasicTestActivity extends AppCompatActivity implements View.OnClick
         final int activityChangeTextBtnId = R.id.activityChangeTextBtn;
 
         if (view.getId() == changeTextBtId) {
-            // First button's interaction: set a text in a text view.
+            // 展示EditText的内容
             mTextView.setText(text);
         } else if (view.getId() == activityChangeTextBtnId) {
-            // Second button's interaction: start an activity and send a message to it.
+            // 打开另一个Activity，传递EditText的内容
             Intent intent = ShowTextActivity.newStartIntent(this, text);
             startActivity(intent);
         }

@@ -32,14 +32,13 @@ dependencies {
     // Testing-only dependencies
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:core:' + rootProject.coreVersion
+    androidTestImplementation 'androidx.test.ext:truth:' + rootProject.extTruthVersion
     androidTestImplementation 'androidx.test.ext:junit:' + rootProject.extJUnitVersion
     androidTestImplementation 'androidx.test:runner:' + rootProject.runnerVersion
     androidTestImplementation 'androidx.test:rules:' + rootProject.rulesVersion
     androidTestImplementation 'androidx.test.espresso:espresso-core:' + rootProject.espressoVersion
     androidTestImplementation 'androidx.test.espresso:espresso-intents:' + rootProject.espressoVersion
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:' + rootProject.espressoVersion
-    androidTestImplementation 'androidx.test.ext:truth:' + rootProject.extTruthVersion
-    androidTestImplementation 'androidx.test.ext:junit:' + rootProject.extJUnitVersion
 
     // App dependencies
     implementation 'androidx.annotation:annotation:' + rootProject.androidxLibVersion

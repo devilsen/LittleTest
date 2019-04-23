@@ -30,7 +30,6 @@ import me.sam.uitest.R;
  */
 public class ShowTextActivity extends AppCompatActivity {
 
-    // The name of the extra data sent through an {@link Intent}.
     public final static String KEY_EXTRA_MESSAGE =
             "com.example.android.testing.espresso.basicsample.MESSAGE";
 
@@ -39,11 +38,11 @@ public class ShowTextActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_text);
 
-        // Get the message from the Intent.
+        // 获取传递的内容
         Intent intent = getIntent();
         String message = intent.getStringExtra(KEY_EXTRA_MESSAGE);
 
-        // Show message.
+        // 展示消息
         ((TextView) findViewById(R.id.show_text_view)).setText(message);
     }
 

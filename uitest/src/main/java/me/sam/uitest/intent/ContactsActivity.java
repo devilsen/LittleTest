@@ -22,7 +22,7 @@ public class ContactsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
-        setResult(Activity.RESULT_OK, createResultData("896-745-231"));
+        setResult(Activity.RESULT_OK, createResultData("123-345-6789"));
         finish();
     }
 

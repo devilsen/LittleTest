@@ -1,9 +1,17 @@
 package me.sam.uitest.intent;
 
 import android.app.Activity;
+import android.app.Instrumentation.ActivityResult;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+
+import androidx.test.espresso.intent.Intents;
+import androidx.test.espresso.intent.rule.IntentsTestRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.rule.GrantPermissionRule;
 
 import com.google.common.collect.Iterables;
 
@@ -12,16 +20,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import androidx.test.espresso.intent.Intents;
-import androidx.test.espresso.intent.rule.IntentsTestRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
-import androidx.test.rule.GrantPermissionRule;
-import me.sam.uitest.MainActivity;
 import me.sam.uitest.R;
 
-import static android.app.Instrumentation.ActivityResult;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -51,7 +51,7 @@ import static org.hamcrest.core.AllOf.allOf;
 @LargeTest
 public class DialerActivityTest {
 
-    private static final String VALID_PHONE_NUMBER = "123-345-6789";
+    private static final String VALID_PHONE_NUMBER = "323-2345-123";
 
     private static final Uri INTENT_DATA_PHONE_NUMBER = Uri.parse("tel:" + VALID_PHONE_NUMBER);
 
@@ -78,17 +78,11 @@ public class DialerActivityTest {
      * for you and also expose the activity under test.
      */
     @Rule
-    public IntentsTestRule<MainActivity> mActivityRule = new IntentsTestRule<>(
-            MainActivity.class);
-
-    private void openActivity() {
-        onView(withId(R.id.button_test_intent)).perform(click());
-    }
+    public IntentsTestRule<IntentTestActivity> mActivityRule = new IntentsTestRule<>(
+            IntentTestActivity.class);
 
     @Before
     public void stubAllExternalIntents() {
-        openActivity();
-
         // By default Espresso Intents does not stub any Intents. Stubbing needs to be setup before
         // every test run. In this case all external Intents will be blocked.
         intending(not(isInternal())).respondWith(new ActivityResult(Activity.RESULT_OK, null));

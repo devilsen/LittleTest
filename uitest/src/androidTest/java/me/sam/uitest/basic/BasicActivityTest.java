@@ -1,14 +1,14 @@
 package me.sam.uitest.basic;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
-import me.sam.uitest.MainActivity;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import me.sam.uitest.R;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -37,8 +37,8 @@ public class BasicActivityTest {
      * after test completes. This is a replacement for {@link androidx.test.rule.ActivityTestRule}.
      */
     @Rule
-    public ActivityScenarioRule<MainActivity> activityScenarioRule
-            = new ActivityScenarioRule<>(MainActivity.class);
+    public ActivityScenarioRule<BasicTestActivity> activityScenarioRule
+            = new ActivityScenarioRule<>(BasicTestActivity.class);
 
 //    @Before
 //    public void launchActivity() {
@@ -46,19 +46,20 @@ public class BasicActivityTest {
 //    }
 
     private void openActivity() {
-        onView(withId(R.id.button_test_basic)).perform(click());
+//        onView(withId(R.id.button_test_basic)).perform(click());
     }
 
     @Test
     public void changeText_sameActivity() {
         openActivity();
         onView(ViewMatchers.withId(R.id.editTextUserInput)).perform(click());
-        // Type text and then press the button.
+        // 输入一段文字
         onView(ViewMatchers.withId(R.id.editTextUserInput))
                 .perform(typeText(STRING_TO_BE_TYPED), closeSoftKeyboard());
-        onView(withId(R.id.changeTextBt)).perform(click());
+//        onView(withId(R.id.changeTextBt)).perform(click()); 与下面是等价的
+        onView(withText(R.string.change_text)).perform(click());
 
-        // Check that the text was changed.
+        // 检查是否相同
         onView(withId(R.id.textToBeChanged)).check(matches(withText(STRING_TO_BE_TYPED)));
     }
 
