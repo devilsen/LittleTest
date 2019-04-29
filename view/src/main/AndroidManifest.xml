@@ -1,2 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wuba.view" />
+    package="com.wuba.view" >
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+</manifest>

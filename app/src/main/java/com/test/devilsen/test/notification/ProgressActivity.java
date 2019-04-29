@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.test.devilsen.test.R;
-import com.test.devilsen.test.image.HeartTestActivity;
+import com.wuba.view.image.HeartTestActivity;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 

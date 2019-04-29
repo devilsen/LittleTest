@@ -23,51 +23,51 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".doubanAnim.AnimActivity" />
+        <activity android:name="com.wuba.view.doubanAnim.AnimActivity" />
 
         <activity android:name=".chart.ChartTestActivity" />
 
         <activity android:name=".VectorTestActivity" />
 
-        <activity android:name=".HalfCircle.TestActivity" />
+        <activity android:name="com.wuba.view.HalfCircle.TestActivity" />
 
-        <activity android:name=".viewpager.ViewPagerActivity" />
+        <activity android:name="com.wuba.view.viewpager.ViewPagerActivity" />
 
-        <activity android:name=".scrollnumber.ScrollActivity" />
+        <activity android:name="com.wuba.view.scrollnumber.ScrollActivity" />
 
         <activity android:name=".alarm.AlarmActivity" />
 
-        <activity android:name=".badgeicon.BadgeTestActivity" />
+        <activity android:name="com.wuba.view.badgeicon.BadgeTestActivity" />
 
-        <activity android:name=".image.HeartTestActivity" />
+        <activity android:name="com.wuba.view.image.HeartTestActivity" />
 
         <activity android:name=".notification.ProgressActivity" />
 
-        <activity android:name=".viewtest.ViewTestActivity" />
+        <activity android:name="com.wuba.view.viewtest.ViewTestActivity" />
 
         <activity android:name=".handlertest.HandlerTestActivity" />
 
         <activity android:name=".tranparent.TransparentActivity" />
 
-        <activity android:name=".bottomsheet.BottomSheetActivity" />
+        <activity android:name="com.wuba.view.bottomsheet.BottomSheetActivity" />
 
         <activity
-            android:name=".midautumn.MidAutumnMainActivity"
+            android:name="com.wuba.view.midautumn.MidAutumnMainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".personedit.TestActivity" />
+        <activity android:name="com.wuba.view.personedit.TestActivity" />
 
         <activity
-            android:name=".midautumn.PropagandaActivity"
+            android:name="com.wuba.view.midautumn.PropagandaActivity"
             android:theme="@style/TranslateActivity" />
 
-        <activity android:name=".applist.RecyclerTestActivity" />
+        <activity android:name="com.wuba.view.applist.RecyclerTestActivity" />
 
-        <activity android:name=".midautumn.WelfareResultActivity" />
+        <activity android:name="com.wuba.view.midautumn.WelfareResultActivity" />
 
         <activity android:name=".KeyboardTestActivity" />
 
-        <activity android:name=".watermark.WaterMarkActivity" />
+        <activity android:name="com.wuba.view.watermark.WaterMarkActivity" />
 
         <activity android:name=".lifecycler.TestActivity">
 
@@ -78,14 +78,14 @@
             android:theme="@style/TranslateActivity" />
 
         <activity
-            android:name=".imkeyboard.ImKeyboardActivity"
+            android:name="com.wuba.view.imkeyboard.ImKeyboardActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
 
         </activity>
 
         <activity android:name=".parcelable.ParcelableActivity" />
         <activity android:name=".managertest.WindowManagerTestActivity" />
-        <activity android:name=".recyclerview.ItemAnimationTestActivity" />
+        <activity android:name="com.wuba.view.recyclerview.ItemAnimationTestActivity" />
         <activity android:name=".aidl.client.ClientActivity" />
         <activity android:name=".activity.FullScreenActivity" />
 
