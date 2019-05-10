@@ -1,13 +1,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.sam.practice" >
+    package="me.sam.practice">
 
     <application>
 
         <activity android:name="me.sam.practice.view.ViewMainActivity" />
 
-        <activity android:name=".view.xfermode.XfermodeTestActivity"/>
+        <activity android:name=".view.xfermode.XfermodeTestActivity" />
 
         <activity android:name=".view.spark.SparkTestActivity" />
+        <activity android:name=".view.colorfilter.ColorFilterActivity" />
+        <activity android:name=".view.touch.TouchViewActivity" />
+        <activity
+            android:name=".view.edittext.PayTestActivity"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity android:name=".anim.simple.ImageAnimationActivity" />
 
     </application>
 

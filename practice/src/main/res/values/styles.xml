@@ -6,4 +6,16 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAllCaps">false</item>
     </style>
+
+    <style name="PayEditText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/background_pay_edit_text</item>
+        <item name="android:inputType">number</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLength">2</item>
+        <item name="android:cursorVisible">false</item>
+    </style>
 </resources>

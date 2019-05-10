@@ -1,4 +1,4 @@
-package com.test.devilsen.test.activity;
+package com.test.devilsen.test.screen.activity;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -13,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.test.devilsen.test.R;
 
 /**
@@ -30,7 +32,7 @@ public class FullScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_full_screen);
 
         //因为Style里有Toolbar，这里不能再设置
-//        initToolbar(this);
+        initToolbar(this);
 //        //设置全屏
 //        setFullScreen();
 //        //如果有ToolBar的话，设置ToolBar的偏移，能漏出状态栏
@@ -38,8 +40,17 @@ public class FullScreenActivity extends AppCompatActivity {
 
         //设置状态栏全透明
         StatusBarUtil.transparencyBar(this);
-        //设置状态栏白底黑字
+//        //设置状态栏白底黑字
         StatusBarUtil.StatusBarLightMode(this);
+        setImage();
+    }
+
+    private void setImage() {
+        ImageView imageView = findViewById(R.id.image_view_full_screen);
+        Glide.with(this)
+                .load("https://img1.gamersky.com/image2019/01/20190119_ddw_459_10/gamersky_13origin_25_20191191155B54.jpg")
+                .centerCrop()
+                .into(imageView);
     }
 
     private Toolbar initToolbar(@NonNull AppCompatActivity activity) {

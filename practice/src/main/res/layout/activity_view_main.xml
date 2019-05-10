@@ -14,4 +14,24 @@
         android:onClick="Spark"
         android:text="SparkFly" />
 
+    <Button
+        style="@style/SimpleButton"
+        android:onClick="ColorFilter"
+        android:text="ColorFilter" />
+
+    <Button
+        style="@style/SimpleButton"
+        android:onClick="TouchView"
+        android:text="TouchView" />
+
+    <Button
+        style="@style/SimpleButton"
+        android:onClick="PayView"
+        android:text="PayView" />
+
+    <Button
+        style="@style/SimpleButton"
+        android:onClick="imageAnimation"
+        android:text="imageAnimation" />
+
 </LinearLayout>

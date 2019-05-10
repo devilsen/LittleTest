@@ -1,4 +1,4 @@
-package com.test.devilsen.test.activity;
+package com.test.devilsen.test.screen.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
