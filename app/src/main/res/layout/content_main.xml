@@ -209,5 +209,12 @@
             android:text="fullScreen"
             android:textAllCaps="true" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="loadingTest"
+            android:text="loadingTest"
+            android:textAllCaps="true" />
+
     </LinearLayout>
 </ScrollView>

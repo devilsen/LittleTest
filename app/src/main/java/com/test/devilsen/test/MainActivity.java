@@ -35,6 +35,7 @@ import com.wuba.view.bottomsheet.BottomSheetActivity;
 import com.wuba.view.doubanAnim.AnimActivity;
 import com.wuba.view.image.HeartTestActivity;
 import com.wuba.view.imkeyboard.ImKeyboardActivity;
+import com.wuba.view.loading.LoadingTestActivity;
 import com.wuba.view.midautumn.PropagandaActivity;
 import com.wuba.view.recyclerview.ItemAnimationTestActivity;
 import com.wuba.view.scrollnumber.ScrollActivity;
@@ -358,6 +359,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void fullScreen(View view) {
         Intent intent = new Intent(this, FullScreenActivity.class);
+        startActivity(intent);
+    }
+
+    public void loadingTest(View view) {
+        Intent intent = new Intent(this, LoadingTestActivity.class);
         startActivity(intent);
     }
 }

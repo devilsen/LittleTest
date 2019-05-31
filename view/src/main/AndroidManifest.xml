@@ -2,4 +2,7 @@
     package="com.wuba.view" >
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <application>
+        <activity android:name=".loading.LoadingTestActivity" />
+    </application>
 </manifest>
