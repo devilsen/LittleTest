@@ -216,5 +216,12 @@
             android:text="loadingTest"
             android:textAllCaps="true" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="bannerText"
+            android:text="bannerText"
+            android:textAllCaps="true" />
+
     </LinearLayout>
 </ScrollView>

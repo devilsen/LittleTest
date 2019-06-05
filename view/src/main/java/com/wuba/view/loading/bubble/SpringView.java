@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.wuba.view.loading.point;
+package com.wuba.view.loading.bubble;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -24,10 +24,11 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by chenupt@gmail.com on 2015/1/31.
- * Description : Draw a head point and foot point.
+ * author : dongSen
+ * date : 2019-06-05 17:37
+ * desc : 贝塞尔曲线绘制类
  */
-class SpringView extends View {
+public class SpringView extends View {
 
     private Paint paint;
     private Path path;

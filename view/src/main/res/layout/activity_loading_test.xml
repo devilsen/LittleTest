@@ -10,39 +10,39 @@
         android:layout_width="match_parent"
         android:layout_height="200dp" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <SeekBar
+        android:id="@+id/seek_bar_loading_test"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="start"
-        android:text="start" />
+        android:layout_margin="10dp" />
 
-    <com.wuba.view.loading.bubble.BubbleIndicator xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    app:childPadding="12dp"
-    app:leftRightGap="20dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <ImageView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scaleType="centerInside" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="start"
+            android:text="start" />
 
-    <ImageView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scaleType="fitXY" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="stop"
+            android:text="stop" />
 
-    <ImageView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scaleType="centerCrop" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="reset"
+            android:text="reset" />
 
-    <ImageView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scaleType="fitCenter" />
+    </LinearLayout>
 
-    </com.wuba.view.loading.bubble.BubbleIndicator>
+    <!--<com.wuba.view.loading.point.SpringIndicator-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="100dp" />-->
+
 </LinearLayout>

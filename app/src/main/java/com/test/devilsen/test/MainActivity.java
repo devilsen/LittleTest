@@ -31,6 +31,7 @@ import com.test.devilsen.test.screen.activity.FullScreenActivity;
 import com.wuba.view.HalfCircle.TestActivity;
 import com.wuba.view.applist.RecyclerTestActivity;
 import com.wuba.view.badgeicon.BadgeTestActivity;
+import com.wuba.view.banner.BannerTestActivity;
 import com.wuba.view.bottomsheet.BottomSheetActivity;
 import com.wuba.view.doubanAnim.AnimActivity;
 import com.wuba.view.image.HeartTestActivity;
@@ -364,6 +365,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void loadingTest(View view) {
         Intent intent = new Intent(this, LoadingTestActivity.class);
+        startActivity(intent);
+    }
+
+    public void bannerText(View view) {
+        Intent intent = new Intent(this, BannerTestActivity.class);
         startActivity(intent);
     }
 }

@@ -1,4 +1,4 @@
-package com.wuba.view.loading.bubble;
+package com.wuba.view.loading.bubble2;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

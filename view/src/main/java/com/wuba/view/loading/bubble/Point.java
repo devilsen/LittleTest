@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.wuba.view.loading.point;
+package com.wuba.view.loading.bubble;
 
 /**
  * Created by chenupt@gmail.com on 2015/1/31.
  * Description : SpringView point
  */
-class Point {
+public class Point {
 
     private float x;
     private float y;

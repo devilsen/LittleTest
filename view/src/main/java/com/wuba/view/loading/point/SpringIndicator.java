@@ -88,6 +88,7 @@ public class SpringIndicator extends LinearLayout {
     private void initSpringView() {
         addPointView();
         animationController();
+        animationRadiusController();
     }
 
     private void addPointView() {
@@ -119,16 +120,30 @@ public class SpringIndicator extends LinearLayout {
             public void onAnimationUpdate(ValueAnimator animation) {
                 float animatedValue = (float) animation.getAnimatedValue();
 
-//                animation(1, (int) animatedValue);
-//                springView.invalidate();
-
-                Point footPoint = springView.getFootPoint();
+                Point footPoint = springView.getHeadPoint();
                 footPoint.setX(animatedValue);
                 springView.invalidate();
             }
         });
-
         valueAnimator.start();
+    }
+
+    private void animationRadiusController() {
+        ValueAnimator radiusValueAnimator = ValueAnimator.ofFloat(50, 10);
+        radiusValueAnimator.setDuration(2000);
+        radiusValueAnimator.setRepeatCount(ValueAnimator.INFINITE);
+
+        radiusValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float animatedValue = (float) animation.getAnimatedValue();
+
+                Point footPoint = springView.getFootPoint();
+                footPoint.setRadius(animatedValue);
+                springView.invalidate();
+            }
+        });
+        radiusValueAnimator.start();
     }
 
     private void animation(int position, int positionOffset) {

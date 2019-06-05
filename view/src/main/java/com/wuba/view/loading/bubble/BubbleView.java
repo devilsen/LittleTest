@@ -15,7 +15,7 @@ import android.view.View;
  *
  * @author : dongSen
  */
-public class Bubble extends View {
+public class BubbleView extends View {
 
     private Paint mPaint;
     // 气泡颜色
@@ -29,15 +29,15 @@ public class Bubble extends View {
     private int mBubbleWidth;
     private PointF pointF;
 
-    public Bubble(Context context) {
+    public BubbleView(Context context) {
         this(context, null);
     }
 
-    public Bubble(Context context, AttributeSet attrs) {
+    public BubbleView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public Bubble(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BubbleView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -67,6 +67,14 @@ public class Bubble extends View {
         this.mBubbleY = mBubbleY;
     }
 
+    public float getBubbleX() {
+        return mBubbleX;
+    }
+
+    public float getBubbleY() {
+        return mBubbleY;
+    }
+
     public PointF getPointF() {
         if (pointF == null) {
             pointF = new PointF(mBubbleX + mRadius, mBubbleY + mRadius);
@@ -84,7 +92,7 @@ public class Bubble extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.translate(mBubbleWidth / 2, mBubbleHeight / 2);
+        canvas.translate(mBubbleWidth >> 1, mBubbleHeight >> 1);
         canvas.drawCircle(0, 0, mRadius, mPaint);
     }
 
