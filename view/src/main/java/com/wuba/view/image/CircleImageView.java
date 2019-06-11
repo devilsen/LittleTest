@@ -179,7 +179,6 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
      * Return the color drawn behind the circle-shaped drawable.
      *
      * @return The color drawn behind the drawable
-     *
      * @deprecated Fill color support is going to be removed in the future
      */
     @Deprecated
@@ -192,7 +191,6 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
      * this has no effect if the drawable is opaque or no drawable is set.
      *
      * @param fillColor The color to be drawn behind the drawable
-     *
      * @deprecated Fill color support is going to be removed in the future
      */
     @Deprecated
@@ -212,7 +210,6 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
      *
      * @param fillColorRes The color resource to be resolved to a color and
      *                     drawn behind the drawable
-     *
      * @deprecated Fill color support is going to be removed in the future
      */
     @Deprecated
@@ -376,6 +373,8 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
 
         mBorderRect.set(calculateBounds());
         mBorderRadius = Math.min((mBorderRect.height() - mBorderWidth) / 2.0f, (mBorderRect.width() - mBorderWidth) / 2.0f);
+        int padding = Math.min(getPaddingTop(), getPaddingLeft());
+        mBorderRadius += padding;
 
         mDrawableRect.set(mBorderRect);
         if (!mBorderOverlay && mBorderWidth > 0) {
@@ -389,7 +388,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
     }
 
     private RectF calculateBounds() {
-        int availableWidth  = getWidth() - getPaddingLeft() - getPaddingRight();
+        int availableWidth = getWidth() - getPaddingLeft() - getPaddingRight();
         int availableHeight = getHeight() - getPaddingTop() - getPaddingBottom();
 
         int sideLength = Math.min(availableWidth, availableHeight);

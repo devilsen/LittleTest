@@ -35,6 +35,7 @@ import com.wuba.view.banner.BannerTestActivity;
 import com.wuba.view.bottomsheet.BottomSheetActivity;
 import com.wuba.view.doubanAnim.AnimActivity;
 import com.wuba.view.image.HeartTestActivity;
+import com.wuba.view.image.ImageTestActivity;
 import com.wuba.view.imkeyboard.ImKeyboardActivity;
 import com.wuba.view.loading.LoadingTestActivity;
 import com.wuba.view.midautumn.PropagandaActivity;
@@ -176,14 +177,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imInputTestBtn.setOnClickListener(this);
         windowManagerTestBtn.setOnClickListener(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
     }
 
     @Override
@@ -370,6 +366,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void bannerText(View view) {
         Intent intent = new Intent(this, BannerTestActivity.class);
+        startActivity(intent);
+    }
+
+    public void ImageTest(View view) {
+        Intent intent = new Intent(this, ImageTestActivity.class);
         startActivity(intent);
     }
 }

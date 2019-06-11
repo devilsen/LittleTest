@@ -3,7 +3,7 @@
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <application>
-        <activity android:name=".loading.LoadingTestActivity">
+        <activity android:name=".loading.LoadingTestActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -11,5 +11,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".banner.BannerTestActivity" />
+        <activity android:name=".image.ImageTestActivity" />
     </application>
 </manifest>

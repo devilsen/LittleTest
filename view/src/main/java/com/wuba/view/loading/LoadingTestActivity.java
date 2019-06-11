@@ -48,7 +48,7 @@ public class LoadingTestActivity extends AppCompatActivity {
             }
         });
 
-        seekBar.setProgress(35);
+        seekBar.setProgress(20);
 
     }
 

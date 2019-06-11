@@ -75,6 +75,10 @@ public class BubbleView extends View {
         return mBubbleY;
     }
 
+    public int getBubbleColor() {
+        return mBubbleColor;
+    }
+
     public PointF getPointF() {
         if (pointF == null) {
             pointF = new PointF(mBubbleX + mRadius, mBubbleY + mRadius);

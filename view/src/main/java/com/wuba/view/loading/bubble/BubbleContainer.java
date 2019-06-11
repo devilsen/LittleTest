@@ -2,15 +2,13 @@ package com.wuba.view.loading.bubble;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AnticipateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -23,11 +21,8 @@ import java.util.ArrayList;
  */
 public class BubbleContainer extends LinearLayout {
 
-    private static final int ANIMATION_DURATION = 700;
-    private static final long BOUNDARY_DURATION = 1500;
-    private static final int REPEAT_COUNT = 0;
-    private static final int RIGHT = 1;
-    private static final int LEFT = -1;
+    private static final int ANIMATION_DURATION = 16000;
+    private static final int REPEAT_COUNT = Animation.INFINITE;
 
     private int[] mColors = {Color.parseColor("#ff3925"),
             Color.parseColor("#ff8c14"),
@@ -37,19 +32,16 @@ public class BubbleContainer extends LinearLayout {
 
     private int mRadius = dp2px(3);
     private int mBigBubbleRadius = dp2px(5);
-    private int mMinRadius = dp2px(2);
-    private int mMaxInterval = dp2px(10);
+    private int mMaxInterval = dp2px(8);
 
     private ArrayList<BubbleView> mBubbles;
     private SpringView springView;
     private final int defaultInterval = -mRadius;
     private int mBubbleInterval = defaultInterval;
-    private int animationPosition;
-    // 边界判断
-    private int mBoundaryFlag;
-    private boolean mRightFlag = true;
     private boolean mStopFlag;
     private int mWidth;
+    private BubbleState mBubbleState;
+    private ValueAnimator valueAnimator;
 
     public BubbleContainer(Context context) {
         this(context, null);
@@ -132,6 +124,11 @@ public class BubbleContainer extends LinearLayout {
         }
 
         springView.layout(l, middleHeight - mBigBubbleRadius, r, middleHeight + mBigBubbleRadius);
+
+        if (mBubbleState == null) {
+            mBubbleState = new BubbleState(springView);
+            mBubbleState.setBubbles(mBubbles);
+        }
     }
 
     private void animationController() {
@@ -140,73 +137,41 @@ public class BubbleContainer extends LinearLayout {
         }
         springView.setVisibility(VISIBLE);
 
-        int start = animationPosition;
-        int target = animationPosition;
-        // 向右
-        if (mRightFlag) {
-            target++;
-        } else {// 向左
-            target--;
-        }
-        // 到顶点
-        if (target > mBubbles.size() - 1) {
-            mBoundaryFlag = RIGHT;
-            target--;
-            mRightFlag = false;
-        } else if (target < 0) {
-            mBoundaryFlag = LEFT;
-            target++;
-            mRightFlag = true;
-        } else {
-            mBoundaryFlag = 0;
-        }
-        animationPosition = target;
+        setPointLocation();
 
-        setPointLocation(start, target);
-
-        colorAnimation();
-        headPointRadiusAnimation(start, target);
-        footPointRadiusAnimation();
-        pullPointRadiusAnimation();
+        headPointRadiusAnimation();
+        if (!valueAnimator.isRunning()) {
+            valueAnimator.start();
+        }
     }
 
-    private void setPointLocation(int start, int target) {
-        BubbleView foot = mBubbles.get(start);
-        BubbleView pull = mBubbles.get(target);
-
-        Point footPoint = springView.getFootPoint();
-        footPoint.setX(foot.getX() + mRadius);
-        footPoint.setColor(mColors[start]);
-
+    private void setPointLocation() {
         Point headPoint = springView.getHeadPoint();
-        headPoint.setColor(mColors[target]);
-        springView.setIndicatorColor(mColors[target]);
+        headPoint.setColor(mColors[0]);
+        springView.setIndicatorColor(mColors[0]);
 
-        Point pullPoint = springView.getPullPoint();
-        pullPoint.setX(pull.getX() + mRadius);
-        pullPoint.setRadius(mRadius);
-        pullPoint.setColor(mColors[target]);
+        mBubbleState.initState();
     }
 
-    private void headPointRadiusAnimation(int start, int target) {
-        BubbleView foot = mBubbles.get(start);
-        BubbleView head = mBubbles.get(target);
+    private void headPointRadiusAnimation() {
+        if (valueAnimator != null) {
+            return;
+        }
+        float starX = mBubbles.get(0).getBubbleX();
+        float endX = mBubbles.get(3).getBubbleX();
 
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(foot.getBubbleX(), head.getBubbleX());
+        valueAnimator = ValueAnimator.ofFloat(starX, endX, endX + mRadius, starX, starX - mRadius, starX);
         valueAnimator.setDuration(ANIMATION_DURATION);
         valueAnimator.setRepeatCount(REPEAT_COUNT);
-
-        if (start == mBubbles.size() - 1 || start == 0) {
-            valueAnimator.setInterpolator(new AnticipateInterpolator());
-        } else {
-            valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-        }
+        valueAnimator.setInterpolator(new LinearInterpolator());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float animatedValue = (float) animation.getAnimatedValue();
                 Point headPoint = springView.getHeadPoint();
                 headPoint.setX(animatedValue);
+
+                mBubbleState.setValue(animatedValue);
                 springView.invalidate();
             }
         });
@@ -214,102 +179,9 @@ public class BubbleContainer extends LinearLayout {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                animationController();
+                mStopFlag = true;
             }
         });
-        valueAnimator.start();
-    }
-
-    private void footPointRadiusAnimation() {
-        ValueAnimator radiusValueAnimator = ValueAnimator.ofFloat(mBigBubbleRadius, mMinRadius);
-        radiusValueAnimator.setDuration(ANIMATION_DURATION);
-        radiusValueAnimator.setRepeatCount(REPEAT_COUNT);
-
-        radiusValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float animatedValue = (float) animation.getAnimatedValue();
-                Point footPoint = springView.getFootPoint();
-                footPoint.setRadius(animatedValue);
-            }
-        });
-        radiusValueAnimator.start();
-    }
-
-    private void pullPointRadiusAnimation() {
-        ValueAnimator radiusValueAnimator = ValueAnimator.ofFloat(mMinRadius, mRadius);
-        radiusValueAnimator.setDuration(ANIMATION_DURATION);
-        radiusValueAnimator.setRepeatCount(REPEAT_COUNT);
-
-        radiusValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float animatedValue = (float) animation.getAnimatedValue();
-                Point pullPoint = springView.getPullPoint();
-                pullPoint.setRadius(animatedValue);
-            }
-        });
-        radiusValueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                Point pullPoint = springView.getPullPoint();
-                pullPoint.setRadius(mRadius);
-            }
-        });
-        radiusValueAnimator.start();
-    }
-
-    /**
-     * 颜色动画
-     */
-    private void colorAnimation() {
-        Point start = springView.getFootPoint();
-        Point target = springView.getPullPoint();
-
-        ValueAnimator valueAnimator = ValueAnimator.ofInt(start.getColor(), target.getColor());
-        valueAnimator.setDuration(ANIMATION_DURATION);
-        valueAnimator.setRepeatCount(REPEAT_COUNT);
-        valueAnimator.setEvaluator(HsvEvaluator.getInstance());
-
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                int color = (int) animation.getAnimatedValue();
-                springView.getHeadPoint().setColor(color);
-            }
-        });
-        valueAnimator.start();
-    }
-
-    /**
-     * 到达边界时的动画
-     */
-    private void boundaryAnimation() {
-        int targetDistance;
-
-        // 到达右边界
-        if (mBoundaryFlag == RIGHT) {
-            targetDistance = mMinRadius;
-//            target--;
-            mRightFlag = false;
-        } else {
-            targetDistance = -mMinRadius;
-//            target++;
-            mRightFlag = true;
-        }
-
-        ObjectAnimator valueAnimator = ObjectAnimator.ofFloat(springView, "translationX", 0, targetDistance, 0);
-        valueAnimator.setDuration(BOUNDARY_DURATION);
-        valueAnimator.setInterpolator(new AccelerateInterpolator());
-        valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                animationController();
-            }
-        });
-        valueAnimator.start();
     }
 
     private void layoutChildBubble(BubbleView bubble, int position, int middleWidth, int middleHeight) {
@@ -363,7 +235,12 @@ public class BubbleContainer extends LinearLayout {
 
     public void stopAnimation() {
         mStopFlag = true;
-        springView.setVisibility(GONE);
+        if (valueAnimator != null) {
+            valueAnimator.end();
+        }
+        if (springView != null) {
+            springView.setVisibility(GONE);
+        }
     }
 
     public void startBubbleAnimation() {
@@ -373,6 +250,5 @@ public class BubbleContainer extends LinearLayout {
 
     public void reset() {
         resetView();
-        animationPosition = 0;
     }
 }
