@@ -19,27 +19,33 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.test.devilsen.test.HalfCircle.TestActivity;
 import com.test.devilsen.test.aidl.client.ClientActivity;
 import com.test.devilsen.test.alarm.AlarmActivity;
-import com.test.devilsen.test.applist.RecyclerTestActivity;
-import com.test.devilsen.test.badgeicon.BadgeTestActivity;
-import com.test.devilsen.test.bottomsheet.BottomSheetActivity;
 import com.test.devilsen.test.chart.ChartTestActivity;
-import com.test.devilsen.test.doubanAnim.AnimActivity;
 import com.test.devilsen.test.handlertest.HandlerTestActivity;
-import com.test.devilsen.test.image.HeartTestActivity;
-import com.test.devilsen.test.imkeyboard.ImKeyboardActivity;
 import com.test.devilsen.test.managertest.WindowManagerTestActivity;
-import com.test.devilsen.test.midautumn.PropagandaActivity;
 import com.test.devilsen.test.notification.ProgressActivity;
 import com.test.devilsen.test.parcelable.ParcelableActivity;
 import com.test.devilsen.test.parcelable.TestBean;
-import com.test.devilsen.test.recyclerview.ItemAnimationTestActivity;
-import com.test.devilsen.test.scrollnumber.ScrollActivity;
-import com.test.devilsen.test.viewpager.ViewPagerActivity;
-import com.test.devilsen.test.viewtest.ViewTestActivity;
-import com.test.devilsen.test.watermark.WaterMarkActivity;
+import com.test.devilsen.test.screen.activity.FullScreenActivity;
+import com.wuba.view.HalfCircle.TestActivity;
+import com.wuba.view.applist.RecyclerTestActivity;
+import com.wuba.view.badgeicon.BadgeTestActivity;
+import com.wuba.view.banner.BannerTestActivity;
+import com.wuba.view.bottomsheet.BottomSheetActivity;
+import com.wuba.view.doubanAnim.AnimActivity;
+import com.wuba.view.image.HeartTestActivity;
+import com.wuba.view.image.ImageTestActivity;
+import com.wuba.view.imkeyboard.ImKeyboardActivity;
+import com.wuba.view.loading.LoadingTestActivity;
+import com.wuba.view.midautumn.PropagandaActivity;
+import com.wuba.view.recyclerview.ItemAnimationTestActivity;
+import com.wuba.view.scrollnumber.ScrollActivity;
+import com.wuba.view.viewpager.ViewPagerActivity;
+import com.wuba.view.viewtest.ViewTestActivity;
+import com.wuba.view.watermark.WaterMarkActivity;
+
+import me.sam.practice.view.ViewMainActivity;
 
 /**
  * ii.                                         ;9ABH,
@@ -171,14 +177,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imInputTestBtn.setOnClickListener(this);
         windowManagerTestBtn.setOnClickListener(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
     }
 
     @Override
@@ -269,7 +270,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btn_person_edit:
-                Intent intent11 = new Intent(this, com.test.devilsen.test.personedit.TestActivity.class);
+                Intent intent11 = new Intent(this, com.wuba.view.personedit.TestActivity.class);
                 startActivity(intent11);
                 break;
 
@@ -345,6 +346,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void itemAidlTest(View view) {
         Intent intent = new Intent(this, ClientActivity.class);
+        startActivity(intent);
+    }
+
+    public void openViewPractice(View view) {
+        Intent intent = new Intent(this, ViewMainActivity.class);
+        startActivity(intent);
+    }
+
+    public void fullScreen(View view) {
+        Intent intent = new Intent(this, FullScreenActivity.class);
+        startActivity(intent);
+    }
+
+    public void loadingTest(View view) {
+        Intent intent = new Intent(this, LoadingTestActivity.class);
+        startActivity(intent);
+    }
+
+    public void bannerText(View view) {
+        Intent intent = new Intent(this, BannerTestActivity.class);
+        startActivity(intent);
+    }
+
+    public void ImageTest(View view) {
+        Intent intent = new Intent(this, ImageTestActivity.class);
         startActivity(intent);
     }
 }

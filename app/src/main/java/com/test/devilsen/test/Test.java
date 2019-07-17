@@ -69,7 +69,12 @@ class ConstClass {
 
 class Test2 {
     public static void main(String[] args) {
-        System.out.println(ConstClass.HELLOWORLD);
+//        System.out.println(ConstClass.HELLOWORLD);
+
+        double atan = Math.atan(0);
+
+        System.out.println("atan:" + atan);
+
     }
 }
 

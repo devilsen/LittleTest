@@ -1,5 +1,7 @@
 package com.wuba.acm.tree;
 
+import java.util.Stack;
+
 /**
  * desc : 遍历二叉树
  * date : 2019/2/14
@@ -24,6 +26,8 @@ public class TraversalTree {
 
         TraversalTree traversalTree = new TraversalTree();
         traversalTree.preOrder(root);
+        System.out.println();
+        traversalTree.preOrderStack(root);
         System.out.println();
 
         traversalTree.inOrder(root);
@@ -60,5 +64,19 @@ public class TraversalTree {
         System.out.print(node.val + " ");
     }
 
+    private void preOrderStack(TreeNode root) {
+        Stack<TreeNode> treeStack = new Stack<>();
+        if (root == null) //如果为空树则返回
+            return;
+        treeStack.push(root);
+        while (!treeStack.isEmpty()) {
+            TreeNode tempNode = treeStack.pop();
+            if (tempNode != null) {
+                System.out.print(tempNode.val + " ");//访问根节点
+                treeStack.push(tempNode.right); //入栈右孩子
+                treeStack.push(tempNode.left);//入栈左孩子
+            }
+        }
+    }
 
 }

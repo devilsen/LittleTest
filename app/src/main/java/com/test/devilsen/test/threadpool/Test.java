@@ -1,6 +1,6 @@
 package com.test.devilsen.test.threadpool;
 
-import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -13,24 +13,26 @@ import java.util.concurrent.TimeUnit;
  */
 public class Test {
 
-
     public static void main(String[] args) {
+        int CPU_CORE_SIZE = Runtime.getRuntime().availableProcessors();
+        System.out.println(CPU_CORE_SIZE);
+
         ThreadPoolExecutor executorService = new ThreadPoolExecutor(
-                1, 1,
-                1L, TimeUnit.SECONDS,
-                new ArrayBlockingQueue<Runnable>(1),
-                new ThreadPoolExecutor.DiscardOldestPolicy());
+                2, 2,
+                60L, TimeUnit.SECONDS,
+                new LinkedBlockingDeque<Runnable>(),
+                new ThreadPoolExecutor.DiscardPolicy());
 
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                System.out.println("start runnable 1");
+                System.out.println("start runnable  1  " + Thread.currentThread());
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("runnable 1 finish");
+                System.out.println("runnable 1 finish  " + Thread.currentThread());
             }
         });
 
@@ -39,13 +41,13 @@ public class Test {
             executorService.execute(new Runnable() {
                 @Override
                 public void run() {
-                    System.out.println("start runnable " + finalI);
+                    System.out.println("start runnable  " + finalI + "  " + Thread.currentThread());
                 }
             });
         }
 
         executorService.shutdown();
 
-        System.out.println("main finish ------");
+        System.out.println("main finish ------ " + Thread.currentThread());
     }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button_test_basic"
+        style="@style/test_button"
+        android:onClick="onBasic"
+        android:text="basic" />
+
+    <Button
+        android:id="@+id/button_test_intent"
+        style="@style/test_button"
+        android:onClick="onIntent"
+        android:text="intent" />
+
+    <Button
+        android:id="@+id/button_test_recyclerView"
+        style="@style/test_button"
+        android:onClick="onRecycler"
+        android:text="recyclerView" />
+
+    <Button
+        android:id="@+id/button_test_idling"
+        style="@style/test_button"
+        android:onClick="onIdling"
+        android:text="idling" />
+
+</LinearLayout>

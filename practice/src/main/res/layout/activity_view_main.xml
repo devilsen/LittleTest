@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        style="@style/SimpleButton"
+        android:onClick="Xfermode"
+        android:text="Xfermode" />
+
+    <Button
+        style="@style/SimpleButton"
+        android:onClick="Spark"
+        android:text="SparkFly" />
+
+    <Button
+        style="@style/SimpleButton"
+        android:onClick="ColorFilter"
+        android:text="ColorFilter" />
+
+    <Button
+        style="@style/SimpleButton"
+        android:onClick="TouchView"
+        android:text="TouchView" />
+
+    <Button
+        style="@style/SimpleButton"
+        android:onClick="PayView"
+        android:text="PayView" />
+
+    <Button
+        style="@style/SimpleButton"
+        android:onClick="imageAnimation"
+        android:text="imageAnimation" />
+
+</LinearLayout>

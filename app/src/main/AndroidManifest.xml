@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.test.devilsen.test">
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,64 +12,64 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
 
-        <activity android:name=".doubanAnim.AnimActivity" />
+        <activity android:name="com.wuba.view.doubanAnim.AnimActivity" />
 
         <activity android:name=".chart.ChartTestActivity" />
 
         <activity android:name=".VectorTestActivity" />
 
-        <activity android:name=".HalfCircle.TestActivity" />
+        <activity android:name="com.wuba.view.HalfCircle.TestActivity" />
 
-        <activity android:name=".viewpager.ViewPagerActivity" />
+        <activity android:name="com.wuba.view.viewpager.ViewPagerActivity" />
 
-        <activity android:name=".scrollnumber.ScrollActivity" />
+        <activity android:name="com.wuba.view.scrollnumber.ScrollActivity" />
 
         <activity android:name=".alarm.AlarmActivity" />
 
-        <activity android:name=".badgeicon.BadgeTestActivity" />
+        <activity android:name="com.wuba.view.badgeicon.BadgeTestActivity" />
 
-        <activity android:name=".image.HeartTestActivity" />
+        <activity android:name="com.wuba.view.image.HeartTestActivity" />
 
         <activity android:name=".notification.ProgressActivity" />
 
-        <activity android:name=".viewtest.ViewTestActivity" />
+        <activity android:name="com.wuba.view.viewtest.ViewTestActivity" />
 
         <activity android:name=".handlertest.HandlerTestActivity" />
 
-        <activity android:name=".tranparent.TransparentActivity" />
-
-        <activity android:name=".bottomsheet.BottomSheetActivity" />
+        <activity android:name="com.wuba.view.bottomsheet.BottomSheetActivity" />
 
         <activity
-            android:name=".midautumn.MidAutumnMainActivity"
+            android:name="com.wuba.view.midautumn.MidAutumnMainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".personedit.TestActivity" />
+        <activity android:name="com.wuba.view.personedit.TestActivity" />
 
         <activity
-            android:name=".midautumn.PropagandaActivity"
+            android:name="com.wuba.view.midautumn.PropagandaActivity"
             android:theme="@style/TranslateActivity" />
 
-        <activity android:name=".applist.RecyclerTestActivity" />
+        <activity android:name="com.wuba.view.applist.RecyclerTestActivity" />
 
-        <activity android:name=".midautumn.WelfareResultActivity" />
+        <activity android:name="com.wuba.view.midautumn.WelfareResultActivity" />
 
         <activity android:name=".KeyboardTestActivity" />
 
-        <activity android:name=".watermark.WaterMarkActivity" />
+        <activity android:name="com.wuba.view.watermark.WaterMarkActivity" />
 
         <activity android:name=".lifecycler.TestActivity">
 
@@ -78,15 +80,19 @@
             android:theme="@style/TranslateActivity" />
 
         <activity
-            android:name=".imkeyboard.ImKeyboardActivity"
+            android:name="com.wuba.view.imkeyboard.ImKeyboardActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
 
         </activity>
 
         <activity android:name=".parcelable.ParcelableActivity" />
         <activity android:name=".managertest.WindowManagerTestActivity" />
-        <activity android:name=".recyclerview.ItemAnimationTestActivity" />
+        <activity android:name="com.wuba.view.recyclerview.ItemAnimationTestActivity" />
         <activity android:name=".aidl.client.ClientActivity" />
+        <activity
+            android:name=".screen.activity.FullScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".hook.HookTestActivity" />
 
         <receiver android:name=".alarm.AlarmActivity$AlarmReceiver" />
 
@@ -102,7 +108,7 @@
             android:process=":remote">
 
             <intent-filter>
-                <action android:name="com.devilsen.test.IEasyService"/>
+                <action android:name="com.devilsen.test.IEasyService" />
             </intent-filter>
         </service>
 
