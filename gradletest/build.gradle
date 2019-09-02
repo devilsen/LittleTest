@@ -1,7 +1,18 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+// 引入config.gradle
+//apply from: "config.gradle"
+
+// 两种打印方法都可以
+println "Hello World"
+println("name : ${username}") // 这是一种缩写，Gradle是一种弱类型语言
+println("name : ${rootProject.ext.username}")
+
 
 def androidId = rootProject.ext.androidId
-def appId = rootProject.ext.appId
+def androidX = rootProject.ext.dependencies
 def androidTest = rootProject.ext.androidTest
 
 android {
@@ -9,12 +20,13 @@ android {
     buildToolsVersion androidId.buildToolsVersion
 
     defaultConfig {
-        applicationId appId.uiTest
         minSdkVersion androidId.minSdkVersion
         targetSdkVersion androidId.targetSdkVersion
         versionCode androidId.versionCode
         versionName androidId.versionName
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -24,29 +36,17 @@ android {
         }
     }
 
-    lintOptions {
-        abortOnError false
-    }
-
-    productFlavors {
-    }
 }
 
 dependencies {
-    // Testing-only dependencies
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation androidTest.core
-    androidTestImplementation androidTest.truth
-    androidTestImplementation androidTest.junit
-    androidTestImplementation androidTest.runner
-    androidTestImplementation androidTest.rules
-    androidTestImplementation androidTest.espressoCore
-    androidTestImplementation androidTest.espressoIntents
-    androidTestImplementation androidTest.espressoContrib
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    // App dependencies
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation androidTest.espressoIdlingResource
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation androidTest.runner
+    androidTestImplementation androidTest.espressoCore
+//    implementation androidX.appcompat
+//    implementation androidX.core
+    androidX.each { k, v -> implementation v }
 
 }

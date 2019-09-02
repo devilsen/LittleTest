@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 public class BubbleContainer extends LinearLayout {
 
-    private static final int ANIMATION_DURATION = 16000;
+    private static final int ANIMATION_DURATION = 4000;
     private static final int REPEAT_COUNT = Animation.INFINITE;
 
     private int[] mColors = {Color.parseColor("#ff3925"),
@@ -58,7 +58,7 @@ public class BubbleContainer extends LinearLayout {
 
     private void init() {
         setOrientation(HORIZONTAL);
-        setWillNotDraw(false);
+//        setWillNotDraw(false); 如果需要ViewGroup绘制（即调用onDraw方法），必须设置为false
 
         mBubbles = new ArrayList<>(4);
         for (int i = 0; i < 4; i++) {
