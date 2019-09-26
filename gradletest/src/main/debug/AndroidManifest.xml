@@ -2,7 +2,7 @@
     package="me.sam.gradletest">
 
     <application>
-        <activity android:name=".GradleTest_MainActivity">
+        <activity android:name=".debug.GradleTest_DebugActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -10,7 +10,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".debug.GradleTest_DebugActivity" />
+        <activity android:name=".GradleTest_MainActivity" />
 
     </application>
 
