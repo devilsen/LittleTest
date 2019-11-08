@@ -37,11 +37,13 @@ public class FullScreenActivity extends AppCompatActivity {
 //        setFullScreen();
 //        //如果有ToolBar的话，设置ToolBar的偏移，能漏出状态栏
 //        setHeightAndPadding(this, findViewById(R.id.toolbar));
+//
+//        //设置状态栏全透明
+//        StatusBarUtil.transparencyBar(this);
+////        //设置状态栏白底黑字
+//        StatusBarUtil.StatusBarLightMode(this);
 
-        //设置状态栏全透明
-        StatusBarUtil.transparencyBar(this);
-//        //设置状态栏白底黑字
-        StatusBarUtil.StatusBarLightMode(this);
+        StatusBarUtil2.setStatusColor(this, false, true, R.color.white);
         setImage();
     }
 

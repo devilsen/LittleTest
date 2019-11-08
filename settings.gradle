@@ -1,1 +1,1 @@
-include ':app', ':acm', ':view', ':practice', ':uitest', ':jetpack', ':gradletest'
+include ':app', ':acm', ':view', ':practice', ':uitest', ':jetpack', ':gradletest', ':designpattern'
