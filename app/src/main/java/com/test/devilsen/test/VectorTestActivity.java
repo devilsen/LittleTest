@@ -7,6 +7,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+
 /**
  * author : dongSen
  * date : 2016-06-27 18:09

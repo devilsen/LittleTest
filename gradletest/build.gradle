@@ -1,0 +1,73 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+// 引入config.gradle
+//apply from: "config.gradle"
+
+// 两种打印方法都可以
+println "Hello World"
+println("name : ${username}") // 这是一种缩写，Gradle是一种弱类型语言
+println("name : ${rootProject.ext.username}")
+
+
+def androidId = rootProject.ext.androidId
+def androidX = rootProject.ext.dependencies
+def androidTest = rootProject.ext.androidTest
+
+android {
+    compileSdkVersion androidId.compileSdkVersion
+    buildToolsVersion androidId.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion androidId.minSdkVersion
+        targetSdkVersion androidId.targetSdkVersion
+        versionCode androidId.versionCode
+        versionName androidId.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+        // 在BuildConfig文件中，生成对应字段
+        buildConfigField("boolean", "isRelease", String.valueOf(isRelease))
+        buildConfigField("String", 'url', "\"${url.debug}\"")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 配置资源路径，方便测试环境，打包不集成到正式环境
+    sourceSets {
+        main {
+            if (!isRelease) {
+                // 如果是组件化模式，需要单独运行时
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                // 集成化模式，整个项目打包apk
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    // release 时 debug 目录下文件不需要合并到主工程
+                    exclude '**/debug/**'
+                }
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation androidTest.runner
+    androidTestImplementation androidTest.espressoCore
+//    implementation androidX.appcompat
+//    implementation androidX.core
+    androidX.each { k, v -> implementation v }
+
+}

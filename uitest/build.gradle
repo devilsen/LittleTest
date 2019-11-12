@@ -1,15 +1,19 @@
 apply plugin: 'com.android.application'
 
+def androidId = rootProject.ext.androidId
+def appId = rootProject.ext.appId
+def androidTest = rootProject.ext.androidTest
+
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion androidId.compileSdkVersion
+    buildToolsVersion androidId.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
-
+        applicationId appId.uiTest
+        minSdkVersion androidId.minSdkVersion
+        targetSdkVersion androidId.targetSdkVersion
+        versionCode androidId.versionCode
+        versionName androidId.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -31,19 +35,18 @@ android {
 dependencies {
     // Testing-only dependencies
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:core:' + rootProject.coreVersion
-    androidTestImplementation 'androidx.test.ext:truth:' + rootProject.extTruthVersion
-    androidTestImplementation 'androidx.test.ext:junit:' + rootProject.extJUnitVersion
-    androidTestImplementation 'androidx.test:runner:' + rootProject.runnerVersion
-    androidTestImplementation 'androidx.test:rules:' + rootProject.rulesVersion
-    androidTestImplementation 'androidx.test.espresso:espresso-core:' + rootProject.espressoVersion
-    androidTestImplementation 'androidx.test.espresso:espresso-intents:' + rootProject.espressoVersion
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:' + rootProject.espressoVersion
+    androidTestImplementation androidTest.core
+    androidTestImplementation androidTest.truth
+    androidTestImplementation androidTest.junit
+    androidTestImplementation androidTest.runner
+    androidTestImplementation androidTest.rules
+    androidTestImplementation androidTest.espressoCore
+    androidTestImplementation androidTest.espressoIntents
+    androidTestImplementation androidTest.espressoContrib
 
     // App dependencies
-    implementation 'androidx.annotation:annotation:' + rootProject.androidxLibVersion
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.test.espresso:espresso-idling-resource:' + rootProject.espressoVersion
+    implementation androidTest.espressoIdlingResource
 
 }

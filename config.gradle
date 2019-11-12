@@ -1,0 +1,61 @@
+// 添加多个自定义属性
+ext {
+
+    username = "sam"
+
+    isRelease = true
+
+    kotlin_version = "1.3.50"
+
+    // 建立Map存储
+    androidId = [
+            compileSdkVersion: 29,
+            buildToolsVersion: "29.0.0",
+            minSdkVersion    : 16,
+            targetSdkVersion : 29,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+
+    appId = [
+            app    : "com.test.devilsen.test",
+            uiTest    : "com.test.devilsen.uiTest",
+            jetpack    : "com.test.devilsen.jetpack",
+            library: "com.test.devilsen.debug"
+    ]
+
+    url = [
+            debug  : "https://www.debug.com",
+            release: "https://www.release.com"
+    ]
+
+    androidX = "1.0.2"
+    dependencies = [
+            appcompat: "androidx.appcompat:appcompat:${androidX}", // 不能使用-v7什么的命名，某些版本不匹配
+            core     : "androidx.core:core-ktx:${androidX}"
+    ]
+
+    support = "28.0.0"
+    supportDependencies = [
+            libSupportV4          : "com.android.support:support-v4:${support}",
+            libSupportV7          : "com.android.support:appcompat-v7:${support}",
+            libSupportRecyclerview: "com.android.support:recyclerview-v7:${support}",
+            libSupportDesign      : "com.android.support:design:${support}",
+            libCardview           : "com.android.support:cardview-v7:${support}",
+            libPercent            : "com.android.support:percent:${support}"
+    ]
+
+    testCore = "1.2.0"
+    espresso = "3.2.0"
+    androidTest = [
+            core                  : "androidx.test:core:${testCore}",
+            truth                 : "androidx.test.ext:truth:${testCore}",
+            junit                 : "androidx.test.ext:junit:1.1.1",
+            runner                : "androidx.test:runner:${testCore}",
+            rules                 : "androidx.test:rules:${testCore}",
+            espressoCore          : "androidx.test.espresso:espresso-core:${espresso}",
+            espressoIntents       : "androidx.test.espresso:espresso-intents:${espresso}",
+            espressoContrib       : "androidx.test.espresso:espresso-contrib:${espresso}",
+            espressoIdlingResource: "androidx.test.espresso:espresso-idling-resource:${espresso}"
+    ]
+}

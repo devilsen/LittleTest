@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * desc : 线程池的参数理解
+ * https://www.jianshu.com/p/a118b04f04e9
  * https://blog.csdn.net/zero__007/article/details/78915354
  * date : 2019/3/4
  *
