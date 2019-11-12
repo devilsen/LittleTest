@@ -42,4 +42,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:3.8.0'
     implementation project(':practice')
     implementation project(':view')
+
+    implementation 'me.devilsen:CZXing:0.4.4'
 }

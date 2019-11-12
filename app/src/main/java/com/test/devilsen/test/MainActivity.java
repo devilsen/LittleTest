@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.test.devilsen.test.aidl.client.ClientActivity;
 import com.test.devilsen.test.alarm.AlarmActivity;
 import com.test.devilsen.test.chart.ChartTestActivity;
@@ -45,6 +46,7 @@ import com.wuba.view.viewpager.ViewPagerActivity;
 import com.wuba.view.viewtest.ViewTestActivity;
 import com.wuba.view.watermark.WaterMarkActivity;
 
+import me.devilsen.czxing.ScanActivity;
 import me.sam.practice.view.ViewMainActivity;
 
 /**
@@ -362,6 +364,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void loadingTest(View view) {
         Intent intent = new Intent(this, LoadingTestActivity.class);
         startActivity(intent);
+
+        Glide.with()
     }
 
     public void bannerText(View view) {
@@ -371,6 +375,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void ImageTest(View view) {
         Intent intent = new Intent(this, ImageTestActivity.class);
+        startActivity(intent);
+    }
+
+    public void QRCode(View view) {
+        Intent intent = new Intent(this, ScanActivity.class);
         startActivity(intent);
     }
 }
