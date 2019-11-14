@@ -41,6 +41,7 @@ import com.wuba.view.loading.LoadingTestActivity;
 import com.wuba.view.midautumn.PropagandaActivity;
 import com.wuba.view.recyclerview.ItemAnimationTestActivity;
 import com.wuba.view.scrollnumber.ScrollActivity;
+import com.wuba.view.textview.TextViewTestActivity;
 import com.wuba.view.viewpager.ViewPagerActivity;
 import com.wuba.view.viewtest.ViewTestActivity;
 import com.wuba.view.watermark.WaterMarkActivity;
@@ -371,6 +372,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void ImageTest(View view) {
         Intent intent = new Intent(this, ImageTestActivity.class);
+        startActivity(intent);
+    }
+
+    public void TextViewTest(View view) {
+        Intent intent = new Intent(this, TextViewTestActivity.class);
         startActivity(intent);
     }
 }
