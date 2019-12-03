@@ -14,7 +14,7 @@ import java.util.Random;
  * date : 2016-08-23 14:01
  * desc :
  */
-public class StarImage extends android.support.v7.widget.AppCompatImageView {
+public class StarImage extends androidx.appcompat.widget.AppCompatImageView {
 
     public StarImage(Context context) {
         super(context);

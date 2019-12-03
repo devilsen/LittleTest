@@ -14,6 +14,8 @@
             android:name=".view.edittext.PayTestActivity"
             android:windowSoftInputMode="stateAlwaysVisible" />
         <activity android:name=".anim.simple.ImageAnimationActivity" />
+        <activity android:name=".kotlin.LearnKotlinMainActivity" />
+        <activity android:name=".kotlin.activity.TestActivity" />
 
     </application>
 

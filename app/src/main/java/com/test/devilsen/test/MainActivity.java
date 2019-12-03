@@ -5,11 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +17,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.test.devilsen.test.aidl.client.ClientActivity;
 import com.test.devilsen.test.alarm.AlarmActivity;
 import com.test.devilsen.test.chart.ChartTestActivity;
@@ -28,6 +28,7 @@ import com.test.devilsen.test.notification.ProgressActivity;
 import com.test.devilsen.test.parcelable.ParcelableActivity;
 import com.test.devilsen.test.parcelable.TestBean;
 import com.test.devilsen.test.screen.activity.FullScreenActivity;
+import com.test.devilsen.test.socket.WebSocketTestActivity;
 import com.wuba.view.HalfCircle.TestActivity;
 import com.wuba.view.applist.RecyclerTestActivity;
 import com.wuba.view.badgeicon.BadgeTestActivity;
@@ -46,6 +47,7 @@ import com.wuba.view.viewpager.ViewPagerActivity;
 import com.wuba.view.viewtest.ViewTestActivity;
 import com.wuba.view.watermark.WaterMarkActivity;
 
+import me.sam.practice.kotlin.LearnKotlinMainActivity;
 import me.sam.practice.view.ViewMainActivity;
 
 /**
@@ -378,5 +380,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void TextViewTest(View view) {
         Intent intent = new Intent(this, TextViewTestActivity.class);
         startActivity(intent);
+    }
+
+    public void TextSocket(View view) {
+        Intent intent = new Intent(this, WebSocketTestActivity.class);
+        startActivity(intent);
+    }
+
+    public void KotlinTest(View view) {
+        startActivity(new Intent(this, LearnKotlinMainActivity.class));
     }
 }

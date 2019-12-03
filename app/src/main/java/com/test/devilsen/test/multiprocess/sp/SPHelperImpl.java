@@ -3,8 +3,8 @@ package com.test.devilsen.test.multiprocess.sp;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.CheckResult;
-import android.support.annotation.Nullable;
+import androidx.annotation.CheckResult;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import java.lang.ref.SoftReference;

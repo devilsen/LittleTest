@@ -237,5 +237,19 @@
             android:text="TextViewTest"
             android:textAllCaps="true" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="TextSocket"
+            android:text="TextSocket"
+            android:textAllCaps="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="KotlinTest"
+            android:text="KotlinTest"
+            android:textAllCaps="true" />
+
     </LinearLayout>
 </ScrollView>

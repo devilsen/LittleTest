@@ -3,14 +3,9 @@ package com.test.devilsen.test;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 
 /**
  * author : dongSen

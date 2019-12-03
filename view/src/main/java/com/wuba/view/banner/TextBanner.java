@@ -18,7 +18,7 @@ import android.view.animation.LinearInterpolator;
  * <p>
  * 这得多蠢的人才想出在手机上采用这个功能的。
  */
-public class TextBanner extends android.support.v7.widget.AppCompatTextView {
+public class TextBanner extends androidx.appcompat.widget.AppCompatTextView {
 
     private Paint mPaint;
     private float textX;
