@@ -5,9 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,6 +52,9 @@ import com.wuba.view.viewpager.ViewPagerActivity;
 import com.wuba.view.viewtest.ViewTestActivity;
 import com.wuba.view.watermark.WaterMarkActivity;
 
+import java.util.concurrent.Executors;
+
+import me.devilsen.czxing.util.SaveImageUtil;
 import me.sam.practice.kotlin.LearnKotlinMainActivity;
 import me.sam.practice.view.ViewMainActivity;
 
@@ -390,4 +398,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void KotlinTest(View view) {
         startActivity(new Intent(this, LearnKotlinMainActivity.class));
     }
+
 }

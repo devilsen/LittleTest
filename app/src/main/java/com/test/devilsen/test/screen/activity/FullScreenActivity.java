@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -47,6 +49,11 @@ public class FullScreenActivity extends AppCompatActivity {
         setImage();
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+    }
+
     private void setImage() {
         ImageView imageView = findViewById(R.id.image_view_full_screen);
         Glide.with(this)
@@ -66,7 +73,7 @@ public class FullScreenActivity extends AppCompatActivity {
         return toolbar;
     }
 
-    private void setFullScreen() {
+    private void setFullScreen1() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             return;
         }
@@ -88,6 +95,34 @@ public class FullScreenActivity extends AppCompatActivity {
             visibility |= View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
 
             window.getDecorView().setSystemUiVisibility(visibility);
+        } else {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
+
+    /**
+     * 标准设置全屏模式
+     * 官方文档：https://developer.android.com/training/system-ui/immersive?hl=zh-cn
+     */
+    public void setFullScreen2(AppCompatActivity activity) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            return;
+        }
+
+        Window window = activity.getWindow();
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            View decorView = activity.getWindow().getDecorView();
+            decorView.setSystemUiVisibility(
+                    // 粘性模式
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                            // Set the content to appear under the system bars so that the
+                            // content doesn't resize when the system bars hide and show.
+                            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            // Hide the nav bar and status bar 全屏基本
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN);
         } else {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }

@@ -180,6 +180,20 @@ public class StatusBarUtil2 {
         return false;
     }
 
+
+    /**
+     * 判断是否是HTC
+     *
+     * @return 是否是魅族Flyme4
+     */
+    private static boolean isHtc() {
+        if ("htc".equals(Build.BRAND.trim().toUpperCase())) {
+            return Build.FINGERPRINT.contains("Flyme_OS_4") || Build.VERSION.INCREMENTAL.contains("Flyme_OS_4") || Pattern.compile("Flyme_OS_[4|5]", Pattern.CASE_INSENSITIVE)
+                    .matcher(Build.DISPLAY).find();
+        }
+        return false;
+    }
+
     /**
      * 设置魅族Flyme4以后 状态栏黑色字体
      * 没有手机，从网上找的方法，应该没问题

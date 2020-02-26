@@ -19,9 +19,9 @@ public class Test {
         System.out.println(CPU_CORE_SIZE);
 
         ThreadPoolExecutor executorService = new ThreadPoolExecutor(
-                2, 2,
+                1, 2,
                 60L, TimeUnit.SECONDS,
-                new LinkedBlockingDeque<Runnable>(),
+                new LinkedBlockingDeque<Runnable>(3),
                 new ThreadPoolExecutor.DiscardPolicy());
 
         executorService.execute(new Runnable() {
@@ -29,7 +29,7 @@ public class Test {
             public void run() {
                 System.out.println("start runnable  1  " + Thread.currentThread());
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(4000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -37,7 +37,7 @@ public class Test {
             }
         });
 
-        for (int i = 2; i < 6; i++) {
+        for (int i = 2; i < 10; i++) {
             final int finalI = i;
             executorService.execute(new Runnable() {
                 @Override

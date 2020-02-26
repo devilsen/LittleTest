@@ -19,6 +19,16 @@ class TestActivity : AppCompatActivity() {
         TestBtn.setOnClickListener {
             changeTxt()
         }
+
+        "Test".lastChar()
+
+        toast("hello")
+
+        val note = Note(text = "this is a text")
+        note == note.copy()
+
+        val other = note.copy(text = "something else ...")
+
     }
 
     private fun changeTxt() {

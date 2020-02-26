@@ -107,6 +107,8 @@ public class BadgeTextView extends RelativeLayout {
         int size = textSize == 0 ? 12 : pixelToDp(getContext(), textSize);
 
         icon.setTextSize(size);
+
+        invalidate();
     }
 
     /**
