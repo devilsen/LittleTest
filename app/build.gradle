@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 def androidId = rootProject.ext.androidId
 def appId = rootProject.ext.appId
@@ -46,7 +48,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:3.8.0'
     implementation("com.squareup.okhttp3:okhttp:3.12.0")
 
-    implementation 'me.devilsen:CZXing:0.9.10'
+    implementation 'me.devilsen:czxing:1.0.1'
 
 //    implementation 'tech.gusavila92:java-android-websocket-client:1.2.2'
     implementation 'com.koushikdutta.async:androidasync:2.2.1'
@@ -54,4 +56,9 @@ dependencies {
 
     implementation project(':practice')
     implementation project(':view')
+    implementation rootProject.ext.dependencies.core
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import me.sam.uitest.basic.BasicTestActivity;
 import me.sam.uitest.idling.IdlingTestActivity;
 import me.sam.uitest.intent.IntentTestActivity;
@@ -42,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void onIdling(View view) {
         Intent intent = new Intent(this, IdlingTestActivity.class);
+        startActivity(intent);
+    }
+
+    public void onUITest(View view) {
+        Intent intent = new Intent(this, UITestActivity.class);
         startActivity(intent);
     }
 }

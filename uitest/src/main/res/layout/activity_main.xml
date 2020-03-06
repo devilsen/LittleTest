@@ -28,4 +28,10 @@
         android:onClick="onIdling"
         android:text="idling" />
 
+    <Button
+        android:id="@+id/button_test_ui"
+        style="@style/test_button"
+        android:onClick="onUITest"
+        android:text="ui test" />
+
 </LinearLayout>
