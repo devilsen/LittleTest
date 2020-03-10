@@ -95,6 +95,7 @@
         <activity android:name=".hook.HookTestActivity" />
         <activity android:name=".socket.SocketTestActivity" />
         <activity android:name=".socket.WebSocketTestActivity" />
+        <activity android:name=".storage.StorageTestActivity" />
 
         <receiver android:name=".alarm.AlarmActivity$AlarmReceiver" />
 

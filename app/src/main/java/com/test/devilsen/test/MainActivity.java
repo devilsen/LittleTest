@@ -34,6 +34,7 @@ import com.test.devilsen.test.parcelable.ParcelableActivity;
 import com.test.devilsen.test.parcelable.TestBean;
 import com.test.devilsen.test.screen.activity.FullScreenActivity;
 import com.test.devilsen.test.socket.WebSocketTestActivity;
+import com.test.devilsen.test.storage.StorageTestActivity;
 import com.wuba.view.HalfCircle.TestActivity;
 import com.wuba.view.applist.RecyclerTestActivity;
 import com.wuba.view.badgeicon.BadgeTestActivity;
@@ -397,6 +398,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void KotlinTest(View view) {
         startActivity(new Intent(this, LearnKotlinMainActivity.class));
+    }
+
+    public void StorageTest(View view) {
+        startActivity(new Intent(this, StorageTestActivity.class));
     }
 
 }

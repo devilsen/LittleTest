@@ -251,5 +251,12 @@
             android:text="KotlinTest"
             android:textAllCaps="true" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="StorageTest"
+            android:text="StorageTest"
+            android:textAllCaps="true" />
+
     </LinearLayout>
 </ScrollView>
