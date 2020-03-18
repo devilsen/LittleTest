@@ -4,6 +4,10 @@ package com.wuba.acm.sort;
  * desc : 冒泡排序
  * date : 2018/12/13
  * https://time.geekbang.org/column/article/41802
+ * <p>
+ * n^2
+ * 稳定排序
+ * 原地排序
  *
  * @author : dongSen
  */

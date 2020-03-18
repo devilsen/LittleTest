@@ -3,7 +3,10 @@ package com.wuba.acm.sort;
 /**
  * desc : 快速排序
  * date : 2018/3/21
- * 不稳定  时间:O(nlogn) 空间:O(1)
+ * <p>
+ * 不稳定
+ * 时间:O(nlogn)
+ * 空间:O(1)
  *
  * @author : dongSen
  */

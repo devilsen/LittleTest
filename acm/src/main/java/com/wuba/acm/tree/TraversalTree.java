@@ -1,5 +1,6 @@
 package com.wuba.acm.tree;
 
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -29,12 +30,24 @@ public class TraversalTree {
         System.out.println();
         traversalTree.preOrderStack(root);
         System.out.println();
+        traversalTree.preOrderStack2(root);
+        System.out.println();
+        System.out.println();
 
         traversalTree.inOrder(root);
+        System.out.println();
+        traversalTree.inOrderStack(root);
+        System.out.println();
         System.out.println();
 
         traversalTree.postOrder(root);
         System.out.println();
+        traversalTree.postOrderStack(root);
+        System.out.println();
+        System.out.println();
+
+        traversalTree.level(root);
+
     }
 
     private void preOrder(TreeNode node) {
@@ -59,8 +72,8 @@ public class TraversalTree {
         if (node == null)
             return;
 
-        inOrder(node.left);
-        inOrder(node.right);
+        postOrder(node.left);
+        postOrder(node.right);
         System.out.print(node.val + " ");
     }
 
@@ -77,6 +90,86 @@ public class TraversalTree {
                 treeStack.push(tempNode.left);//入栈左孩子
             }
         }
+    }
+
+    private void preOrderStack2(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode treeNode = root;
+        while (treeNode != null || !stack.isEmpty()) {
+            // 把所有的左节点都先打印出来
+            while (treeNode != null) {
+                System.out.print(treeNode.val + " ");
+                stack.push(treeNode);
+                treeNode = treeNode.left;
+            }
+            if (!stack.isEmpty()) {
+                treeNode = stack.pop();
+                treeNode = treeNode.right;
+            }
+        }
+    }
+
+    private void inOrderStack(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode treeNode = root;
+        while (treeNode != null || !stack.isEmpty()) {
+            while (treeNode != null) {
+                stack.push(treeNode);
+                treeNode = treeNode.left;
+            }
+
+            if (!stack.isEmpty()) {
+                treeNode = stack.pop();
+                System.out.print(treeNode.val + " ");
+                treeNode = treeNode.right;
+            }
+        }
+    }
+
+    private void postOrderStack(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+        TreeNode treeNode = root;
+        stack.push(treeNode);
+        while (!stack.isEmpty()) {
+            treeNode = stack.pop();
+            stack2.push(treeNode);
+
+            if (treeNode.left != null) {
+                stack.push(treeNode.left);
+            }
+            if (treeNode.right != null) {
+                stack.push(treeNode.right);
+            }
+        }
+        while (!stack2.isEmpty()) {
+            TreeNode node = stack2.pop();
+            System.out.print(node.val + " ");
+        }
+    }
+
+    private void level(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.push(root);
+        while (!queue.isEmpty()) {
+            TreeNode treeNode = queue.pop();
+            System.out.print(treeNode.val + " ");
+            if (treeNode.left != null) queue.add(treeNode.left);
+            if (treeNode.right != null) queue.add(treeNode.right);
+        }
+
     }
 
 }

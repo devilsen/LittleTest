@@ -4,6 +4,10 @@ package com.wuba.acm.sort;
  * desc : 插入排序
  * date : 2018/3/28
  * 插入排序要比冒泡稍好，主要是因为交换的时候，插入只需要一次交换，而冒泡需要三次
+ * <p>
+ * n^2
+ * 稳定排序
+ * 原地排序
  *
  * @author : dongSen
  */
@@ -30,6 +34,7 @@ public class InsertSort {
             int value = arr[i];
             int j = i - 1;
             for (; j >= 0; j--) {
+                // 数据往后移，并且找到合适的插入点
                 if (arr[j] > value) {
                     arr[j + 1] = arr[j];
                 } else {
