@@ -5,11 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +22,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.test.devilsen.test.aidl.client.ClientActivity;
 import com.test.devilsen.test.alarm.AlarmActivity;
 import com.test.devilsen.test.chart.ChartTestActivity;
@@ -29,6 +33,8 @@ import com.test.devilsen.test.notification.ProgressActivity;
 import com.test.devilsen.test.parcelable.ParcelableActivity;
 import com.test.devilsen.test.parcelable.TestBean;
 import com.test.devilsen.test.screen.activity.FullScreenActivity;
+import com.test.devilsen.test.socket.WebSocketTestActivity;
+import com.test.devilsen.test.storage.StorageTestActivity;
 import com.wuba.view.HalfCircle.TestActivity;
 import com.wuba.view.applist.RecyclerTestActivity;
 import com.wuba.view.badgeicon.BadgeTestActivity;
@@ -42,11 +48,15 @@ import com.wuba.view.loading.LoadingTestActivity;
 import com.wuba.view.midautumn.PropagandaActivity;
 import com.wuba.view.recyclerview.ItemAnimationTestActivity;
 import com.wuba.view.scrollnumber.ScrollActivity;
+import com.wuba.view.textview.TextViewTestActivity;
 import com.wuba.view.viewpager.ViewPagerActivity;
 import com.wuba.view.viewtest.ViewTestActivity;
 import com.wuba.view.watermark.WaterMarkActivity;
 
-import me.devilsen.czxing.ScanActivity;
+import java.util.concurrent.Executors;
+
+import me.devilsen.czxing.util.SaveImageUtil;
+import me.sam.practice.kotlin.LearnKotlinMainActivity;
 import me.sam.practice.view.ViewMainActivity;
 
 /**
@@ -364,8 +374,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void loadingTest(View view) {
         Intent intent = new Intent(this, LoadingTestActivity.class);
         startActivity(intent);
-
-        Glide.with()
     }
 
     public void bannerText(View view) {
@@ -378,8 +386,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
-    public void QRCode(View view) {
-        Intent intent = new Intent(this, ScanActivity.class);
+    public void TextViewTest(View view) {
+        Intent intent = new Intent(this, TextViewTestActivity.class);
         startActivity(intent);
     }
+
+    public void TextSocket(View view) {
+        Intent intent = new Intent(this, WebSocketTestActivity.class);
+        startActivity(intent);
+    }
+
+    public void KotlinTest(View view) {
+        startActivity(new Intent(this, LearnKotlinMainActivity.class));
+    }
+
+    public void StorageTest(View view) {
+        startActivity(new Intent(this, StorageTestActivity.class));
+    }
+
 }

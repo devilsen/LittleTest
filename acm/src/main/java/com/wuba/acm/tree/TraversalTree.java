@@ -59,8 +59,8 @@ public class TraversalTree {
         if (node == null)
             return;
 
-        inOrder(node.left);
-        inOrder(node.right);
+        postOrder(node.left);
+        postOrder(node.right);
         System.out.print(node.val + " ");
     }
 

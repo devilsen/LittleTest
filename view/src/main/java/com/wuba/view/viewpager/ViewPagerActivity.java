@@ -2,9 +2,6 @@ package com.wuba.view.viewpager;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -12,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.wuba.view.R;
 
@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * @Description 循环滑动viewpager的一种方法，滑动很流畅。实现方法：在实际显示的界面头和尾分别增加一个界面。
  * @date 2014 2014-7-18
  */
-public class ViewPagerActivity extends Activity implements OnPageChangeListener {
+public class ViewPagerActivity extends Activity implements ViewPager.OnPageChangeListener {
 
     private ViewPager mViewPager;
     private ViewGroup mPointViewGroup;

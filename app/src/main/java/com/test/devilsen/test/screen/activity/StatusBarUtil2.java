@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.ColorRes;
-import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.ColorRes;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -174,6 +174,20 @@ public class StatusBarUtil2 {
      */
     private static boolean isFlyme4Later() {
         if ("MEIZU".equals(Build.BRAND.trim().toUpperCase())) {
+            return Build.FINGERPRINT.contains("Flyme_OS_4") || Build.VERSION.INCREMENTAL.contains("Flyme_OS_4") || Pattern.compile("Flyme_OS_[4|5]", Pattern.CASE_INSENSITIVE)
+                    .matcher(Build.DISPLAY).find();
+        }
+        return false;
+    }
+
+
+    /**
+     * 判断是否是HTC
+     *
+     * @return 是否是魅族Flyme4
+     */
+    private static boolean isHtc() {
+        if ("htc".equals(Build.BRAND.trim().toUpperCase())) {
             return Build.FINGERPRINT.contains("Flyme_OS_4") || Build.VERSION.INCREMENTAL.contains("Flyme_OS_4") || Pattern.compile("Flyme_OS_[4|5]", Pattern.CASE_INSENSITIVE)
                     .matcher(Build.DISPLAY).find();
         }

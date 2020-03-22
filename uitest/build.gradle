@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 def androidId = rootProject.ext.androidId
 def appId = rootProject.ext.appId
@@ -45,8 +47,14 @@ dependencies {
     androidTestImplementation androidTest.espressoContrib
 
     // App dependencies
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation androidTest.espressoIdlingResource
 
+    implementation rootProject.ext.dependencies.core
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+}
+repositories {
+    mavenCentral()
 }

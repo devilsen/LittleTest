@@ -1,7 +1,7 @@
 package com.test.devilsen.test.multiprocess.sp;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import static com.test.devilsen.test.multiprocess.sp.ConstantUtil.CONTENT_URI;
 import static com.test.devilsen.test.multiprocess.sp.ConstantUtil.SEPARATOR;

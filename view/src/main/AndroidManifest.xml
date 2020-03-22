@@ -12,5 +12,6 @@
         </activity>
         <activity android:name=".banner.BannerTestActivity" />
         <activity android:name=".image.ImageTestActivity" />
+        <activity android:name=".textview.TextViewTestActivity" />
     </application>
 </manifest>

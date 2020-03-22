@@ -25,6 +25,7 @@
         <activity android:name=".recycler.RecyclerViewTestActivity" />
         <activity android:name=".basic.ShowTextActivity" />
         <activity android:name=".intent.ContactsActivity" />
+        <activity android:name=".UITestActivity" />
 
     </application>
 

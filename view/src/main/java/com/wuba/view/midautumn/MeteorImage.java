@@ -15,7 +15,7 @@ import java.util.Random;
  * date : 2016-08-23 14:01
  * desc : 流星
  */
-public class MeteorImage extends android.support.v7.widget.AppCompatImageView {
+public class MeteorImage extends androidx.appcompat.widget.AppCompatImageView {
 
     Random random = new Random();
     int position;

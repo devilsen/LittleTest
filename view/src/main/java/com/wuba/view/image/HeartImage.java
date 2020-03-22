@@ -15,7 +15,7 @@ import com.wuba.view.R;
  * date : 2017/9/4
  * desc :
  */
-public class HeartImage extends android.support.v7.widget.AppCompatImageView {
+public class HeartImage extends androidx.appcompat.widget.AppCompatImageView {
     public HeartImage(Context context) {
         super(context);
         init(context);
