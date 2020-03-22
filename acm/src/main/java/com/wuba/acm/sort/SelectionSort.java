@@ -3,8 +3,12 @@ package com.wuba.acm.sort;
 import java.util.Random;
 
 /**
- * desc :
+ * desc : 选择排序
  * date : 2018/12/26
+ * <p>
+ * n^2
+ * 不稳定排序
+ * 原地排序
  *
  * @author : dongSen
  */

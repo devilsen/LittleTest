@@ -26,6 +26,8 @@ public class LevelOrderTraversal {
             System.out.println();
         }
 
+        levelTravel3(TreeMaker.obtain());
+
         List<List<Integer>> lists2 = traversal.zigzagLevelOrder(TreeMaker.obtain());
         for (List<Integer> list : lists2) {
             for (int val : list) {
@@ -33,6 +35,7 @@ public class LevelOrderTraversal {
             }
             System.out.println();
         }
+
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
@@ -89,6 +92,19 @@ public class LevelOrderTraversal {
             wrapList.add(subList);
         }
         return wrapList;
+    }
+
+    public static void levelTravel3(TreeNode root) {
+        if (root == null) return;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+            TreeNode temp = q.poll();
+            System.out.print(temp.val + " ");
+            if (temp.left != null) q.add(temp.left);
+            if (temp.right != null) q.add(temp.right);
+        }
+        System.out.println();
     }
 
     /**
