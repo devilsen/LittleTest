@@ -50,7 +50,7 @@ public class TraversalTree {
 
     }
 
-    private void preOrder(TreeNode node) {
+    public void preOrder(TreeNode node) {
         if (node == null)
             return;
 
