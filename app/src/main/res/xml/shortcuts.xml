@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="n_mr1">
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_center_focus_strong_black_24dp"
+        android:shortcutDisabledMessage="@string/shortcut_disable"
+        android:shortcutId="shortcut_test_1"
+        android:shortcutLongLabel="@string/shortcut_test_1_long_label"
+        android:shortcutShortLabel="@string/shortcut_test_1_short_label">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.test.devilsen.test.shortcut.ShortCutTestActivity"
+            android:targetPackage="com.test.devilsen.test" />
+        <!-- 注意：targetPackage是Appliation id而不是包名 -->
+
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+<!--    <shortcut-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_payment_black_24dp"-->
+<!--        android:shortcutDisabledMessage="@string/shortcut_disable"-->
+<!--        android:shortcutId="shortcut_test_2"-->
+<!--        android:shortcutLongLabel="@string/shortcut_test_2_long_label"-->
+<!--        android:shortcutShortLabel="@string/shortcut_test_2_short_label">-->
+<!--        <intent-->
+<!--            android:action="android.intent.action.VIEW"-->
+<!--            android:targetClass="com.wuba.view.loading.LoadingTestActivity"-->
+<!--            android:targetPackage="com.test.devilsen.test" />-->
+<!--    </shortcut>-->
+
+</shortcuts>

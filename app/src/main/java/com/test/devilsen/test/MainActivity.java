@@ -33,6 +33,7 @@ import com.test.devilsen.test.notification.ProgressActivity;
 import com.test.devilsen.test.parcelable.ParcelableActivity;
 import com.test.devilsen.test.parcelable.TestBean;
 import com.test.devilsen.test.screen.activity.FullScreenActivity;
+import com.test.devilsen.test.shortcut.ShortCutTestActivity;
 import com.test.devilsen.test.socket.WebSocketTestActivity;
 import com.test.devilsen.test.storage.StorageTestActivity;
 import com.wuba.view.HalfCircle.TestActivity;
@@ -402,6 +403,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void StorageTest(View view) {
         startActivity(new Intent(this, StorageTestActivity.class));
+    }
+
+    public void shortCutTest(View view) {
+        startActivity(new Intent(this, ShortCutTestActivity.class));
     }
 
 }

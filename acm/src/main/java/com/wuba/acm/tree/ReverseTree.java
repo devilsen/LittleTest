@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * desc : 翻转二叉树
+ * desc : 翻转二叉树（输出二叉树的镜像）
  * https://mp.weixin.qq.com/s/ONKJyusGCIE2ctwT9uLv9g
  * date : 2019/2/14
  *

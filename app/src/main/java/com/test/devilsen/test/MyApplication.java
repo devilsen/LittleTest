@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
 /**
@@ -25,7 +26,7 @@ public class MyApplication extends Application {
 //            // You should not init your app in this process.
 //            return;
 //        }
-//        watcher = LeakCanary.install(this);
+        watcher = LeakCanary.install(this);
         // Normal app init code...
 
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {

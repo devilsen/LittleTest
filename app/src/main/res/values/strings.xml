@@ -2,4 +2,13 @@
     <string name="app_name">SamTest</string>
     <string name="action_settings">Settings</string>
     <string name="welfare_mid_autumn_notice">1、打开百度糯米APP，点击右下角“我的” 2、点击头像下方“余额”，输入充值卡密码 3、点击“兑换“，然后妥妥的吃喝玩乐了 4、有效期至2018年10月1日 5、领取糯米劵后，请尽快兑换，以防不可描述的事情发生</string>
+
+
+    <string name="shortcut_disable">Settings</string>
+    <string name="shortcut_test_1_long_label">扫一扫</string>
+    <string name="shortcut_test_1_short_label">App扫一扫</string>
+
+    <string name="shortcut_test_2_long_label">付🐶钱</string>
+    <string name="shortcut_test_2_short_label">付😺钱</string>
+
 </resources>

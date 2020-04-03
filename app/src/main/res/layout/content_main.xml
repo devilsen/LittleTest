@@ -258,5 +258,12 @@
             android:text="StorageTest"
             android:textAllCaps="true" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="shortCutTest"
+            android:text="shortCutTest"
+            android:textAllCaps="true" />
+
     </LinearLayout>
 </ScrollView>
