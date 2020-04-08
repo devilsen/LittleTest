@@ -3,6 +3,7 @@ package com.test.devilsen.test.shortcut
 import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
+import android.graphics.Bitmap
 import android.graphics.drawable.Icon
 import android.os.Build
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.test.devilsen.test.MainActivity
 import com.test.devilsen.test.R
 import com.wuba.view.bottomsheet.BottomSheetActivity
@@ -55,9 +57,10 @@ class ShortCutTestActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N_MR1)
     private fun createShortcut(): ShortcutInfo {
         return ShortcutInfo.Builder(this, "test1").apply {
-            setShortLabel("动态快捷1")
-            setLongLabel("动态快捷1😀")
+            setShortLabel("动态快捷1")   // 作为图标时使用
+            setLongLabel("动态快捷1😀")  // 作为长按时使用
             setIcon(Icon.createWithResource(this@ShortCutTestActivity, R.drawable.ic_heat_red_40dp))
+//            setIcon(Icon.createWithBitmap(bitmap))
             setIntent(Intent().apply {
                 action = Intent.ACTION_MAIN
                 setClass(this@ShortCutTestActivity, ShortCutTestActivity::class.java)
@@ -65,6 +68,7 @@ class ShortCutTestActivity : AppCompatActivity() {
             })
         }.build()
     }
+
 
     @RequiresApi(Build.VERSION_CODES.N_MR1)
     private fun createShortcuts(): ShortcutInfo {
@@ -87,5 +91,21 @@ class ShortCutTestActivity : AppCompatActivity() {
         }.build()
     }
 
+
+    private fun getBitmap(callback: Callback) {
+        Thread(Runnable {
+            val bitmap = Glide.with(this)
+                    .load("http://img.mp.sohu.com/q_mini,c_zoom,w_640/upload/20170731/4c79a1758a3a4c0c92c26f8e21dbd888_th.jpg")
+                    .asBitmap()
+                    .centerCrop()
+                    .into(50, 50)
+                    .get()
+            callback.onSuccess(bitmap)
+        }).start()
+    }
+
+    interface Callback {
+        fun onSuccess(bitmap: Bitmap)
+    }
 
 }

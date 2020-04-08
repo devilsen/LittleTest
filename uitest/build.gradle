@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 def androidId = rootProject.ext.androidId
 def appId = rootProject.ext.appId
@@ -51,7 +51,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation androidTest.espressoIdlingResource
 
-    implementation rootProject.ext.dependencies.core
+    implementation rootProject.ext.dependencies.ktxcore
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }

@@ -19,8 +19,8 @@ ext {
 
     appId = [
             app    : "com.test.devilsen.test",
-            uiTest    : "com.test.devilsen.uiTest",
-            jetpack    : "com.test.devilsen.jetpack",
+            uiTest : "com.test.devilsen.uiTest",
+            jetpack: "com.test.devilsen.jetpack",
             library: "com.test.devilsen.debug"
     ]
 
@@ -32,7 +32,7 @@ ext {
     androidX = "1.0.2"
     dependencies = [
             appcompat: "androidx.appcompat:appcompat:${androidX}", // 不能使用-v7什么的命名，某些版本不匹配
-            core     : "androidx.core:core-ktx:${androidX}"
+            ktxcore  : "androidx.core:core-ktx:${androidX}"
     ]
 
     support = "28.0.0"
