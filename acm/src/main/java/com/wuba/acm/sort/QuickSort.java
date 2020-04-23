@@ -53,4 +53,22 @@ public class QuickSort {
         return i;
     }
 
+    // 另一种方式
+    private static int partitionV2(int[] arr, int startIndex, int endIndex) {
+        int pivot = arr[startIndex];
+        int mark = startIndex;
+
+        for (int i = startIndex + 1; i < endIndex; i++) {
+            if (arr[i] < pivot) {
+                mark++;
+                int temp = arr[i];
+                arr[i] = arr[mark];
+                arr[mark] = temp;
+            }
+        }
+        arr[startIndex] = arr[mark];
+        arr[mark] = pivot;
+        return mark;
+    }
+
 }
