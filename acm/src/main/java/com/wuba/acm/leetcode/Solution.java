@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -78,10 +79,76 @@ public class Solution {
 //        List<Integer> integers = solution.rightSideView(TreeNode.obtain());
 //        System.out.println(integers.toString());
 
-        int i = solution.waysToChange(10);
-        System.out.println(i);
+//        int[] nums = {7, 5, 6, 4};
+//        int i = solution.reversePairs(nums);
+//        System.out.println(i);
+
+        ListNode[] listNodes = new ListNode[2];
+        listNodes[0] = ListNode.obtain(3);
+        listNodes[1] = ListNode.obtain(3);
+//        listNodes[2] = ListNode.obtain(3);
+        ListNode node = solution.mergeKLists(listNodes);
+        ListNode.print(node);
     }
 
+    public ListNode mergeKLists(ListNode[] lists) {
+        PriorityQueue<ListNode> queue = new PriorityQueue<>(new Comparator<ListNode>() {
+            @Override
+            public int compare(ListNode o1, ListNode o2) {
+                return o1.val - o2.val;
+            }
+        });
+        for (int i = 0; i < lists.length; i++) {
+            if (lists[i] != null)
+                queue.offer(lists[i]);
+        }
+
+        ListNode tail = new ListNode(0);
+        ListNode head = tail;
+        while (!queue.isEmpty()) {
+            ListNode node = queue.poll();
+            tail.next = node;
+            tail = tail.next;
+            if (node.next != null) {
+                queue.offer(node.next);
+            }
+        }
+
+        return head.next;
+    }
+
+    private ListNode mergeTwoList(ListNode list1, ListNode list2) {
+        if (list1 != null || list2 != null) {
+            if (list1 == null) {
+                return list2;
+            }
+            if (list2 == null) {
+                return list1;
+            }
+        }
+
+        ListNode head = new ListNode(0);
+        ListNode tail = head;
+        ListNode aPtr = list1;
+        ListNode bPtr = list2;
+
+        while (aPtr != null && bPtr != null) {
+            if (aPtr.val < bPtr.val) {
+                tail.next = aPtr;
+                aPtr = aPtr.next;
+            } else {
+                tail.next = bPtr;
+                bPtr = bPtr.next;
+            }
+            tail = tail.next;
+        }
+        if (aPtr != null) {
+            tail.next = aPtr;
+        } else {
+            tail.next = bPtr;
+        }
+        return head.next;
+    }
 
     public int waysToChange(int n) {
         int[] f = new int[n + 1];

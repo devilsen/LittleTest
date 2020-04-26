@@ -5,6 +5,9 @@ package com.wuba.acm.divide;
  * date : 2018/12/26
  *
  * @author : dongSen
+ *
+ * 题目：https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/
+ * 解答：https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/shu-zu-zhong-de-ni-xu-dui-by-leetcode-solution/
  */
 public class MergeSortCounting {
 
@@ -52,6 +55,86 @@ public class MergeSortCounting {
         for (i = 0; i <= r - p; ++i) { // 从 tmp 拷贝回 a
             a[p + i] = tmp[i];
         }
+    }
+
+    // -------------------------------代码2------------------------------
+
+    public int reversePairs(int[] nums) {
+        int len = nums.length;
+
+        if (len < 2) {
+            return 0;
+        }
+
+        int[] copy = new int[len];
+        for (int i = 0; i < len; i++) {
+            copy[i] = nums[i];
+        }
+
+        int[] temp = new int[len];
+        return reversePairs(copy, 0, len - 1, temp);
+    }
+
+    /**
+     * nums[left..right] 计算逆序对个数并排序
+     */
+    private int reversePairs(int[] nums, int left, int right, int[] temp) {
+        if (left == right) {
+            return 0;
+        }
+
+        int mid = left + (right - left) / 2;
+        // 拆分数组
+        int leftPairs = reversePairs(nums, left, mid, temp);
+        int rightPairs = reversePairs(nums, mid + 1, right, temp);
+
+        // 排序优化，如果已经有序，直接累加即可
+        if (nums[mid] < nums[mid + 1]) {
+            return leftPairs + rightPairs;
+        }
+
+        // 排序并计算
+        int crossPairs = mergeAndCount(nums, left, mid, right, temp);
+        return leftPairs + rightPairs + crossPairs;
+    }
+
+    /**
+     * [left..mid] 有序 [mid+1,right]有序
+     *
+     * @param nums
+     * @param left
+     * @param mid
+     * @param right
+     * @param temp
+     * @return
+     */
+    private int mergeAndCount(int[] nums, int left, int mid, int right, int[] temp) {
+        for (int i = left; i <= right; i++) {
+            temp[i] = nums[i];
+        }
+
+        int i = left;
+        int j = mid + 1;
+
+        int count = 0;
+        for (int k = left; k <= right; k++) {
+            if (i == mid + 1) {
+                nums[k] = temp[j];
+                j++;
+            } else if (j == right + 1) {
+                nums[k] = temp[i];
+                i++;
+            } else if (temp[i] <= temp[j]) { // 注意=，否则会变为不稳定排序
+                nums[k] = temp[i];
+                i++;
+            } else {
+                nums[k] = temp[j];
+                j++;
+                // 只有这里做了累加
+                count += (mid - i + 1);
+            }
+        }
+        return count;
     }
 
 }
