@@ -6,15 +6,16 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/text_view_content"
+        android:id="@+id/contentTxt"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="0"/>
 
     <Button
-        android:id="@+id/button_change"
+        android:id="@+id/addBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="change" />
+        android:text="add" />
 
 </LinearLayout>

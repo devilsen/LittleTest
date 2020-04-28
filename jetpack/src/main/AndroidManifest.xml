@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".viewmodel.ViewModelTestActivity" />
+        <activity android:name=".livedata.LiveDataTestActivity" />
 
     </application>
 
