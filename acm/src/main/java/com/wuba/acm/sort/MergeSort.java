@@ -1,5 +1,7 @@
 package com.wuba.acm.sort;
 
+import com.wuba.acm.leetcode.ListNode;
+
 /**
  * desc : 归并排序
  * date : 2018/12/14
@@ -15,26 +17,26 @@ public class MergeSort {
     }
 
     // 递归调用函数
-    private static void mergeSortInternally(int[] a, int p, int r) {
+    private static void mergeSortInternally(int[] a, int l, int r) {
         // 递归终止条件
-        if (p >= r) return;
+        if (l >= r) return;
 
         // 取p到r之间的中间位置q,防止（p+r）的和超过int类型最大值
-        int q = p + (r - p) / 2;
+        int m = l + (r - l) / 2;
         // 分治递归
-        mergeSortInternally(a, p, q);
-        mergeSortInternally(a, q + 1, r);
+        mergeSortInternally(a, l, m);
+        mergeSortInternally(a, m + 1, r);
 
         // 将A[p...q]和A[q+1...r]合并为A[p...r]
-        merge(a, p, q, r);
+        merge(a, l, m, r);
     }
 
-    private static void merge(int[] a, int p, int q, int r) {
-        int i = p;
-        int j = q + 1;
+    private static void merge(int[] a, int l, int m, int r) {
+        int i = l;
+        int j = m + 1;
         int k = 0; // 初始化变量i, j, k
-        int[] tmp = new int[r - p + 1]; // 申请一个大小跟a[p...r]一样的临时数组
-        while (i <= q && j <= r) {
+        int[] tmp = new int[r - l + 1]; // 申请一个大小跟a[l...r]一样的临时数组
+        while (i <= m && j <= r) {
             if (a[i] <= a[j]) {
                 tmp[k++] = a[i++]; // i++等于i:=i+1
             } else {
@@ -44,7 +46,7 @@ public class MergeSort {
 
         // 判断哪个子数组中有剩余的数据
         int start = i;
-        int end = q;
+        int end = m;
         if (j <= r) {
             start = j;
             end = r;
@@ -55,11 +57,43 @@ public class MergeSort {
             tmp[k++] = a[start++];
         }
 
-        // 将tmp中的数组拷贝回a[p...r]
-        for (i = 0; i <= r - p; ++i) {
-            a[p + i] = tmp[i];
+        // 将tmp中的数组拷贝回a[l...r]
+        for (i = 0; i <= r - l; ++i) {
+            a[l + i] = tmp[i];
         }
     }
 
 
+    // ----------------------链表排序------------------
+    public ListNode sortList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode fast = head.next;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode mid = slow.next;
+        slow.next = null; // 掐断链表，不然会死循环
+        // 得到两个排序好的链表
+        ListNode left = sortList(head);
+        ListNode right = sortList(mid);
+        // 合并两个链表
+        ListNode h = new ListNode(0);
+        ListNode res = h;
+        while (left != null && right != null) {
+            if (left.val < right.val) {
+                h.next = left;
+                left = left.next;
+            } else {
+                h.next = right;
+                right = right.next;
+            }
+            h = h.next;
+        }
+        h.next = left == null ? right : left;
+        return res.next;
+    }
 }
