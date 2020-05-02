@@ -8,6 +8,7 @@ import me.sam.test.jetpack.databinding.DataBindingTestActivity
 import me.sam.test.jetpack.lifecycle.MyObserver
 import me.sam.test.jetpack.livedata.LiveDataTestActivity
 import me.sam.test.jetpack.viewmodel.ViewModelTestActivity
+import me.sam.test.jetpack.viewmodel.savedstate.ViewModelSavedStateTestActivity
 
 /**
  * desc :
@@ -29,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this, ViewModelTestActivity::class.java))
     }
 
+    fun viewModelSavedState(view: View) {
+        startActivity(Intent(this, ViewModelSavedStateTestActivity::class.java))
+    }
+
     fun liveData(view: View) {
         startActivity(Intent(this, LiveDataTestActivity::class.java))
     }
@@ -36,4 +41,5 @@ class MainActivity : AppCompatActivity() {
     fun dataBinding(view: View) {
         startActivity(Intent(this, DataBindingTestActivity::class.java))
     }
+
 }

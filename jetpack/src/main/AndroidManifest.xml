@@ -20,6 +20,7 @@
         <activity android:name=".viewmodel.ViewModelTestActivity" />
         <activity android:name=".livedata.LiveDataTestActivity" />
         <activity android:name=".databinding.DataBindingTestActivity" />
+        <activity android:name=".viewmodel.savedstate.ViewModelSavedStateTestActivity" />
 
     </application>
 

@@ -15,6 +15,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="viewModelSavedState"
+        android:text="viewModelSavedState"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="liveData"
         android:text="liveData"
         android:textAllCaps="false" />
