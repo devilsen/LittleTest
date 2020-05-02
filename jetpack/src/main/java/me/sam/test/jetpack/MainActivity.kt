@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import me.sam.test.jetpack.databinding.DataBindingTestActivity
 import me.sam.test.jetpack.lifecycle.MyObserver
 import me.sam.test.jetpack.livedata.LiveDataTestActivity
 import me.sam.test.jetpack.viewmodel.ViewModelTestActivity
@@ -30,5 +31,9 @@ class MainActivity : AppCompatActivity() {
 
     fun liveData(view: View) {
         startActivity(Intent(this, LiveDataTestActivity::class.java))
+    }
+
+    fun dataBinding(view: View) {
+        startActivity(Intent(this, DataBindingTestActivity::class.java))
     }
 }
