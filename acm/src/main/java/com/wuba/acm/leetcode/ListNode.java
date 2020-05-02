@@ -6,16 +6,16 @@ package com.wuba.acm.leetcode;
  *
  * @author : dongSen
  */
-class ListNode {
+public class ListNode {
 
-    int val;
-    ListNode next;
+    public int val;
+    public ListNode next;
 
-    ListNode(int x) {
+    public ListNode(int x) {
         val = x;
     }
 
-    static ListNode obtain(int count) {
+    public static ListNode obtain(int count) {
         ListNode node = new ListNode(1);
         ListNode head = node;
         for (int i = 2; i <= count; i++) {
@@ -25,7 +25,7 @@ class ListNode {
         return head;
     }
 
-    static void print(ListNode node) {
+    public static void print(ListNode node) {
         while (node != null) {
             System.out.print(node.val);
             if (node.next != null) {
@@ -36,7 +36,7 @@ class ListNode {
         System.out.println();
     }
 
-    static ListNode reverse(ListNode head) {
+    public static ListNode reverse(ListNode head) {
         ListNode pre = null;
         ListNode cur = head;
         ListNode next;

@@ -1,7 +1,8 @@
 package com.wuba.acm.leetcode;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * desc :
@@ -11,124 +12,201 @@ import java.util.List;
  */
 public class Solution {
 
+    static class MountainArray {
+        int[] nums = {1, 2, 3, 4, 5, 2, 1};
+
+        int get(int index) {
+            return nums[index];
+        }
+
+        int length() {
+            return nums.length;
+        }
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
+//        int inMountainArray = solution.findInMountainArray(4, new MountainArray());
+//        System.out.println(inMountainArray);
 
-//        int[][] nums = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
-//        solution.merge(nums);
-//        System.out.println(nums);
-
-//        String word = solution.getPermutation(3, 3);
-//        System.out.println(word);
-
-//        int[] nums = {1, 2, 3};
-//        List<List<Integer>> permute = solution.permute(nums);
-//        for (int i = 0; i < permute.size(); i++) {
-//            System.out.println(permute.get(i));
-//        }
-
-//        int[] nums = {2, 2, 2, 1, 2, 2, 1, 2, 2, 2};
-        int[] nums = {1, 1, 2, 1, 1};
-        int number = solution.numberOfSubarrays(nums, 3);
-        System.out.println(number);
+//        boolean happy = solution.isHappy(14);
+//        System.out.println(happy);
+        ListNode listNode1 = ListNode.obtain(3);
+        ListNode listNode2 = ListNode.obtain(3);
+        ListNode listNode = solution.sortList(listNode1);
+        ListNode.print(listNode);
     }
 
-    public int numberOfSubarrays(int[] nums, int k) {
-        int left = 0, right = 0, oddCnt = 0, res = 0;
-        while (right < nums.length) {
-            // 右指针先走，每遇到一个奇数则 oddCnt++。
-            if ((nums[right++] & 1) == 1) {
-                oddCnt++;
-            }
-
-            //  若当前滑动窗口 [left, right) 中有 k 个奇数了，进入此分支统计当前滑动窗口中的优美子数组个数。
-            if (oddCnt == k) {
-                // 先将滑动窗口的右边界向右拓展，直到遇到下一个奇数（或出界）
-                // rightEvenCnt 即为第 k 个奇数右边的偶数的个数
-                int tmp = right;
-                while (right < nums.length && (nums[right] & 1) == 0) {
-                    right++;
-                }
-                int rightEvenCnt = right - tmp;
-                // leftEvenCnt 即为第 1 个奇数左边的偶数的个数
-                int leftEvenCnt = 0;
-                while ((nums[left] & 1) == 0) {
-                    leftEvenCnt++;
-                    left++;
-                }
-                // 第 1 个奇数左边的 leftEvenCnt 个偶数都可以作为优美子数组的起点
-                // (因为第1个奇数左边可以1个偶数都不取，所以起点的选择有 leftEvenCnt + 1 种）
-                // 第 k 个奇数右边的 rightEvenCnt 个偶数都可以作为优美子数组的终点
-                // (因为第k个奇数右边可以1个偶数都不取，所以终点的选择有 rightEvenCnt + 1 种）
-                // 所以该滑动窗口中，优美子数组左右起点的选择组合数为 (leftEvenCnt + 1) * (rightEvenCnt + 1)
-                res += (leftEvenCnt + 1) * (rightEvenCnt + 1);
-
-                // 此时 left 指向的是第 1 个奇数，因为该区间已经统计完了，因此 left 右移一位，oddCnt--
-                left++;
-                oddCnt--;
-            }
-
+    public ListNode sortList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
-
-        return res;
-    }
-
-    private int findLeftEven(int[] nums, int left) {
-        if (left == 0) {
-            return 0;
+        ListNode fast = head.next;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        int count = 0;
-        for (int i = left - 1; i >= 0; i--) {
-            if (!isOdd(nums[i])) {
-                count++;
+        ListNode mid = slow.next;
+        slow.next = null; // 掐断链表，不然会死循环
+        // 得到两个排序好的链表
+        ListNode left = sortList(head);
+        ListNode right = sortList(mid);
+        // 合并两个链表
+        ListNode h = new ListNode(0);
+        ListNode res = h;
+        while (left != null && right != null) {
+            if (left.val < right.val) {
+                h.next = left;
+                left = left.next;
             } else {
+                h.next = right;
+                right = right.next;
+            }
+            h = h.next;
+        }
+        h.next = left == null ? right : left;
+        return res.next;
+    }
+
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null || l2 == null) {
+            if (l1 != null) {
+                return l1;
+            } else {
+                return l2;
+            }
+        }
+        ListNode head = new ListNode(0);
+        ListNode tail = head;
+
+        while (true) {
+            if (l1 == null) {
+                tail.next = l2;
                 break;
             }
-        }
-        return count;
-    }
-
-    private int findRightEven(int[] nums, int right) {
-        if (right > nums.length) {
-            return 0;
-        }
-        int count = 0;
-        for (int i = right + 1; i < nums.length; i++) {
-            if (!isOdd(nums[i])) {
-                count++;
-            } else {
+            if (l2 == null) {
+                tail.next = l1;
                 break;
             }
+            if (l1.val <= l2.val) {
+                tail.next = l1;
+                l1 = l1.next;
+            } else {
+                tail.next = l2;
+                l2 = l2.next;
+            }
+            tail = tail.next;
         }
-        return count;
+
+        return head.next;
     }
 
-    private boolean isOdd(int num) {
-        return (num & 1) == 1;
+    public boolean isHappy(int n) {
+        int slow = n;
+        int fast = n;
+        slow = addNum(slow);
+        fast = addNum(fast);
+        fast = addNum(fast);
+
+        while (slow != fast) {
+            slow = addNum(slow);
+            fast = addNum(fast);
+            fast = addNum(fast);
+        }
+        return slow == 1;
     }
 
-    List<List<Integer>> result = new LinkedList<>();
-
-    List<List<Integer>> permute(int[] nums) {
-        LinkedList<Integer> track = new LinkedList<>();
-        backtrack(nums, track);
+    private int addNum(int n) {
+        int result = 0;
+        while (n != 0) {
+            int temp = n % 10;
+            result = result + temp * temp;
+            n = n / 10;
+        }
         return result;
     }
 
-    private void backtrack(int[] nums, LinkedList<Integer> track) {
-        if (track.size() == nums.length) {
-            result.add(new LinkedList<>(track));
-            return;
+    private boolean isHappy(int n, Map<Integer, Boolean> integers) {
+        int num = addNum(n);
+        if (num == 1) {
+            return true;
+        } else if (integers.get(num) != null) {
+            return false;
+        } else {
+            return isHappy(num);
         }
+    }
 
-        for (int i = 0; i < nums.length; i++) {
-            if (track.contains(nums[i])) {
-                continue;
-            }
-            track.add(nums[i]);
-            backtrack(nums, track);
-            track.removeLast();
+    public int findInMountainArray(int target, MountainArray mountainArr) {
+        int maxIndex = findMaxIndex(mountainArr);
+
+        int leftIndex = findLeft(target, 0, maxIndex, mountainArr);
+        if (leftIndex != -1) {
+            return leftIndex;
         }
+        return findRight(target, maxIndex + 1, mountainArr.length() - 1, mountainArr);
+    }
+
+    private int findRight(int target, int left, int right, MountainArray mountainArr) {
+        while (left <= right) {
+            int middleIndex = left + (right - left) / 2;
+            int middleNum = mountainArr.get(middleIndex);
+            if (middleNum == target) {
+                return middleIndex;
+            } else if (middleNum >= target) {
+                left = middleIndex + 1;
+            } else {
+                right = middleIndex - 1;
+            }
+        }
+        return -1;
+    }
+
+    private int findLeft(int target, int left, int right, MountainArray mountainArr) {
+        while (left <= right) {
+            int middleIndex = left + (right - left) / 2;
+            int middleNum = mountainArr.get(middleIndex);
+            if (middleNum == target) {
+                return middleIndex;
+            } else if (middleNum >= target) {
+                right = middleIndex - 1;
+            } else {
+                left = middleIndex + 1;
+            }
+        }
+        return -1;
+    }
+
+    private int findMaxIndex(MountainArray mountainArr) {
+        int left = 0;
+        int right = mountainArr.length() - 1;
+
+        while (left <= right) {
+            int middleIndex = left + (right - left) / 2;
+            int middleNum = mountainArr.get(middleIndex);
+            int middleAdd;
+            if (middleIndex + 1 > right) {
+                return middleIndex;
+            } else {
+                middleAdd = mountainArr.get(middleIndex + 1);
+            }
+            int middleSub;
+            if (middleIndex - 1 < 0) {
+                middleSub = middleNum;
+            } else {
+                middleSub = mountainArr.get(middleIndex - 1);
+            }
+
+            if (middleNum > middleAdd && middleNum > middleSub) {
+                return middleIndex;
+            } else if (middleNum > middleAdd) {
+                right = middleIndex - 1;
+            } else if (middleNum < middleAdd) {
+                left = middleIndex + 1;
+            }
+        }
+        return left + (right - left) / 2;
     }
 
 }
