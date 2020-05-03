@@ -33,4 +33,11 @@
         android:text="dataBinding"
         android:textAllCaps="false" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="navigation"
+        android:text="navigation"
+        android:textAllCaps="false" />
+
 </LinearLayout>

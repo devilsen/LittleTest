@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import me.sam.test.jetpack.databinding.DataBindingTestActivity
 import me.sam.test.jetpack.lifecycle.MyObserver
 import me.sam.test.jetpack.livedata.LiveDataTestActivity
+import me.sam.test.jetpack.navigation.NavigationTestActivity
 import me.sam.test.jetpack.viewmodel.ViewModelTestActivity
 import me.sam.test.jetpack.viewmodel.savedstate.ViewModelSavedStateTestActivity
 
@@ -40,6 +41,10 @@ class MainActivity : AppCompatActivity() {
 
     fun dataBinding(view: View) {
         startActivity(Intent(this, DataBindingTestActivity::class.java))
+    }
+
+    fun navigation(view: View) {
+        startActivity(Intent(this, NavigationTestActivity::class.java))
     }
 
 }
