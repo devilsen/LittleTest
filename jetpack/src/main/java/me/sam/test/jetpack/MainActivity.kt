@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import me.sam.test.jetpack.databinding.DataBindingTestActivity
-import me.sam.test.jetpack.lifecycle.MyObserver
+import me.sam.test.jetpack.lifecycle.MyLifeCycleObserver
 import me.sam.test.jetpack.livedata.LiveDataTestActivity
 import me.sam.test.jetpack.navigation.NavigationTestActivity
 import me.sam.test.jetpack.viewmodel.ViewModelTestActivity
@@ -23,8 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //添加一个生命周期观察者    getLifecycle()是FragmentActivity中的方法
-        val observer = MyObserver()
-        lifecycle.addObserver(observer)
+        lifecycle.addObserver(MyLifeCycleObserver())
     }
 
     fun viewModel(view: View) {
