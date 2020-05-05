@@ -6,12 +6,17 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 
 /**
- * desc :
+ * desc : 这样可以优化一些与生命周期相关的组件，使其在自己内部处理，而不是依赖在Activity中调用
  * date : 2019-04-24
  *
  * @author : dongSen
  */
-class MyObserver : LifecycleObserver {
+class MyLifeCycleObserver : LifecycleObserver {
+
+    companion object {
+        private const val TAG = "MyLifeCycleObserver"
+    }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
         Log.w(TAG, "onCreate: ")
@@ -42,7 +47,4 @@ class MyObserver : LifecycleObserver {
         Log.w(TAG, "onDestroy: ")
     }
 
-    companion object {
-        private const val TAG = "MyObserver"
-    }
 }
