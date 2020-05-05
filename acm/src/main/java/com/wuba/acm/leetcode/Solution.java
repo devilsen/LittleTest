@@ -1,8 +1,12 @@
 package com.wuba.acm.leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 /**
  * desc :
@@ -31,10 +35,45 @@ public class Solution {
 
 //        boolean happy = solution.isHappy(14);
 //        System.out.println(happy);
-        ListNode listNode1 = ListNode.obtain(3);
-        ListNode listNode2 = ListNode.obtain(3);
-        ListNode listNode = solution.sortList(listNode1);
-        ListNode.print(listNode);
+//        ListNode listNode1 = ListNode.obtain(3);
+//        ListNode listNode2 = ListNode.obtain(3);
+//        ListNode listNode = solution.sortList(listNode1);
+//        ListNode.print(listNode);
+
+        TreeNode root = TreeNode.obtainBST();
+        boolean validBST = solution.isValidBST(root);
+        System.out.println(validBST);
+    }
+
+    public boolean isValidBST(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        double inorder = -Double.MAX_VALUE;
+
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+
+            root = stack.pop();
+//            System.out.println(root.val);
+            if (root.val <= inorder) return false;
+            inorder = root.val;
+            root = root.right;
+        }
+        return true;
+    }
+
+    public boolean helper(TreeNode node, Integer lower, Integer upper) {
+        if (node == null) return true;
+
+        int val = node.val;
+        if (lower != null && val <= lower) return false;
+        if (upper != null && val >= upper) return false;
+
+        if (!helper(node.right, val, upper)) return false;
+        if (!helper(node.left, lower, val)) return false;
+        return true;
     }
 
     public ListNode sortList(ListNode head) {

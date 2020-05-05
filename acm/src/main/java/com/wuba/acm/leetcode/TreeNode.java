@@ -15,6 +15,14 @@ class TreeNode {
         val = x;
     }
 
+
+    /**
+     *           1
+     *         /  \
+     *        2    3
+     *         \    \
+     *          5    4
+     */
     static TreeNode obtain() {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
@@ -22,6 +30,23 @@ class TreeNode {
 
         root.left.right = new TreeNode(5);
         root.right.right = new TreeNode(4);
+        return root;
+    }
+
+    /**
+     *           5
+     *         /  \
+     *        1   10
+     *           /  \
+     *          7   11
+     */
+    static TreeNode obtainBST() {
+        TreeNode root = new TreeNode(5);
+        root.left = new TreeNode(1);
+        root.right = new TreeNode(10);
+
+        root.right.left = new TreeNode(7);
+        root.right.right = new TreeNode(11);
         return root;
     }
 }
