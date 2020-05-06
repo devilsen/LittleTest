@@ -32,11 +32,22 @@ android {
 
     productFlavors {
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+    }
 }
 
 dependencies {
     // Testing-only dependencies
     testImplementation 'junit:junit:4.12'
+    // https://site.mockito.org/
+    testImplementation 'org.mockito:mockito-core:3.3.3'
+    // http://robolectric.org/getting-started/
+    testImplementation 'org.robolectric:robolectric:4.3.1'
+    testImplementation androidTest.core
+
     androidTestImplementation androidTest.core
     androidTestImplementation androidTest.truth
     androidTestImplementation androidTest.junit
@@ -48,7 +59,7 @@ dependencies {
 
     // App dependencies
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation androidTest.espressoIdlingResource
 
     implementation rootProject.ext.dependencies.ktxcore
