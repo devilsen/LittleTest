@@ -22,6 +22,7 @@
         <activity android:name=".databinding.DataBindingTestActivity" />
         <activity android:name=".viewmodel.savedstate.ViewModelSavedStateTestActivity" />
         <activity android:name=".navigation.NavigationTestActivity" />
+        <activity android:name=".room.RoomTestActivity" />
     </application>
 
 </manifest>
