@@ -1,10 +1,5 @@
 package com.wuba.acm.leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -46,14 +41,42 @@ public class Solution {
 
 //        int[] days = {1, 4, 6, 7, 8, 20};
 //        int[] costs = {2, 7, 15};
-        int[] days = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31};
-        int[] costs = {2, 7, 15};
-        int tickets = solution.mincostTickets(days, costs);
-        System.out.println(tickets);
+//        int[] days = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31};
+//        int[] costs = {2, 7, 15};
+//        int tickets = solution.mincostTickets(days, costs);
+//        System.out.println(tickets);
 //        for (int i = 0; i < days.length - 1; i++) {
 //            int index = solution.findIndex(i, 1, days);
 //            System.out.println(index);
 //        }
+
+        TreeNode s = TreeNode.obtainBST();
+        TreeNode t = TreeNode.obtain(10, 7, 11);
+        boolean subtree = solution.isSubtree(s, t);
+        System.out.println(subtree);
+    }
+
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        if (t == null) {
+            return true;
+        }
+        if (s == null) {
+            return false;
+        }
+        return isSubtree(s.left, t) || isSubtree(s.right, t) || isSameTree(s, t);
+    }
+
+    private boolean isSameTree(TreeNode s, TreeNode t) {
+        if (s == null && t == null) {
+            return true;
+        }
+        if (s == null || t == null) {
+            return false;
+        }
+        if (s.val != t.val) {
+            return false;
+        }
+        return isSameTree(s.left, t.left) && isSameTree(s.right, t.right);
     }
 
     int[] days, costs;

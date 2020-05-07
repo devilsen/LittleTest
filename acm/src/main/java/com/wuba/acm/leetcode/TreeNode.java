@@ -49,4 +49,16 @@ class TreeNode {
         root.right.right = new TreeNode(11);
         return root;
     }
+
+    /**
+     *           p
+     *         /  \
+     *        l    r
+     */
+    static TreeNode obtain(int parent, int left, int right) {
+        TreeNode root = new TreeNode(parent);
+        root.left = new TreeNode(left);
+        root.right = new TreeNode(right);
+        return root;
+    }
 }
