@@ -1,5 +1,7 @@
 package com.wuba.acm.leetcode;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Map;
 import java.util.Stack;
 
@@ -50,10 +52,125 @@ public class Solution {
 //            System.out.println(index);
 //        }
 
-        TreeNode s = TreeNode.obtainBST();
-        TreeNode t = TreeNode.obtain(10, 7, 11);
-        boolean subtree = solution.isSubtree(s, t);
-        System.out.println(subtree);
+//        TreeNode s = TreeNode.obtainBST();
+//        TreeNode t = TreeNode.obtain(10, 7, 11);
+//        boolean subtree = solution.isSubtree(s, t);
+//        System.out.println(subtree);
+
+//        char[][] obtain = Matrix.obtainChar();
+//        int i = solution.maximalSquare(obtain);
+//        System.out.println("square = " + i);
+//        System.out.println(solution.mySqrt(9));
+
+        System.out.println(solution.myPow(2, 5));
+    }
+
+    double quickMul(double x, long N) {
+        double ans = 1.0;
+        // 贡献的初始值为 x
+        double x_contribute = x;
+        // 在对 N 进行二进制拆分的同时计算答案
+        while (N > 0) {
+            if (N % 2 == 1) {
+                // 如果 N 二进制表示的最低位为 1，那么需要计入贡献
+                ans *= x_contribute;
+            }
+            // 将贡献不断地平方
+            x_contribute *= x_contribute;
+            // 舍弃 N 二进制表示的最低位，这样我们每次只要判断最低位即可
+            N /= 2;
+        }
+        return ans;
+    }
+
+    public double myPow(double x, int n) {
+        long N = n;
+        return N >= 0 ? quickMul(x, N) : 1.0 / quickMul(x, -N);
+    }
+
+    public int mySqrt(int x) {
+        if (x == 0) return 0;
+        long left = 0;
+        long right = x;
+        long mid;
+        while (left < right) {
+            mid = left + (right - left + 1) / 2;
+            long square = mid * mid;
+            if (square > x) {
+                right = mid - 1;
+            } else {
+                left = mid;
+            }
+        }
+        return (int) left;
+    }
+
+    public int maximalSquare(char[][] matrix) {
+        int maxArea = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            char[] line = matrix[i];
+            for (int j = 0; j < line.length; j++) {
+                if (line[j] == '1') {
+                    maxArea = Math.max(findMax(matrix, i, j), maxArea);
+                }
+            }
+        }
+        return maxArea;
+    }
+
+    private int findMax(char[][] matrix, int startI, int startJ) {
+        int stage = 1;
+        while (true) {
+            boolean right = isRight(matrix[startI], startJ, startJ + stage);
+            if (!right) {
+                return stage * stage;
+            }
+            boolean down = isDown(matrix, startI, startI + stage, startJ + stage);
+            if (!down) {
+                return stage * stage;
+            }
+            boolean left = isLeft(matrix[startI + stage], startJ + stage, startJ);
+            if (!left) {
+                return stage * stage;
+            }
+            stage++;
+        }
+    }
+
+    private boolean isLeft(char[] line, int startJ, int endJ) {
+        if (endJ < 0) {
+            return false;
+        }
+        for (int i = startJ; i >= endJ; i--) {
+            if (line[i] == '0') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isDown(char[][] matrix, int startI, int endI, int startJ) {
+        if (endI > matrix.length - 1) {
+            return false;
+        }
+        for (int i = startI; i <= endI; i++) {
+            if (matrix[i][startJ] == '0') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isRight(char[] line, int startJ, int endJ) {
+        if (endJ > line.length - 1) {
+            return false;
+        }
+        for (int i = startJ; i <= endJ; i++) {
+            if (line[i] == '0') {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean isSubtree(TreeNode s, TreeNode t) {
