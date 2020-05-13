@@ -25,6 +25,7 @@
         <activity android:name=".viewmodel.savedstate.ViewModelSavedStateTestActivity" />
         <activity android:name=".navigation.NavigationTestActivity" />
         <activity android:name=".paging.PagingTestActivity" />
+        <activity android:name=".room.RoomTestActivity" />
     </application>
 
 </manifest>

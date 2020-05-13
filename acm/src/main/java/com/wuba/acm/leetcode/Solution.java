@@ -1,8 +1,9 @@
 package com.wuba.acm.leetcode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Map;
+import java.util.Stack;
 
 /**
  * desc :
@@ -31,10 +32,285 @@ public class Solution {
 
 //        boolean happy = solution.isHappy(14);
 //        System.out.println(happy);
-        ListNode listNode1 = ListNode.obtain(3);
-        ListNode listNode2 = ListNode.obtain(3);
-        ListNode listNode = solution.sortList(listNode1);
-        ListNode.print(listNode);
+//        ListNode listNode1 = ListNode.obtain(3);
+//        ListNode listNode2 = ListNode.obtain(3);
+//        ListNode listNode = solution.sortList(listNode1);
+//        ListNode.print(listNode);
+
+//        TreeNode root = TreeNode.obtainBST();
+//        boolean validBST = solution.isValidBST(root);
+//        System.out.println(validBST);
+
+//        int[] days = {1, 4, 6, 7, 8, 20};
+//        int[] costs = {2, 7, 15};
+//        int[] days = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31};
+//        int[] costs = {2, 7, 15};
+//        int tickets = solution.mincostTickets(days, costs);
+//        System.out.println(tickets);
+//        for (int i = 0; i < days.length - 1; i++) {
+//            int index = solution.findIndex(i, 1, days);
+//            System.out.println(index);
+//        }
+
+//        TreeNode s = TreeNode.obtainBST();
+//        TreeNode t = TreeNode.obtain(10, 7, 11);
+//        boolean subtree = solution.isSubtree(s, t);
+//        System.out.println(subtree);
+
+//        char[][] obtain = Matrix.obtainChar();
+//        int i = solution.maximalSquare(obtain);
+//        System.out.println("square = " + i);
+//        System.out.println(solution.mySqrt(9));
+
+        System.out.println(solution.myPow(2, 5));
+    }
+
+    double quickMul(double x, long N) {
+        double ans = 1.0;
+        // 贡献的初始值为 x
+        double x_contribute = x;
+        // 在对 N 进行二进制拆分的同时计算答案
+        while (N > 0) {
+            if (N % 2 == 1) {
+                // 如果 N 二进制表示的最低位为 1，那么需要计入贡献
+                ans *= x_contribute;
+            }
+            // 将贡献不断地平方
+            x_contribute *= x_contribute;
+            // 舍弃 N 二进制表示的最低位，这样我们每次只要判断最低位即可
+            N /= 2;
+        }
+        return ans;
+    }
+
+    public double myPow(double x, int n) {
+        long N = n;
+        return N >= 0 ? quickMul(x, N) : 1.0 / quickMul(x, -N);
+    }
+
+    public int mySqrt(int x) {
+        if (x == 0) return 0;
+        long left = 0;
+        long right = x;
+        long mid;
+        while (left < right) {
+            mid = left + (right - left + 1) / 2;
+            long square = mid * mid;
+            if (square > x) {
+                right = mid - 1;
+            } else {
+                left = mid;
+            }
+        }
+        return (int) left;
+    }
+
+    public int maximalSquare(char[][] matrix) {
+        int maxArea = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            char[] line = matrix[i];
+            for (int j = 0; j < line.length; j++) {
+                if (line[j] == '1') {
+                    maxArea = Math.max(findMax(matrix, i, j), maxArea);
+                }
+            }
+        }
+        return maxArea;
+    }
+
+    private int findMax(char[][] matrix, int startI, int startJ) {
+        int stage = 1;
+        while (true) {
+            boolean right = isRight(matrix[startI], startJ, startJ + stage);
+            if (!right) {
+                return stage * stage;
+            }
+            boolean down = isDown(matrix, startI, startI + stage, startJ + stage);
+            if (!down) {
+                return stage * stage;
+            }
+            boolean left = isLeft(matrix[startI + stage], startJ + stage, startJ);
+            if (!left) {
+                return stage * stage;
+            }
+            stage++;
+        }
+    }
+
+    private boolean isLeft(char[] line, int startJ, int endJ) {
+        if (endJ < 0) {
+            return false;
+        }
+        for (int i = startJ; i >= endJ; i--) {
+            if (line[i] == '0') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isDown(char[][] matrix, int startI, int endI, int startJ) {
+        if (endI > matrix.length - 1) {
+            return false;
+        }
+        for (int i = startI; i <= endI; i++) {
+            if (matrix[i][startJ] == '0') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isRight(char[] line, int startJ, int endJ) {
+        if (endJ > line.length - 1) {
+            return false;
+        }
+        for (int i = startJ; i <= endJ; i++) {
+            if (line[i] == '0') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        if (t == null) {
+            return true;
+        }
+        if (s == null) {
+            return false;
+        }
+        return isSubtree(s.left, t) || isSubtree(s.right, t) || isSameTree(s, t);
+    }
+
+    private boolean isSameTree(TreeNode s, TreeNode t) {
+        if (s == null && t == null) {
+            return true;
+        }
+        if (s == null || t == null) {
+            return false;
+        }
+        if (s.val != t.val) {
+            return false;
+        }
+        return isSameTree(s.left, t.left) && isSameTree(s.right, t.right);
+    }
+
+    int[] days, costs;
+    Integer[] memo;
+    int[] durations = new int[]{1, 7, 30};
+
+    public int mincostTickets(int[] days, int[] costs) {
+        this.days = days;
+        this.costs = costs;
+        memo = new Integer[days.length];
+        return dp(0);
+    }
+
+    public int dp(int i) {
+        if (i >= days.length) {
+            return 0;
+        }
+        if (memo[i] != null) {
+            return memo[i];
+        }
+        memo[i] = Integer.MAX_VALUE;
+        int j = i;
+        for (int k = 0; k < 3; ++k) {
+            while (j < days.length && days[j] < days[i] + durations[k]) {
+                j++;
+            }
+            memo[i] = Math.min(memo[i], dp(j) + costs[k]);
+        }
+        return memo[i];
+    }
+
+    public int mincostTickets1(int[] days, int[] costs) {
+        if (days == null || days.length == 0) {
+            return 0;
+        }
+        int index = 0;
+        return Math.min(mincostTickets(index, days, costs),
+                Math.min(costs[1] + mincostTickets(findIndex(index, 6, days), days, costs),
+                        costs[2] + mincostTickets(findIndex(index, 29, days), days, costs)));
+
+//        int a = mincostTickets(index, days, costs);
+//        int b = costs[1] + mincostTickets(findIndex(index, 6, days), days, costs);
+//        System.out.println("a : " + a + "  b: " + b);
+//        int temp = Math.min(a, b);
+//        System.out.println("aaa: " + temp);
+//        return temp;
+//        return costs[2] +mincostTickets(findIndex(index, 29, days), days, costs);
+    }
+
+    public int mincostTickets(int index, int[] days, int[] costs) {
+        if (index > days.length - 1) {
+            return 0;
+        }
+
+        return Math.min(costs[0] + mincostTickets(++index, days, costs),
+                Math.min(costs[1] + mincostTickets(findIndex(index, 6, days), days, costs),
+                        costs[2] + mincostTickets(findIndex(index, 29, days), days, costs)));
+
+//        int i = costs[0] + mincostTickets(++index, days, costs);
+//        int index1 = findIndex(index, 6, days);
+//        int j = costs[1] + mincostTickets(index1, days, costs);
+//        if (i == 11) {
+//            System.out.println("--------- " + index1);
+//        }
+//        System.out.println("i : " + i + "  j: " + j);
+//        int temp = Math.min(i, j);
+//        System.out.println("bbb: " + temp);
+//        return temp;
+//        return costs[2] +mincostTickets(findIndex(index, 29, days), days, costs);
+    }
+
+    private int findIndex(int index, int day, int[] days) {
+        if (index > days.length - 1) {
+            return days.length;
+        }
+
+        int start = days[index];
+        int end = start + day;
+        for (int i = index; i < days.length; i++) {
+            if (days[i] > end) {
+                return i - 1;
+            } else if (days[i] == end) {
+                return i;
+            }
+        }
+        return days.length;
+    }
+
+    public boolean isValidBST(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        double inorder = -Double.MAX_VALUE;
+
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+
+            root = stack.pop();
+//            System.out.println(root.val);
+            if (root.val <= inorder) return false;
+            inorder = root.val;
+            root = root.right;
+        }
+        return true;
+    }
+
+    public boolean helper(TreeNode node, Integer lower, Integer upper) {
+        if (node == null) return true;
+
+        int val = node.val;
+        if (lower != null && val <= lower) return false;
+        if (upper != null && val >= upper) return false;
+
+        if (!helper(node.right, val, upper)) return false;
+        if (!helper(node.left, lower, val)) return false;
+        return true;
     }
 
     public ListNode sortList(ListNode head) {
