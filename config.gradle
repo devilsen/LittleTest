@@ -11,7 +11,7 @@ ext {
     androidId = [
             compileSdkVersion: 29,
             buildToolsVersion: "29.0.0",
-            minSdkVersion    : 16,
+            minSdkVersion    : 21,
             targetSdkVersion : 29,
             versionCode      : 1,
             versionName      : "1.0"
@@ -30,19 +30,10 @@ ext {
     ]
 
     androidX = "1.0.2"
-    dependencies = [
-            appcompat: "androidx.appcompat:appcompat:${androidX}", // 不能使用-v7什么的命名，某些版本不匹配
-            ktxcore  : "androidx.core:core-ktx:${androidX}"
-    ]
-
-    support = "28.0.0"
-    supportDependencies = [
-            libSupportV4          : "com.android.support:support-v4:${support}",
-            libSupportV7          : 'androidx.appcompat:appcompat:1.0.0',
-            libSupportRecyclerview: "com.android.support:recyclerview-v7:${support}",
-            libSupportDesign      : 'com.google.android.material:material:1.0.0',
-            libCardview           : "com.android.support:cardview-v7:${support}",
-            libPercent            : "com.android.support:percent:${support}"
+    androidXDependencies = [
+            appcompat   : "androidx.appcompat:appcompat:${androidX}",
+            ktxcore     : "androidx.core:core-ktx:${androidX}",
+            recyclerView: 'androidx.recyclerview:recyclerview:1.1.0'
     ]
 
     testCore = "1.2.0"
