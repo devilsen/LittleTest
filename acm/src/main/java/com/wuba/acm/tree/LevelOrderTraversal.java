@@ -7,7 +7,8 @@ import java.util.Queue;
 
 /**
  * 按层遍历二叉树  102
- * https://leetcode.com/problems/binary-tree-level-order-traversal/
+ * 题目：https://leetcode.com/problems/binary-tree-level-order-traversal/
+ * 解法：https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/tao-mo-ban-bfs-he-dfs-du-ke-yi-jie-jue-by-fuxuemin/
  *
  * @author dongsen
  * date: 2019/02/13 0013.
@@ -17,7 +18,8 @@ public class LevelOrderTraversal {
     public static void main(String[] args) {
         LevelOrderTraversal traversal = new LevelOrderTraversal();
 
-        List<List<Integer>> lists = traversal.levelOrder2(TreeMaker.obtain());
+        List<List<Integer>> lists = traversal.levelOrder(TreeMaker.obtain());
+        List<List<Integer>> lists2 = traversal.levelOrder3(TreeMaker.obtain());
 
         for (List<Integer> list : lists) {
             for (int val : list) {
@@ -26,9 +28,8 @@ public class LevelOrderTraversal {
             System.out.println();
         }
 
-        levelTravel3(TreeMaker.obtain());
 
-        List<List<Integer>> lists2 = traversal.zigzagLevelOrder(TreeMaker.obtain());
+        List<List<Integer>> lists3 = traversal.zigzagLevelOrder(TreeMaker.obtain());
         for (List<Integer> list : lists2) {
             for (int val : list) {
                 System.out.print(val);
@@ -38,41 +39,10 @@ public class LevelOrderTraversal {
 
     }
 
+    /**
+     * BFS
+     */
     public List<List<Integer>> levelOrder(TreeNode root) {
-        if (root == null) return new ArrayList<>(0);
-
-        List<List<Integer>> result = new ArrayList<>();
-
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-
-        Queue<TreeNode> curLevelNodes = new LinkedList<>();
-
-        while (!queue.isEmpty()) {
-            TreeNode node = queue.poll();
-            curLevelNodes.offer(node);
-
-            if (queue.isEmpty()) {
-                List<Integer> list = new ArrayList<>(curLevelNodes.size());
-                while (!curLevelNodes.isEmpty()) {
-                    TreeNode curNode = curLevelNodes.poll();
-                    list.add(curNode.val);
-
-                    if (curNode.left != null) {
-                        queue.offer(curNode.left);
-                    }
-
-                    if (curNode.right != null) {
-                        queue.offer(curNode.right);
-                    }
-                }
-                result.add(list);
-            }
-        }
-        return result;
-    }
-
-    public List<List<Integer>> levelOrder2(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         List<List<Integer>> wrapList = new LinkedList<>();
 
@@ -94,7 +64,10 @@ public class LevelOrderTraversal {
         return wrapList;
     }
 
-    public static void levelTravel3(TreeNode root) {
+    /**
+     * BFS 代码优化
+     */
+    public static void levelTravel2(TreeNode root) {
         if (root == null) return;
         Queue<TreeNode> q = new LinkedList<>();
         q.add(root);
@@ -105,6 +78,28 @@ public class LevelOrderTraversal {
             if (temp.right != null) q.add(temp.right);
         }
         System.out.println();
+    }
+
+    /**
+     * DFS
+     */
+    public List<List<Integer>> levelOrder3(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        List<List<Integer>> list = new LinkedList<>();
+        dfs(list, root, 0);
+        return list;
+    }
+
+    private void dfs(List<List<Integer>> list, TreeNode root, int level) {
+        if (root == null) return;
+        if (level >= list.size()) {
+            list.add(new ArrayList<>());
+        }
+        list.get(level).add(root.val);
+        dfs(list, root.left, level + 1);
+        dfs(list, root.right, level + 1);
     }
 
     /**

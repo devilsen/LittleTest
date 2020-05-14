@@ -2,7 +2,11 @@ package com.wuba.acm.leetcode;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -62,7 +66,62 @@ public class Solution {
 //        System.out.println("square = " + i);
 //        System.out.println(solution.mySqrt(9));
 
-        System.out.println(solution.myPow(2, 5));
+//        System.out.println(solution.myPow(2, 5));
+
+        TreeNode root = TreeNode.obtain();
+        List<List<Integer>> lists = solution.levelOrder2(root);
+        for (int i = 0; i < lists.size(); i++) {
+            List<Integer> integers = lists.get(i);
+            for (int j = 0; j < integers.size(); j++) {
+                System.out.print(integers.get(j) + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        List<List<Integer>> list = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int currentSize = queue.size();
+
+            List<Integer> levelList = new ArrayList<>(currentSize);
+            for (int i = 0; i < currentSize; i++) {
+                TreeNode node = queue.poll();
+                levelList.add(node.val);
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            list.add(levelList);
+        }
+        return list;
+    }
+
+    public List<List<Integer>> levelOrder2(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        List<List<Integer>> list = new LinkedList<>();
+        dfs(list, root, 0);
+        return list;
+    }
+
+    private void dfs(List<List<Integer>> list, TreeNode root, int level) {
+        if (root == null) return;
+        if (level >= list.size()) {
+            list.add(new ArrayList<>());
+        }
+        list.get(level).add(root.val);
+        dfs(list, root.left, level + 1);
+        dfs(list, root.right, level + 1);
     }
 
     double quickMul(double x, long N) {
