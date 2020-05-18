@@ -30,4 +30,11 @@ interface UserDao {
 
     @Query("SELECT *FROM USER WHERE user_name LIKE :name LIMIT 1")
     fun findByName(name: String): User
+
+    // 协程test
+    @Query("SELECT * FROM USER ORDER BY uid ASC")
+    suspend fun loadUsersByNameAscending(): List<User>
+
+    @Query("SELECT *FROM USER ORDER BY uid DESC")
+    suspend fun loadUserByNameDescending(): List<User>
 }

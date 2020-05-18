@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import me.sam.test.jetpack.coroutine.CoroutineTestActivity
 import me.sam.test.jetpack.databinding.DataBindingTestActivity
 import me.sam.test.jetpack.lifecycle.MyLifeCycleObserver
 import me.sam.test.jetpack.livedata.LiveDataTestActivity
@@ -54,6 +55,10 @@ class MainActivity : AppCompatActivity() {
 
     fun paging(view: View) {
         startActivity(Intent(this, PagingTestActivity::class.java))
+    }
+
+    fun coroutine(view: View) {
+        startActivity(Intent(this, CoroutineTestActivity::class.java))
     }
 
 }
