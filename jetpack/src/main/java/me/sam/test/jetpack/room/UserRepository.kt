@@ -1,5 +1,6 @@
 package me.sam.test.jetpack.room
 
+
 /**
  * desc:
  * date: 2020/05/18 0018
@@ -14,5 +15,7 @@ class UserRepository(private val dao: UserDao) {
             dao.loadUserByNameDescending()
         }
     }
+
+    suspend fun getUser(username: String): User = dao.findByName(username)
 
 }

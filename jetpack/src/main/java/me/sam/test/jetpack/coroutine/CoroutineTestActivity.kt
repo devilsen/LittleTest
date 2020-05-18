@@ -6,6 +6,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_coroutine_test.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.coroutineScope
 import me.sam.test.jetpack.R
 import me.sam.test.jetpack.room.AppDatabase
 import me.sam.test.jetpack.room.UserRepository
@@ -13,7 +15,13 @@ import me.sam.test.jetpack.room.UserRepository
 /**
  * desc: 协程demo
  * 来源：https://mp.weixin.qq.com/s?__biz=MzAwODY4OTk2Mg==&mid=2652053382&idx=2&sn=3c9ffe976c69675e9c0e08940afd566f
- * date: 2020/05/14 0014
+ * 在例子中还有3种并发模式
+ * （1）: 取消之前的任务
+ * （2）: 让下一个任务排队等待
+ * （3）: 复用前一个任务
+ *
+ * 官方文档：https://developer.android.google.cn/kotlin/coroutines
+ * date: 2020/05/14
  * @author: dongsen
  */
 class CoroutineTestActivity : AppCompatActivity(), ViewModelProvider.Factory {
@@ -37,6 +45,9 @@ class CoroutineTestActivity : AppCompatActivity(), ViewModelProvider.Factory {
         descendingTxt.setOnClickListener {
             viewModel.onSortDescending()
         }
+
+        // async test
+        viewModel.getUser()
     }
 
     @Suppress("UNCHECKED_CAST")
