@@ -68,16 +68,43 @@ public class Solution {
 
 //        System.out.println(solution.myPow(2, 5));
 
-        TreeNode root = TreeNode.obtain();
-        List<List<Integer>> lists = solution.levelOrder2(root);
-        for (int i = 0; i < lists.size(); i++) {
-            List<Integer> integers = lists.get(i);
-            for (int j = 0; j < integers.size(); j++) {
-                System.out.print(integers.get(j) + " ");
-            }
-            System.out.println();
-        }
+//        TreeNode root = TreeNode.obtain();
+//        List<List<Integer>> lists = solution.levelOrder2(root);
+//        for (int i = 0; i < lists.size(); i++) {
+//            List<Integer> integers = lists.get(i);
+//            for (int j = 0; j < integers.size(); j++) {
+//                System.out.print(integers.get(j) + " ");
+//            }
+//            System.out.println();
+//        }
+        String result = solution.longestPalindrome("a");
+        System.out.println(result);
     }
+
+    public String longestPalindrome(String s) {
+        if (s == null || s.length() == 0) return "";
+        int start = 0;
+        int end = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int len1 = center(s, i, i);
+            int len2 = center(s, i, i + 1);
+            int len = Math.max(len1, len2);
+            if (end - start < len) {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
+            }
+        }
+        return s.substring(start, end + 1);
+    }
+
+    private int center(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return right - left - 1;
+    }
+
 
     public List<List<Integer>> levelOrder(TreeNode root) {
         if (root == null) {
