@@ -12,7 +12,7 @@ println("name : ${rootProject.ext.username}")
 
 
 def androidId = rootProject.ext.androidId
-def androidX = rootProject.ext.dependencies
+def androidX = rootProject.ext.androidXDependencies
 def androidTest = rootProject.ext.androidTest
 
 android {

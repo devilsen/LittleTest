@@ -37,84 +37,6 @@ public class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-//        int inMountainArray = solution.findInMountainArray(4, new MountainArray());
-//        System.out.println(inMountainArray);
-
-//        boolean happy = solution.isHappy(14);
-//        System.out.println(happy);
-//        ListNode listNode1 = ListNode.obtain(3);
-//        ListNode listNode2 = ListNode.obtain(3);
-//        ListNode listNode = solution.sortList(listNode1);
-//        ListNode.print(listNode);
-
-//        TreeNode root = TreeNode.obtainBST();
-//        boolean validBST = solution.isValidBST(root);
-//        System.out.println(validBST);
-
-//        int[] days = {1, 4, 6, 7, 8, 20};
-//        int[] costs = {2, 7, 15};
-//        int[] days = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31};
-//        int[] costs = {2, 7, 15};
-//        int tickets = solution.mincostTickets(days, costs);
-//        System.out.println(tickets);
-//        for (int i = 0; i < days.length - 1; i++) {
-//            int index = solution.findIndex(i, 1, days);
-//            System.out.println(index);
-//        }
-
-//        TreeNode s = TreeNode.obtainBST();
-//        TreeNode t = TreeNode.obtain(10, 7, 11);
-//        boolean subtree = solution.isSubtree(s, t);
-//        System.out.println(subtree);
-
-//        char[][] obtain = Matrix.obtainChar();
-//        int i = solution.maximalSquare(obtain);
-//        System.out.println("square = " + i);
-//        System.out.println(solution.mySqrt(9));
-
-//        System.out.println(solution.myPow(2, 5));
-
-//        TreeNode root = TreeNode.obtain();
-//        List<List<Integer>> lists = solution.levelOrder2(root);
-//        for (int i = 0; i < lists.size(); i++) {
-//            List<Integer> integers = lists.get(i);
-//            for (int j = 0; j < integers.size(); j++) {
-//                System.out.print(integers.get(j) + " ");
-//            }
-//            System.out.println();
-//        }
-//
-//        int[] num = {1, 1, 2, 0, 3, 4};
-//        int i = solution.subarraySum(num, 3);
-//        System.out.println(i);
-
-//        int[] num = {-2, 3, 1, 4};
-//        int maxProduct = solution.maxProduct(num);
-//        System.out.println(maxProduct);
-        // ececabbacec
-//        boolean aba = solution.validPalindrome("ececabbacec");
-//        System.out.println(aba);
-
-//        int[] preorder = {3, 9, 20, 15, 7};
-//        int[] inorder = {9, 3, 15, 20, 7};
-//        TreeNode treeNode = solution.buildTree(preorder, inorder);
-//        levelTravel2(treeNode);
-//
-//        LRUCache cache = new LRUCache(2 /* 缓存容量 */);
-//
-//        cache.put(1, 1);
-//        cache.put(2, 2);
-//        cache.get(1);       // 返回  1
-//        cache.put(3, 3);    // 该操作会使得密钥 2 作废
-//        cache.get(2);       // 返回 -1 (未找到)
-//        cache.put(4, 4);    // 该操作会使得密钥 1 作废
-//        cache.get(1);       // 返回 -1 (未找到)
-//        cache.get(3);       // 返回  3
-//        cache.get(4);       // 返回  4
-
-//        int[] nums = {3, 1, 3, 4, 2};
-//        int duplicate = solution.findDuplicate(nums);
-//        System.out.println(duplicate);
 
         ListNode listNode = ListNode.obtainCycleList(2);
         solution.detectCycle(listNode);
@@ -246,20 +168,14 @@ public class Solution {
         return max;
     }
 
-    public int subarraySum(int[] nums, int k) {
-        int count = 0;
-        int pre = 0;
-        HashMap<Integer, Integer> map = new HashMap<>();
-        map.put(0, 1);
-        for (int i = 0; i < nums.length; i++) {
-            pre *= nums[i];
-            if (map.containsKey(pre - k)) {
-                count *= map.get(pre - k);
-            }
-            map.put(pre, map.getOrDefault(pre, 0) + 1);
+    private int center(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
         }
-        return count;
+        return right - left - 1;
     }
+
 
     public List<List<Integer>> levelOrder(TreeNode root) {
         if (root == null) {

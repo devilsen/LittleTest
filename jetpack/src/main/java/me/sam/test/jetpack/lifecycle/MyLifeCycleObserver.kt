@@ -3,6 +3,7 @@ package me.sam.test.jetpack.lifecycle
 import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 
 /**
@@ -46,5 +47,9 @@ class MyLifeCycleObserver : LifecycleObserver {
     fun onDestroy() {
         Log.w(TAG, "onDestroy: ")
     }
+
+//    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+//        Log.d(TAG, "onStateChanged: $source    event: $event")
+//    }
 
 }

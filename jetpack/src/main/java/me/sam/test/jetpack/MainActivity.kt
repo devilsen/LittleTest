@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import me.sam.test.jetpack.coroutine.CoroutineTestActivity
 import me.sam.test.jetpack.databinding.DataBindingTestActivity
+import me.sam.test.jetpack.lifecycle.MyLifeCycleEventObserver
 import me.sam.test.jetpack.lifecycle.MyLifeCycleObserver
 import me.sam.test.jetpack.livedata.LiveDataTestActivity
 import me.sam.test.jetpack.navigation.NavigationTestActivity
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         //添加一个生命周期观察者    getLifecycle()是FragmentActivity中的方法
         lifecycle.addObserver(MyLifeCycleObserver())
+        lifecycle.addObserver(MyLifeCycleEventObserver())
     }
 
     fun viewModel(view: View) {
@@ -54,6 +57,10 @@ class MainActivity : AppCompatActivity() {
 
     fun paging(view: View) {
         startActivity(Intent(this, PagingTestActivity::class.java))
+    }
+
+    fun coroutine(view: View) {
+        startActivity(Intent(this, CoroutineTestActivity::class.java))
     }
 
 }

@@ -62,7 +62,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation androidTest.espressoIdlingResource
 
-    implementation rootProject.ext.dependencies.ktxcore
+    implementation rootProject.ext.androidXDependencies.ktxcore
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }

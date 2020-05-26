@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 def androidId = rootProject.ext.androidId
 
@@ -31,10 +30,10 @@ android {
 }
 
 dependencies {
-    implementation rootProject.ext.supportDependencies.libSupportV7
+    implementation rootProject.ext.androidXDependencies.appcompat
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + rootProject.ext.kotlin_version
 }
 repositories {
