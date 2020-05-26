@@ -25,6 +25,17 @@ public class ListNode {
         return head;
     }
 
+    public static ListNode obtainCycleList(int count) {
+        ListNode node = new ListNode(1);
+        ListNode head = node;
+        for (int i = 2; i <= count; i++) {
+            node.next = new ListNode(i);
+            node = node.next;
+        }
+        node.next = head;
+        return head;
+    }
+
     public static void print(ListNode node) {
         while (node != null) {
             System.out.print(node.val);

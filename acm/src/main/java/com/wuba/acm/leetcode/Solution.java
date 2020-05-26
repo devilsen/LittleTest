@@ -1,12 +1,18 @@
 package com.wuba.acm.leetcode;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import androidx.collection.LruCache;
+
+import com.wuba.acm.tree.LevelOrderTraversal;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.Stack;
 
 /**
@@ -68,15 +74,191 @@ public class Solution {
 
 //        System.out.println(solution.myPow(2, 5));
 
-        TreeNode root = TreeNode.obtain();
-        List<List<Integer>> lists = solution.levelOrder2(root);
-        for (int i = 0; i < lists.size(); i++) {
-            List<Integer> integers = lists.get(i);
-            for (int j = 0; j < integers.size(); j++) {
-                System.out.print(integers.get(j) + " ");
+//        TreeNode root = TreeNode.obtain();
+//        List<List<Integer>> lists = solution.levelOrder2(root);
+//        for (int i = 0; i < lists.size(); i++) {
+//            List<Integer> integers = lists.get(i);
+//            for (int j = 0; j < integers.size(); j++) {
+//                System.out.print(integers.get(j) + " ");
+//            }
+//            System.out.println();
+//        }
+//
+//        int[] num = {1, 1, 2, 0, 3, 4};
+//        int i = solution.subarraySum(num, 3);
+//        System.out.println(i);
+
+//        int[] num = {-2, 3, 1, 4};
+//        int maxProduct = solution.maxProduct(num);
+//        System.out.println(maxProduct);
+        // ececabbacec
+//        boolean aba = solution.validPalindrome("ececabbacec");
+//        System.out.println(aba);
+
+//        int[] preorder = {3, 9, 20, 15, 7};
+//        int[] inorder = {9, 3, 15, 20, 7};
+//        TreeNode treeNode = solution.buildTree(preorder, inorder);
+//        levelTravel2(treeNode);
+//
+//        LRUCache cache = new LRUCache(2 /* 缓存容量 */);
+//
+//        cache.put(1, 1);
+//        cache.put(2, 2);
+//        cache.get(1);       // 返回  1
+//        cache.put(3, 3);    // 该操作会使得密钥 2 作废
+//        cache.get(2);       // 返回 -1 (未找到)
+//        cache.put(4, 4);    // 该操作会使得密钥 1 作废
+//        cache.get(1);       // 返回 -1 (未找到)
+//        cache.get(3);       // 返回  3
+//        cache.get(4);       // 返回  4
+
+//        int[] nums = {3, 1, 3, 4, 2};
+//        int duplicate = solution.findDuplicate(nums);
+//        System.out.println(duplicate);
+
+        ListNode listNode = ListNode.obtainCycleList(2);
+        solution.detectCycle(listNode);
+        System.out.println(listNode.val);
+    }
+
+    public ListNode detectCycle(ListNode head) {
+        if (head == null || head.next == null) return null;
+        ListNode slow = head;
+        ListNode fast = head;
+        ListNode p = null;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                p = slow;
+                break;
             }
-            System.out.println();
         }
+        if (p == null) {
+            return null;
+        }
+        ListNode p1 = head;
+        ListNode p2 = slow;
+        while (p1 != p2) {
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        return p1;
+    }
+
+    public int findDuplicate(int[] nums) {
+        int left = 0;
+        int right = nums.length - 1;
+        int cnt;
+        int mid;
+        while (left <= right) {
+            cnt = 0;
+            mid = left + (right - left) / 2;
+            for (int num : nums) {
+                if (num <= mid) {
+                    cnt++;
+                }
+            }
+            if (cnt > mid) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if (preorder == null || preorder.length == 0) return null;
+        if (preorder.length != inorder.length) return null;
+
+        TreeNode root = new TreeNode(preorder[0]);
+        int index = 0;
+        for (int i = 0; i < inorder.length; i++) {
+            if (preorder[0] == inorder[i]) {
+                index = i;
+                break;
+            }
+        }
+        root.left = buildTree(Arrays.copyOfRange(preorder, 1, index + 1),
+                Arrays.copyOfRange(inorder, 0, index));
+        root.right = buildTree(Arrays.copyOfRange(preorder, index + 1, preorder.length),
+                Arrays.copyOfRange(inorder, index + 1, inorder.length));
+        return root;
+    }
+
+    public static void levelTravel2(TreeNode root) {
+        if (root == null) return;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+            TreeNode temp = q.poll();
+            System.out.print(temp.val + " ");
+            if (temp.left != null) q.add(temp.left);
+            if (temp.right != null) q.add(temp.right);
+        }
+        System.out.println();
+    }
+
+    public boolean validPalindrome(String s) {
+        return validPalindrome(s, 0);
+    }
+
+    public boolean validPalindrome(String s, int count) {
+        if (s.length() == 0) return true;
+        int right = s.length() - 1;
+        int left = 0;
+        while (left <= right) {
+            char l = s.charAt(left);
+            char r = s.charAt(right);
+            if (l == r) {
+                left++;
+                right--;
+            } else {
+                count++;
+                if (count > 1) {
+                    return false;
+                }
+                return validPalindrome(s.substring(++left, right + 1), count) || validPalindrome(s.substring(--left, right), count);
+            }
+        }
+        return count <= 1;
+    }
+
+    public int maxProduct(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int max = Integer.MIN_VALUE;
+        int imax = 1;
+        int imin = 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] < 0) {
+                int temp = imax;
+                imax = imin;
+                imin = temp;
+            }
+            imax = Math.max(imax * nums[i], nums[i]);
+            imin = Math.min(imin * nums[i], nums[i]);
+
+            max = Math.max(imax, max);
+        }
+        return max;
+    }
+
+    public int subarraySum(int[] nums, int k) {
+        int count = 0;
+        int pre = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        for (int i = 0; i < nums.length; i++) {
+            pre *= nums[i];
+            if (map.containsKey(pre - k)) {
+                count *= map.get(pre - k);
+            }
+            map.put(pre, map.getOrDefault(pre, 0) + 1);
+        }
+        return count;
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
@@ -542,6 +724,30 @@ public class Solution {
             }
         }
         return left + (right - left) / 2;
+    }
+
+    static class LRUCache extends LinkedHashMap<Integer, Integer> {
+
+        private final int capacity;
+
+        public LRUCache(int capacity) {
+            super(capacity, 1, true);
+            this.capacity = capacity;
+        }
+
+        public int get(int key) {
+            Integer value = super.get(key);
+            return value == null ? -1 : value;
+        }
+
+        public void put(int key, int value) {
+            super.put(key, value);
+        }
+
+        @Override
+        protected boolean removeEldestEntry(Entry<Integer, Integer> eldest) {
+            return size() > capacity;
+        }
     }
 
 }
