@@ -5,7 +5,6 @@ apply plugin: 'kotlin-kapt'
 
 def androidId = rootProject.ext.androidId
 def appId = rootProject.ext.appId
-
 android {
     compileSdkVersion androidId.compileSdkVersion
     buildToolsVersion androidId.buildToolsVersion
@@ -36,12 +35,12 @@ android {
         }
     }
 
-    testOptions {
-        unitTests.returnDefaultValues = true
+    buildFeatures {
+        dataBinding = true
     }
 
-    dataBinding {
-        enabled true
+    testOptions {
+        unitTests.returnDefaultValues = true
     }
 
     compileOptions {
@@ -49,6 +48,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+
 
 dependencies {
     implementation rootProject.ext.androidXDependencies.ktxcore

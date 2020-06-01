@@ -38,26 +38,127 @@ public class Solution {
     public static void main(String[] args) {
         Solution solution = new Solution();
 
-        ListNode listNode = ListNode.obtainCycleList(2);
-        solution.detectCycle(listNode);
-        System.out.println(listNode.val);
+//        ListNode listNode = ListNode.obtainCycleList(2);
+//        solution.detectCycle(listNode);
+//        System.out.println(listNode.val);
+
+//        int[] nums = {4, 5, 0, -2, -3, 1};
+//        int i = solution.subarraysDivByK(nums, 5);
+//        System.out.println(i);
+//        String decodeString = solution.decodeString("3[a]2[bc]");
+//        System.out.println(decodeString);
+
+        int[] candies = {2, 3, 5, 1, 3};
+        List<Boolean> booleans = solution.kidsWithCandies(candies, 3);
+        System.out.println(booleans.toString());
+    }
+
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        int max = 0;
+        for (int i = 0; i < candies.length; i++) {
+            max = Math.max(max, candies[i]);
+        }
+        ArrayList<Boolean> list = new ArrayList<>(candies.length);
+        for (int i = 0; i < candies.length; i++) {
+            if (candies[i] + extraCandies >= max) {
+                list.add(true);
+            } else {
+                list.add(false);
+            }
+        }
+        return list;
+    }
+
+    public String decodeString(String s) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            String split = comb(s, i, "");
+            stringBuilder.append(split);
+            i = lastIndex;
+        }
+
+        return stringBuilder.toString();
+    }
+
+    private int lastIndex;
+
+    private String comb(String s, int index, String preS) {
+        StringBuilder currentS = new StringBuilder();
+        int num = -1;
+        for (int i = index; i < s.length(); i++) {
+            char c = s.charAt(i);
+            // 处理数字
+            if (c >= '0' && c <= '9') {
+                if (num != -1) {
+                    num = num * 10;
+                } else {
+                    num = c - '0';
+                    continue;
+                }
+                num += c - '0';
+                continue;
+            }
+            // 处理[
+            if (c == '[') {
+                String temp = comb(s, i + 1, currentS.toString());
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int j = 0; j < num; j++) {
+                    stringBuilder.append(temp);
+                }
+                currentS.append(stringBuilder);
+                i = lastIndex;
+                num = -1;
+                continue;
+            }
+            if (c == ']') {
+                lastIndex = i;
+                return currentS.toString();
+            }
+            lastIndex = i;
+            currentS.append(c);
+        }
+        return currentS.toString();
+    }
+
+    public int subarraysDivByK(int[] A, int K) {
+        int count = 0;
+        int preSum = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        for (int num : A) {
+            preSum = (preSum + num) % K;
+            if (preSum < 0) preSum += K;
+
+            Integer value = map.get(preSum);
+            if (value != null) {
+                count += value;
+            }
+
+            if (value == null) {
+                value = 1;
+                map.put(preSum, value);
+            } else {
+                value++;
+                map.put(preSum, value);
+            }
+        }
+
+        return count;
     }
 
     public ListNode detectCycle(ListNode head) {
         if (head == null || head.next == null) return null;
-        ListNode slow = head;
-        ListNode fast = head;
-        ListNode p = null;
-        while (fast != null && fast.next != null) {
+        ListNode slow = head.next;
+        ListNode fast = head.next.next;
+        if (fast == null) return null;
+        while (fast != slow) {
             slow = slow.next;
-            fast = fast.next.next;
-            if (slow == fast) {
-                p = slow;
-                break;
+            fast = fast.next;
+            if (fast != null) {
+                fast = fast.next;
+            } else {
+                return null;
             }
-        }
-        if (p == null) {
-            return null;
         }
         ListNode p1 = head;
         ListNode p2 = slow;
