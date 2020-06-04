@@ -48,9 +48,44 @@ public class Solution {
 //        String decodeString = solution.decodeString("3[a]2[bc]");
 //        System.out.println(decodeString);
 
-        int[] candies = {2, 3, 5, 1, 3};
-        List<Boolean> booleans = solution.kidsWithCandies(candies, 3);
-        System.out.println(booleans.toString());
+//        int[] candies = {2, 3, 5, 1, 3};
+//        List<Boolean> booleans = solution.kidsWithCandies(candies, 3);
+//        System.out.println(booleans.toString());
+
+//        int i = solution.sumNums(9);
+//        System.out.println(i);
+
+        int[] nums = {1, 2, 3, 4};
+        int[] ints = solution.productExceptSelf(nums);
+        System.out.println(Arrays.toString(ints));
+    }
+
+    public int[] productExceptSelf(int[] nums) {
+        int[] res = new int[nums.length];
+        int k = 1;
+        for (int i = 0; i < nums.length; i++) {
+            res[i] = k;
+            k *= nums[i];
+        }
+        k = 1;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            res[i] *= k;
+            k *= nums[i];
+        }
+
+        return res;
+    }
+
+    public int sumNums(int n) {
+        return sunNums(n, 0);
+    }
+
+    private int sunNums(int n, int result) {
+        if (n == 1) {
+            return result + 1;
+        }
+        result += n;
+        return sunNums(n - 1, result);
     }
 
     public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
