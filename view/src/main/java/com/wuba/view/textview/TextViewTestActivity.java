@@ -70,6 +70,7 @@ public class TextViewTestActivity extends AppCompatActivity implements TextWatch
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         mPhoneText.setText(s);
         // 在设置text之后，要重新设置
+        // 不能在xml中设置autoLink
         Linkify.addLinks(mPhoneText, Linkify.ALL);
         Pattern pattern = Pattern.compile("^(1[0-9][0-9])\\d{8}$");
         Linkify.addLinks(mPhoneText, pattern, "tel://");
