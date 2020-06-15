@@ -33,41 +33,23 @@ public class QuickSort {
         quickSortInternally(a, q + 1, r);
     }
 
-    private static int partition(int[] a, int p, int r) {
-        int pivot = a[r];
-        int i = p;
-        for (int j = p; j < r; ++j) {
-            if (a[j] < pivot) {
-                int tmp = a[i];
-                a[i] = a[j];
-                a[j] = tmp;
-                ++i;
+    private static int partition(int[] a, int p, int right) {
+        int pivot = a[right];
+        int mark = p;
+        for (int i = p; i < right; ++i) {
+            if (a[i] < pivot) {
+                int tmp = a[mark];
+                a[mark] = a[i];
+                a[i] = tmp;
+                ++mark;
             }
         }
 
-        int tmp = a[i];
-        a[i] = a[r];
-        a[r] = tmp;
+        int tmp = a[mark];
+        a[mark] = a[right];
+        a[right] = tmp;
 
-        System.out.println("i=" + i);
-        return i;
-    }
-
-    // 另一种方式
-    private static int partitionV2(int[] arr, int startIndex, int endIndex) {
-        int pivot = arr[startIndex];
-        int mark = startIndex;
-
-        for (int i = startIndex + 1; i < endIndex; i++) {
-            if (arr[i] < pivot) {
-                mark++;
-                int temp = arr[i];
-                arr[i] = arr[mark];
-                arr[mark] = temp;
-            }
-        }
-        arr[startIndex] = arr[mark];
-        arr[mark] = pivot;
+        System.out.println("i=" + mark);
         return mark;
     }
 

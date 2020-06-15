@@ -6,10 +6,13 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * desc :
+ * desc : 桶排序
  * date : 2018/4/3
  *
  * @author : dongSen
+ * 时间：O(N)  N个桶
+ * 空间：O(N)
+ * 稳定
  */
 public class BucketSort {
     public static void main(String[] args) {

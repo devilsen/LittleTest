@@ -16,7 +16,7 @@ public class BubbleSort {
     public static void main(String[] args) {
         int[] nums = new int[]{4, 3, 6, 8, 1, 2, 9, 5};
         BubbleSort sort = new BubbleSort();
-        sort.sort(nums);
+        sort.sort2(nums);
 
         for (int num : nums) {
             System.out.print(num + "  ");
@@ -24,10 +24,10 @@ public class BubbleSort {
     }
 
     private void sort(int[] nums) {
-        int length = nums.length;
-        for (int i = 0; i < nums.length - 1; i++) {
+        int length = nums.length - 1;
+        for (int i = 0; i < length; i++) {
             boolean swap = false;
-            for (int j = 0; j < length - i - 1; j++) {
+            for (int j = 0; j < length - i; j++) {
                 if (nums[j] > nums[j + 1]) {
                     int temp = nums[j];
                     nums[j] = nums[j + 1];
@@ -37,6 +37,31 @@ public class BubbleSort {
             }
 
             if (!swap) {
+                break;
+            }
+        }
+    }
+
+    private void sort2(int[] nums) {
+        if (nums == null) return;
+        int length = nums.length - 1;
+        int lastSortBorder = 0;
+        int sortBorder = length;
+        boolean isSort;
+        for (int i = 0; i < length; i++) {
+            isSort = true;
+            for (int j = 0; j < sortBorder; j++) {
+                if (nums[j] > nums[j + 1]) {
+                    int temp = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = temp;
+
+                    isSort = false;
+                    lastSortBorder = j;
+                }
+            }
+            sortBorder = lastSortBorder;
+            if (isSort) {
                 break;
             }
         }

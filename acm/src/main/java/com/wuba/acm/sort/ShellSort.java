@@ -1,10 +1,15 @@
 package com.wuba.acm.sort;
 
 /**
- * desc :
+ * desc : 希尔排序
  * date : 2018/3/28
  *
  * @author : dongSen
+ *
+ * 时间：O^1.3
+ * 空间：O(1)
+ * 不稳定
+ * 原地排序
  */
 
 import java.util.Arrays;

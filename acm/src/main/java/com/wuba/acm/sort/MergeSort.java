@@ -11,6 +11,15 @@ import com.wuba.acm.leetcode.ListNode;
  */
 public class MergeSort {
 
+    public static void main(String[] args) {
+        int[] a = {7, 10, 3, 5, 4, 6, 2, 8, 1, 9};
+        mergeSort(a);
+
+        for (int anA : a) {
+            System.out.print(anA + " ");
+        }
+    }
+
     // 归并排序算法, a是数组，n表示数组大小
     public static void mergeSort(int[] a, int n) {
         mergeSortInternally(a, 0, n - 1);
@@ -60,6 +69,50 @@ public class MergeSort {
         // 将tmp中的数组拷贝回a[l...r]
         for (i = 0; i <= r - l; ++i) {
             a[l + i] = tmp[i];
+        }
+    }
+
+    public static void mergeSort(int[] a) {
+        if (a == null || a.length == 1) return;
+
+        mergeSort(a, 0, a.length - 1);
+    }
+
+    public static void mergeSort(int[] a, int l, int r) {
+        if (l >= r) return;
+        int m = l + (r - l) / 2;
+        mergeSort(a, l, m);
+        mergeSort(a, m + 1, r);
+
+        mergeTemp(a, l, m, r);
+    }
+
+    private static void mergeTemp(int[] a, int l, int m, int r) {
+        int i = l;
+        int j = m + 1;
+        int k = 0;
+        int[] temp = new int[r - l + 1];
+        while (i <= m && j <= r) {
+            if (a[i] < a[j]) {
+                temp[k++] = a[i++];
+            } else {
+                temp[k++] = a[j++];
+            }
+        }
+
+        int start = i;
+        int end = m;
+        if (j <= r) {
+            start = j;
+            end = r;
+        }
+
+        while (start <= end) {
+            temp[k++] = a[start++];
+        }
+
+        for (int n = 0; n <= r - l; n++) {
+            a[l + n] = temp[n];
         }
     }
 

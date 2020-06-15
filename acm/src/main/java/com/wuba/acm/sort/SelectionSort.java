@@ -14,6 +14,26 @@ import java.util.Random;
  */
 public class SelectionSort {
 
+    public static void main(String[] args) {
+        // 初始化一个随机序列
+        final int MAX_SIZE = 10;
+        int[] array = new int[MAX_SIZE];
+        Random random = new Random();
+        for (int i = 0; i < MAX_SIZE; i++) {
+            array[i] = random.nextInt(MAX_SIZE);
+        }
+
+        // 调用排序方法
+        SelectionSort selection = new SelectionSort();
+        System.out.print("排序前:	");
+        selection.printAll(array);
+
+        selection.selectionSort(array);
+
+        System.out.print("排序后:	");
+        selection.printAll(array);
+    }
+
     public void selectionSort(int[] list) {
         // 需要遍历获得最小值的次数
         // 要注意一点，当要排序 N 个数，已经经过 N-1 次遍历后，已经是有序数列
@@ -43,26 +63,6 @@ public class SelectionSort {
             System.out.print(value + "	");
         }
         System.out.println();
-    }
-
-    public static void main(String[] args) {
-        // 初始化一个随机序列
-        final int MAX_SIZE = 10;
-        int[] array = new int[MAX_SIZE];
-        Random random = new Random();
-        for (int i = 0; i < MAX_SIZE; i++) {
-            array[i] = random.nextInt(MAX_SIZE);
-        }
-
-        // 调用排序方法
-        SelectionSort selection = new SelectionSort();
-        System.out.print("排序前:	");
-        selection.printAll(array);
-
-        selection.selectionSort(array);
-
-        System.out.print("排序后:	");
-        selection.printAll(array);
     }
 
 }

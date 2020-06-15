@@ -1,9 +1,5 @@
 package com.wuba.acm.leetcode;
 
-import androidx.collection.LruCache;
-
-import com.wuba.acm.tree.LevelOrderTraversal;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,7 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
 import java.util.Stack;
 
 /**
@@ -55,9 +50,229 @@ public class Solution {
 //        int i = solution.sumNums(9);
 //        System.out.println(i);
 
-        int[] nums = {1, 2, 3, 4};
-        int[] ints = solution.productExceptSelf(nums);
-        System.out.println(Arrays.toString(ints));
+//        int[] nums = {1, 2, 3, 4};
+//        int[] ints = solution.productExceptSelf(nums);
+//        System.out.println(Arrays.toString(ints));
+//        int[][] nums = {
+//                {1, 2, 3, 4},
+//                {5, 6, 7, 8},
+//                {9, 10, 11, 12},
+//                {13, 14, 15, 16},
+//        };
+//        int[][] nums = {
+//                {1, 2, 3},
+//                {4, 5, 6},
+//                {7, 8, 9},
+//        };
+//        int[] ints = solution.spiralOrder(nums);
+//        System.out.println(Arrays.toString(ints));
+
+//        int num = solution.translateNum(506);
+//        System.out.println(num);
+//        System.out.println(solution.isPalindrome(0110));
+//        int[] t = {73, 74, 75, 71, 69, 72, 76, 73};
+//        int[] ints = solution.dailyTemperatures(t);
+//        System.out.println(Arrays.toString(ints));
+//        int[] nums = {-1, 0, 1, 2, -1, -4};
+//        List<List<Integer>> lists = solution.threeSum(nums);
+//        System.out.println(lists.toString());
+
+        String[] s = {"flower","f","f2"};
+        System.out.println(solution.longestCommonPrefix(s));
+    }
+
+    public String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0) return "";
+        String prefix = "";
+        for (int i = 0; i < strs.length; i++) {
+            if (i == 0) {
+                prefix = strs[i];
+            } else {
+                prefix = longestCommonPrefix(strs[i], prefix);
+            }
+            if (prefix.length() == 0) {
+                return "";
+            }
+        }
+        return prefix;
+    }
+
+    public String longestCommonPrefix(String strs, String prefix) {
+        int length = Math.min(strs.length(), prefix.length());
+        for (int i = 0; i < length; i++) {
+            if (strs.charAt(i) != prefix.charAt(i)) {
+                return prefix.substring(0, i);
+            }
+        }
+        return prefix.substring(0, length);
+    }
+
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || nums.length < 3) return result;
+        Arrays.sort(nums);
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > 0) break;
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            int num = nums[i];
+            int left = i + 1;
+            int right = nums.length - 1;
+
+            while (left < right) {
+                int sum = num + nums[left] + nums[right];
+                if (sum == 0) {
+                    result.add(Arrays.asList(num, nums[left], nums[right]));
+                    while (left < right && nums[left] == nums[left + 1]) left++;
+                    while (left < right && nums[right] == nums[right - 1]) right--;
+                    left++;
+                    right--;
+                } else if (sum > 0) {
+                    right--;
+                } else {
+                    left++;
+                }
+            }
+        }
+        return result;
+    }
+
+    public int[] dailyTemperatures(int[] T) {
+        int[] result = new int[T.length];
+        if (T.length == 0) return result;
+
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < T.length; i++) {
+            while (!stack.isEmpty() && T[i] > T[stack.peek()]) {
+                int index = stack.pop();
+                result[index] = i - index;
+            }
+            stack.push(i);
+        }
+        return result;
+    }
+
+    public boolean isPalindrome(int x) {
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+        int reverseNum = 0;
+        while (x > reverseNum) {
+            reverseNum = reverseNum * 10 + x % 10;
+            x = x / 10;
+        }
+        return x == reverseNum || x == reverseNum / 10;
+    }
+
+    public int translateNum(int num) {
+        String numString = String.valueOf(num);
+        return translateNum(numString);
+    }
+
+    public int translateNum(String num) {
+        if (num.length() == 0) {
+            return 0;
+        }
+        if (num.length() == 1) {
+            return 1;
+        }
+        if (num.length() == 2) {
+            if (Integer.parseInt(num) < 26) {
+                int substring1 = Integer.parseInt(num.substring(0, 1));
+                if (substring1 == 0) {
+                    return 1;
+                }
+                return 2;
+            } else {
+                return 1;
+            }
+        }
+        int substring2 = Integer.parseInt(num.substring(0, 2));
+        if (substring2 >= 10 && substring2 <= 25) {
+            return translateNum(num.substring(1)) + translateNum(num.substring(2));
+        } else {
+            return translateNum(num.substring(1));
+        }
+    }
+
+    public int[] spiralOrder(int[][] matrix) {
+        if (matrix == null || matrix.length == 0 || matrix[0] == null) return new int[]{};
+        int right = 0, down = 1, left = 2, top = 3;
+
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int[] result = new int[row * col];
+
+        int topBoundary = 1;
+        int rightBoundary = col - 1;
+        int bottomBoundary = row - 1;
+        int leftBoundary = 0;
+
+        int x = 0;
+        int y = 0;
+        int direction = right;
+        int index = 0;
+
+        while (true) {
+            int num = matrix[x][y];
+            result[index++] = num;
+            switch (direction) {
+                case 0:// 向右
+                    if (y < rightBoundary) {
+                        y++;
+                    } else {
+                        rightBoundary--;
+                        x++;
+                        direction = down;
+                    }
+                    if (x > bottomBoundary) {
+                        return result;
+                    }
+                    break;
+                case 1: // 向下
+                    if (x < bottomBoundary) {
+                        x++;
+                    } else {
+                        bottomBoundary--;
+                        y--;
+                        direction = left;
+                    }
+                    if (y < leftBoundary) {
+                        return result;
+                    }
+                    break;
+                case 2:// 向左
+                    if (y > leftBoundary) {
+                        y--;
+                    } else {
+                        leftBoundary++;
+                        x--;
+                        direction = top;
+                    }
+                    if (x < topBoundary) {
+                        return result;
+                    }
+                    break;
+                case 3:// 向上
+                    if (x > topBoundary) {
+                        x--;
+                    } else {
+                        topBoundary++;
+                        y++;
+                        direction = right;
+                    }
+                    if (y > rightBoundary) {
+                        return result;
+                    }
+                    break;
+            }
+            if (x > bottomBoundary && x < topBoundary && y > rightBoundary && y < leftBoundary) {
+                break;
+            }
+        }
+        return result;
     }
 
     public int[] productExceptSelf(int[] nums) {
