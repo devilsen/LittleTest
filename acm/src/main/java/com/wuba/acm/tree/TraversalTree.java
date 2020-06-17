@@ -78,9 +78,9 @@ public class TraversalTree {
     }
 
     private void preOrderStack(TreeNode root) {
+        if (root == null) return; //如果为空树则返回
+
         Stack<TreeNode> treeStack = new Stack<>();
-        if (root == null) //如果为空树则返回
-            return;
         treeStack.push(root);
         while (!treeStack.isEmpty()) {
             TreeNode tempNode = treeStack.pop();
@@ -88,6 +88,21 @@ public class TraversalTree {
                 System.out.print(tempNode.val + " ");//访问根节点
                 treeStack.push(tempNode.right); //入栈右孩子
                 treeStack.push(tempNode.left);//入栈左孩子
+            }
+        }
+    }
+
+    private void preOrderStackTest(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            if (node != null) {
+                stack.push(node.right);
+                stack.push(node.left);
             }
         }
     }

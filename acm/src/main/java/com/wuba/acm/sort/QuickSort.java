@@ -53,4 +53,20 @@ public class QuickSort {
         return mark;
     }
 
+    private static int partitionV2(int[] a, int p, int right) {
+        int pivot = a[right];
+        int mark = p;
+        for (int i = p; i < right; i++) {
+            if (a[i] < pivot) {
+                int temp = a[i];
+                a[i] = a[mark];
+                a[mark] = temp;
+                mark++;
+            }
+        }
+        a[right] = a[mark];
+        a[mark] = pivot;
+        return mark;
+    }
+
 }

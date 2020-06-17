@@ -77,8 +77,21 @@ public class Solution {
 //        List<List<Integer>> lists = solution.threeSum(nums);
 //        System.out.println(lists.toString());
 
-        String[] s = {"flower","f","f2"};
-        System.out.println(solution.longestCommonPrefix(s));
+//        String[] s = {"flower","f","f2"};
+//        System.out.println(solution.longestCommonPrefix(s));
+
+        int[] nums = {8, 1, 5, 2, 6};
+        System.out.println(solution.maxScoreSightseeingPair(nums));
+    }
+
+    public int maxScoreSightseeingPair(int[] A) {
+        int max = A[0];
+        int ans = 0;
+        for (int j = 1; j < A.length; j++) {
+            ans = Math.max(ans, max + A[j] - j);
+            max = Math.max(max, A[j] + j);
+        }
+        return ans;
     }
 
     public String longestCommonPrefix(String[] strs) {

@@ -16,10 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/SplashTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,6 +33,10 @@
                 android:resource="@xml/shortcuts" />
 
         </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name="com.wuba.view.doubanAnim.AnimActivity" />
 
@@ -101,7 +107,9 @@
         <activity android:name=".socket.SocketTestActivity" />
         <activity android:name=".socket.WebSocketTestActivity" />
         <activity android:name=".storage.StorageTestActivity" />
-        <activity android:name=".shortcut.ShortCutTestActivity" />
+        <activity
+            android:name=".shortcut.ShortCutTestActivity"
+            android:process=":tools" />
 
         <receiver android:name=".alarm.AlarmActivity$AlarmReceiver" />
 
