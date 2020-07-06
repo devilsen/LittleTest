@@ -47,9 +47,54 @@ public class WaitAndNotify implements Runnable {
         }
     }
 
+    private static void wait5ThenNotifyTest() {
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("thread 1 running");
+                try {
+                    Thread.sleep(7000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+//                t2.notify();
+                System.out.println("thread 1 over");
+            }
+        });
+        try {
+            // 加入这个，可以使t1先执行完，再执行t2
+            t1.wait(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Thread t2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("thread 2 running");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("thread 2 over");
+            }
+        });
+        t1.start();
+        t2.start();
+        try {
+            // 等待线程2终止
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("main over");
+    }
+
     public static void main(String[] args) {
-        final byte a[] = {0};//以该对象为共享资源
-        new Thread(new WaitAndNotify((1), a), "1").start();
-        new Thread(new WaitAndNotify((2), a), "2").start();
+//        final byte a[] = {0};//以该对象为共享资源
+//        new Thread(new WaitAndNotify((1), a), "1").start();
+//        new Thread(new WaitAndNotify((2), a), "2").start();
+
+        wait5ThenNotifyTest();
     }
 }
