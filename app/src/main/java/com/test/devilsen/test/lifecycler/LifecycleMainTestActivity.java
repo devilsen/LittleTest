@@ -2,23 +2,26 @@ package com.test.devilsen.test.lifecycler;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.test.devilsen.test.MainActivity;
 import com.test.devilsen.test.R;
+import com.test.devilsen.test.lifecycler.fragment.LifecycleTestActivity;
 
 /**
- * desc :
+ * desc : 生命周期测试
  * date : 2017/12/21
  *
  * @author : dongSen
  */
-public class TestActivity extends AppCompatActivity implements View.OnClickListener {
+public class LifecycleMainTestActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "state";
 
@@ -29,11 +32,13 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
         Button openDialogBtn = findViewById(R.id.text_test_open_dialog);
         Button openActivityBtn = findViewById(R.id.text_test_open_activity);
+        Button openFragmentBtn = findViewById(R.id.text_test_open_fragment);
         Button openTransActivityBtn = findViewById(R.id.text_test_open_translate_activity);
         Button breakActivityBtn = findViewById(R.id.text_test_break);
 
         openDialogBtn.setOnClickListener(this);
         openActivityBtn.setOnClickListener(this);
+        openFragmentBtn.setOnClickListener(this);
         openTransActivityBtn.setOnClickListener(this);
         breakActivityBtn.setOnClickListener(this);
 
@@ -103,6 +108,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.text_test_open_activity:
                 openActivity();
                 break;
+            case R.id.text_test_open_fragment:
+                openFragment();
+                break;
             case R.id.text_test_open_translate_activity:
                 openTranslate();
                 break;
@@ -124,6 +132,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     private void openActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void openFragment() {
+        Intent intent = new Intent(this, LifecycleTestActivity.class);
         startActivity(intent);
     }
 

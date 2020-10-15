@@ -17,6 +17,12 @@
         android:text="activity" />
 
     <Button
+        android:id="@+id/text_test_open_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="fragment" />
+
+    <Button
         android:id="@+id/text_test_open_translate_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,6 +32,12 @@
         android:id="@+id/text_test_break"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="break"/>
+        android:text="break" />
+
+
+    <FrameLayout
+        android:id="@+id/frame_layout_lifecycle_test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -20,7 +20,7 @@ public class WaitAndNotify implements Runnable {
     public final byte[] res;
     public static int count = 5;
 
-    public WaitAndNotify(int number, byte a[]) {
+    public WaitAndNotify(int number, byte[] a) {
         this.number = number;
         res = a;
     }
@@ -29,20 +29,15 @@ public class WaitAndNotify implements Runnable {
     public void run() {
         synchronized (res) {
             while (count-- > 0) {
-//                res.notify();
-
+                System.out.println("count: " + count);
                 res.notify();
-
-                System.out.println(number);
 
                 try {
                     res.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-                System.out.println("------线程" + Thread.currentThread().getName() + "获得锁，wait()后的代码继续运行：" + number);
-
+                System.out.println("线程" + Thread.currentThread().getName() + "获得锁，wait()后的代码继续运行：" + number);
             }
         }
     }

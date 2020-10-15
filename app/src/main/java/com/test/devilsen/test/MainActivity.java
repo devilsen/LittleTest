@@ -5,14 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,12 +14,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.test.devilsen.test.aidl.client.ClientActivity;
 import com.test.devilsen.test.alarm.AlarmActivity;
 import com.test.devilsen.test.chart.ChartTestActivity;
 import com.test.devilsen.test.handlertest.HandlerTestActivity;
+import com.test.devilsen.test.lifecycler.LifecycleMainTestActivity;
 import com.test.devilsen.test.managertest.WindowManagerTestActivity;
 import com.test.devilsen.test.notification.ProgressActivity;
 import com.test.devilsen.test.parcelable.ParcelableActivity;
@@ -54,9 +51,6 @@ import com.wuba.view.viewpager.ViewPagerActivity;
 import com.wuba.view.viewtest.ViewTestActivity;
 import com.wuba.view.watermark.WaterMarkActivity;
 
-import java.util.concurrent.Executors;
-
-import me.devilsen.czxing.util.SaveImageUtil;
 import me.sam.practice.kotlin.LearnKotlinMainActivity;
 import me.sam.practice.view.ViewMainActivity;
 
@@ -407,6 +401,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void shortCutTest(View view) {
         startActivity(new Intent(this, ShortCutTestActivity.class));
+    }
+
+    public void lifecycleTest(View view) {
+        startActivity(new Intent(this, LifecycleMainTestActivity.class));
+    }
+
+    public void logTest(View view) {
+        startActivity(new Intent(this, LogTestActivity.class));
     }
 
 }

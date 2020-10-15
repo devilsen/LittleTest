@@ -92,21 +92,6 @@ public class TraversalTree {
         }
     }
 
-    private void preOrderStackTest(TreeNode root) {
-        if (root == null) {
-            return;
-        }
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-        while (!stack.isEmpty()) {
-            TreeNode node = stack.pop();
-            if (node != null) {
-                stack.push(node.right);
-                stack.push(node.left);
-            }
-        }
-    }
-
     private void preOrderStack2(TreeNode root) {
         if (root == null) {
             return;
@@ -143,6 +128,24 @@ public class TraversalTree {
                 treeNode = stack.pop();
                 System.out.print(treeNode.val + " ");
                 treeNode = treeNode.right;
+            }
+        }
+    }
+
+    private void inOrderStack2(TreeNode root) {
+        if (root == null) return;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode node = root;
+        while (node != null && !stack.isEmpty()){
+            while (node != null){
+                stack.push(node);
+                node = node.left;
+            }
+
+            if (!stack.isEmpty()){
+                TreeNode pop = stack.pop();
+                System.out.println(pop.val);
+                node = pop.right;
             }
         }
     }

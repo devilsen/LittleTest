@@ -265,5 +265,19 @@
             android:text="shortCutTest"
             android:textAllCaps="true" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="lifecycleTest"
+            android:text="lifecycleTest"
+            android:textAllCaps="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="logTest"
+            android:text="logTest"
+            android:textAllCaps="true" />
+
     </LinearLayout>
 </ScrollView>

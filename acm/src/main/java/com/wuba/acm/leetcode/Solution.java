@@ -1,5 +1,9 @@
 package com.wuba.acm.leetcode;
 
+import android.view.View;
+
+import com.wuba.acm.tree.TreeMaker;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -80,8 +84,26 @@ public class Solution {
 //        String[] s = {"flower","f","f2"};
 //        System.out.println(solution.longestCommonPrefix(s));
 
-        int[] nums = {8, 1, 5, 2, 6};
-        System.out.println(solution.maxScoreSightseeingPair(nums));
+//        int[] nums = {8, 1, 5, 2, 6};
+//        System.out.println(solution.maxScoreSightseeingPair(nums));
+
+        System.out.println(solution.printFromTopToBottom(TreeNode.obtain()));
+    }
+
+    public ArrayList<Integer> printFromTopToBottom(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        if (root == null) return list;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode temp = queue.peek();
+            list.add(temp.val);
+            if (temp.left != null) queue.offer(temp.left);
+            if (temp.right != null) queue.offer(temp.right);
+            queue.poll();
+        }
+        return list;
     }
 
     public int maxScoreSightseeingPair(int[] A) {

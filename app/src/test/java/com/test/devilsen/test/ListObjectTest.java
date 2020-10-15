@@ -1,5 +1,7 @@
 package com.test.devilsen.test;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 
 /**
@@ -20,7 +22,6 @@ public class ListObjectTest {
 
     @org.junit.Test
     public void test() {
-
         ArrayList<Num> list = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             list.add(new Num(i));
@@ -39,6 +40,26 @@ public class ListObjectTest {
             System.out.println(num.toString());
         }
 
+    }
+
+    @Test
+    public void newTemplateBuilder() {
+        int width = 720;
+        int height = 1280;
+
+        int vShorter = Math.min(width, height);
+        int vLonger = Math.max(width, height);
+
+        int tShorter = Math.min(720, vShorter);
+        float v = tShorter * (vLonger / (float) vShorter);
+        System.out.println("number: " + v);
+        int tLonger = (int) Math.ceil(v);
+
+        int tWidth;
+        int tHeight;
+        tWidth = tShorter;
+        tHeight = tLonger;
+        System.out.println("width: " + tWidth + " height: " + tHeight);
     }
 
 

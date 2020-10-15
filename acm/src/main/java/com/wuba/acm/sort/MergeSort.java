@@ -102,17 +102,19 @@ public class MergeSort {
 
         int start = i;
         int end = m;
-        if (j < r) {
+        if (j <= r) {
             start = j;
             end = r;
         }
+
         while (start <= end) {
             temp[k++] = a[start++];
         }
 
-        for (int n = 0; n < r - l; n++) {
+        for (int n = 0; n <= r - l; n++) {
             a[l + n] = temp[n];
         }
+
     }
 
 

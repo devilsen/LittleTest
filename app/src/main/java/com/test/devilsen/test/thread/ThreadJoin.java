@@ -15,7 +15,7 @@ public class ThreadJoin {
 
             @Override
             public void run() {
-                System.err.println("线程" + Thread.currentThread().getId() + " 打印信息");
+                System.err.println("线程 " + Thread.currentThread().getId() + " 打印信息");
             }
         });
         thread.start();
