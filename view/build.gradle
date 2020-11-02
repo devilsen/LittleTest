@@ -26,21 +26,19 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0'
+    testImplementation rootProject.ext.junit
+    androidTestImplementation rootProject.ext.androidTest.junit
+    androidTestImplementation rootProject.ext.androidTest.espressoCore
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation rootProject.ext.kotlinStdlib
+    implementation rootProject.ext.androidXDependencies.ktxcore
 
     implementation rootProject.ext.androidXDependencies.appcompat
-//    implementation rootProject.ext.supportDependencies.libSupportDesign
-    implementation 'com.github.bumptech.glide:glide:3.8.0'
+    implementation rootProject.ext.androidXDependencies.material
+    implementation rootProject.ext.androidXDependencies.recyclerView
+    implementation rootProject.ext.glide
 
     implementation 'de.hdodenhof:circleimageview:2.1.0'
-
-    implementation rootProject.ext.androidXDependencies.ktxcore
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }
 repositories {

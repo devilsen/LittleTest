@@ -23,18 +23,20 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility = rootProject.ext.javaVersion
+        targetCompatibility = rootProject.ext.javaVersion
     }
 
 }
 
 dependencies {
+    testImplementation rootProject.ext.junit
+    androidTestImplementation rootProject.ext.androidTest.junit
+    androidTestImplementation rootProject.ext.androidTest.espressoCore
+
+    implementation rootProject.ext.kotlinStdlib
+
     implementation rootProject.ext.androidXDependencies.appcompat
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:" + rootProject.ext.kotlin_version
 }
 repositories {
     mavenCentral()
