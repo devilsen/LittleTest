@@ -7,8 +7,9 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
+import com.test.devilsen.test.log.ELog;
+
+import java.util.ArrayList;
 
 /**
  * desc : log test
@@ -25,7 +26,8 @@ public class LogTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_test);
 
-        Logger.addLogAdapter(new AndroidLogAdapter());
+//        Logger.addLogAdapter(new AndroidLogAdapter());
+
     }
 
     public void order(View view) {
@@ -49,4 +51,30 @@ public class LogTestActivity extends AppCompatActivity {
         Log.v(TAG, "-------------------------------------");
     }
 
+    public void showELog(View view) {
+        ELog.v("Verbose level message");
+        ELog.d("Debug level message");
+        ELog.i("Information level message");
+        ELog.w("Warning level message");
+        ELog.e("Error level message");
+        ELog.wtf("Assert level message");
+
+        ELog.d("test boolean = %b", true);
+        ELog.d("test int = %d", 100);
+        ELog.d("test long = %d", Long.MAX_VALUE);
+        ELog.d("test float = %.10f", 3.1415926);
+        ELog.d("test String = %s", "hello logger");
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("hello");
+        ELog.d("list = " + list);
+    }
+
+    public void openMethodInfo(View view) {
+        ELog.showMethodInfo();
+    }
+
+    public void openThreadInfo(View view) {
+        ELog.showThreadInfo();
+    }
 }

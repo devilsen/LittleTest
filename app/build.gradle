@@ -60,7 +60,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // https://github.com/orhanobut/logger
-    implementation 'com.orhanobut:logger:2.2.0'
+//    implementation 'com.orhanobut:logger:2.2.0'
 }
 repositories {
     mavenCentral()
