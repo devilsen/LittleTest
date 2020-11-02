@@ -8,15 +8,14 @@
     <com.wuba.view.doubanAnim.AnimView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxHeight="100dp"
-            android:background="@null"
-            android:focusable="false"
-            android:text="Hello World!" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:focusable="false"
+        android:maxHeight="100dp"
+        android:text="Hello World!" />
 
 </LinearLayout>

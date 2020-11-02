@@ -36,6 +36,7 @@ dependencies {
     implementation rootProject.ext.androidXDependencies.appcompat
     implementation rootProject.ext.androidXDependencies.material
     implementation rootProject.ext.androidXDependencies.recyclerView
+    implementation rootProject.ext.androidXDependencies.constraintlayout
     implementation rootProject.ext.glide
 
     implementation 'de.hdodenhof:circleimageview:2.1.0'

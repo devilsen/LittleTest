@@ -96,12 +96,7 @@ import me.sam.practice.view.ViewMainActivity;
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView test1;
-    private TextView test2;
-    private boolean flag;
     private Button testAnim;
-    private Button pieChartTest;
-    private Button horizontalChartTest;
     private Button chartTest;
     private Button vectorTest;
     private Button halfBtn;
@@ -123,47 +118,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button imInputTestBtn;
     private Button windowManagerTestBtn;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+//        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        test1 = (TextView) findViewById(R.id.test1);
-        test2 = (TextView) findViewById(R.id.test2);
-        testAnim = (Button) findViewById(R.id.test_anim);
-        pieChartTest = (Button) findViewById(R.id.pie_chart_test);
-        chartTest = (Button) findViewById(R.id.chart_test);
-        horizontalChartTest = (Button) findViewById(R.id.horizontal_bar_chart_test);
-        vectorTest = (Button) findViewById(R.id.vector_test);
-        halfBtn = (Button) findViewById(R.id.half_circle_test);
-        viewPagerBtn = (Button) findViewById(R.id.view_pager_test);
-        scrollNumberBtn = (Button) findViewById(R.id.scroll_number_test);
-        alarmBtn = (Button) findViewById(R.id.alarm_test);
-        midAutumnBtn = (Button) findViewById(R.id.mid_autumn);
-        keyboardBtn = (Button) findViewById(R.id.keyboard_test);
-        badgeBtn = (Button) findViewById(R.id.badge_test);
-        editBtn = (Button) findViewById(R.id.btn_person_edit);
-        dragBtn = (Button) findViewById(R.id.btn_drag_recycler);
-        heartBtn = (Button) findViewById(R.id.btn_heart_test);
-        notificationBtn = (Button) findViewById(R.id.btn_progress_notification_test);
-        viewTestBtn = (Button) findViewById(R.id.btn_view_test_test);
-        handlerBtn = (Button) findViewById(R.id.btn_handler_test);
-        handlerBtn = (Button) findViewById(R.id.btn_handler_test);
+        testAnim = findViewById(R.id.test_anim);
+        chartTest = findViewById(R.id.chart_test);
+        vectorTest = findViewById(R.id.vector_test);
+        halfBtn = findViewById(R.id.half_circle_test);
+        viewPagerBtn = findViewById(R.id.view_pager_test);
+        scrollNumberBtn = findViewById(R.id.scroll_number_test);
+        alarmBtn = findViewById(R.id.alarm_test);
+        midAutumnBtn = findViewById(R.id.mid_autumn);
+        keyboardBtn = findViewById(R.id.keyboard_test);
+        badgeBtn = findViewById(R.id.badge_test);
+        editBtn = findViewById(R.id.btn_person_edit);
+        dragBtn = findViewById(R.id.btn_drag_recycler);
+        heartBtn = findViewById(R.id.btn_heart_test);
+        notificationBtn = findViewById(R.id.btn_progress_notification_test);
+        viewTestBtn = findViewById(R.id.btn_view_test_test);
+        handlerBtn = findViewById(R.id.btn_handler_test);
+        handlerBtn = findViewById(R.id.btn_handler_test);
         bottomSheetBtn = findViewById(R.id.btn_bottom_sheet);
         waterMarkBtn = findViewById(R.id.btn_watermark);
         parcelableTestBtn = findViewById(R.id.btn_parcelable_test);
         imInputTestBtn = findViewById(R.id.btn_im_input_test);
         windowManagerTestBtn = findViewById(R.id.btn_window_manager_test);
 
-        test1.setOnClickListener(this);
-        test2.setOnClickListener(this);
         testAnim.setOnClickListener(this);
-        pieChartTest.setOnClickListener(this);
-        horizontalChartTest.setOnClickListener(this);
         chartTest.setOnClickListener(this);
         vectorTest.setOnClickListener(this);
         halfBtn.setOnClickListener(this);
@@ -212,27 +198,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.test1:
-//                progeress.setLinearProgress(true);
-                testTost();
-                break;
-            case R.id.test2:
-                break;
             case R.id.test_anim:
                 Intent in = new Intent(this, AnimActivity.class);
                 startActivity(in);
-                break;
-            case R.id.pie_chart_test:
-//                Intent intent = new Intent(this, PieChatActivity.class);
-//                startActivity(intent);
-                break;
-            case R.id.horizontal_bar_chart_test:
-//                Intent intent1 = new Intent(this, HorizLineChatActivity.class);
-//                startActivity(intent1);
                 break;
             case R.id.chart_test:
                 Intent intent2 = new Intent(this, ChartTestActivity.class);
@@ -337,14 +308,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent21);
                 break;
         }
-    }
-
-    String msg = null;
-    Context context;
-
-    private void testTost() {
-        context = this.getApplicationContext();
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
     public void itemAnimTest(View view) {
