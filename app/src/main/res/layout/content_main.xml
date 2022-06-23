@@ -243,5 +243,12 @@
             android:text="logTest"
             android:textAllCaps="true" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="p3ColorTest"
+            android:text="P3 color Test"
+            android:textAllCaps="true" />
+
     </LinearLayout>
 </ScrollView>

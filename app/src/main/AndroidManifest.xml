@@ -112,6 +112,7 @@
             android:process=":tools" />
         <activity android:name=".lifecycler.fragment.LifecycleTestActivity" />
         <activity android:name=".LogTestActivity" />
+        <activity android:name=".bitmap.P3ColorTestActivity" />
 
         <receiver android:name=".alarm.AlarmActivity$AlarmReceiver" />
 

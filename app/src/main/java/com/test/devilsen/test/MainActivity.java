@@ -23,6 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.test.devilsen.test.aidl.client.ClientActivity;
 import com.test.devilsen.test.alarm.AlarmActivity;
+import com.test.devilsen.test.bitmap.P3ColorTestActivity;
 import com.test.devilsen.test.chart.ChartTestActivity;
 import com.test.devilsen.test.handlertest.HandlerTestActivity;
 import com.test.devilsen.test.lifecycler.LifecycleMainTestActivity;
@@ -373,6 +374,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void logTest(View view) {
         startActivity(new Intent(this, LogTestActivity.class));
+    }
+
+    public void p3ColorTest(View view) {
+        startActivity(new Intent(this, P3ColorTestActivity.class));
     }
 
 }
