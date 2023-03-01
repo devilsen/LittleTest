@@ -1,5 +1,7 @@
 package com.wuba.acm.stack;
 
+import android.app.Dialog;
+
 import java.util.Stack;
 
 /**

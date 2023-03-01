@@ -22,8 +22,6 @@ android {
     defaultConfig {
         minSdkVersion androidId.minSdkVersion
         targetSdkVersion androidId.targetSdkVersion
-        versionCode androidId.versionCode
-        versionName androidId.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -56,6 +54,7 @@ android {
             }
         }
     }
+    namespace 'me.sam.gradletest'
 
 }
 

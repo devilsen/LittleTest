@@ -17,6 +17,13 @@
         android:layout_margin="10dp"
         android:layout_weight="1" />
 
+<!--    <com.facebook.drawee.view.SimpleDraweeView-->
+<!--        android:id="@+id/my_image_view"-->
+<!--        android:layout_weight="1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_margin="10dp" />-->
+
     <ImageView
         android:id="@+id/p3_test_image_after"
         android:layout_width="match_parent"

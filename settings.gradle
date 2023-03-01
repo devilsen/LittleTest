@@ -1,1 +1,2 @@
 include ':app', ':acm', ':view', ':practice', ':uitest', ':jetpack', ':gradletest', ':designpattern'
+include ':lib'

@@ -5,6 +5,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 /**
  * desc :
  * date : 2017/12/14
@@ -22,6 +24,8 @@ public class MyApplication extends Application {
 //            return;
 //        }
         // Normal app init code...
+
+        Fresco.initialize(this);
 
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override

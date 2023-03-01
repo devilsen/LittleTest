@@ -8,11 +8,8 @@ android {
     compileSdkVersion androidId.compileSdkVersion
 
     defaultConfig {
-        applicationId androidId.applicationId
         minSdkVersion androidId.minSdkVersion
         targetSdkVersion androidId.targetSdkVersion
-        versionCode androidId.versionCode
-        versionName androidId.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -23,6 +20,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    namespace 'me.sam.practice'
 
 }
 

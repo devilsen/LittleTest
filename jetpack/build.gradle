@@ -51,6 +51,7 @@ android {
     kotlinOptions {
         jvmTarget = rootProject.ext.jvmTarget
     }
+    namespace 'me.sam.test.jetpack'
 }
 
 

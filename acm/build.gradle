@@ -10,8 +10,6 @@ android {
     defaultConfig {
         minSdkVersion androidId.minSdkVersion
         targetSdkVersion androidId.targetSdkVersion
-        versionCode androidId.versionCode
-        versionName androidId.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,6 +24,14 @@ android {
         sourceCompatibility = rootProject.ext.javaVersion
         targetCompatibility = rootProject.ext.javaVersion
     }
+
+    sourceSets {
+        main {
+
+        }
+    }
+
+    namespace 'com.wuba.acm'
 
 }
 

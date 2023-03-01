@@ -2,10 +2,12 @@ package me.sam.test.jetpack.livedata
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_view_model_test.*
 import me.sam.test.jetpack.R
+import java.math.BigDecimal
 
 /**
  * desc: https://developer.android.com/topic/libraries/architecture/livedata
@@ -26,6 +28,16 @@ class LiveDataTestActivity : AppCompatActivity() {
         model.number.observe(this, Observer { number -> contentTxt.text = number.toString() })
 
         addBtn.setOnClickListener { model.addNumber(1) }
+
+        stockLiveDataTest()
     }
+
+    private fun stockLiveDataTest() {
+        val priceListener: LiveData<BigDecimal> = StockLiveData()
+        priceListener.observe(this) {
+            // update UI
+        }
+    }
+
 
 }

@@ -38,6 +38,7 @@ android {
     kotlinOptions {
         jvmTarget = rootProject.ext.jvmTarget
     }
+    namespace 'com.test.devilsen.test'
 }
 
 dependencies {
@@ -54,6 +55,7 @@ dependencies {
     implementation rootProject.ext.androidXDependencies.appcompat
     implementation rootProject.ext.androidXDependencies.material
     implementation rootProject.ext.androidXDependencies.constraintlayout
+    implementation rootProject.ext.androidXDependencies.exifinterface
 
     implementation project(':practice')
     implementation project(':view')
@@ -70,6 +72,8 @@ dependencies {
 
     // https://github.com/orhanobut/logger
 //    implementation 'com.orhanobut:logger:2.2.0'
+
+    implementation 'com.facebook.fresco:fresco:2.6.0'
 }
 
 repositories {
