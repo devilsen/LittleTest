@@ -2,6 +2,8 @@ package com.wuba.acm.thread.alterprint;
 
 /**
  * Created by dongSen on 2023/3/1
+ *
+ * 交替打印 ABCABCABCABCABC
  */
 class Join_ABC {
 
