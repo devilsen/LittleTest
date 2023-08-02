@@ -2,7 +2,6 @@ package me.sam.practice.kotlin.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_test.*
 import me.sam.practice.R
 
 /**
@@ -16,9 +15,9 @@ class TestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
 
-        TestBtn.setOnClickListener {
-            changeTxt()
-        }
+//        TestBtn.setOnClickListener {
+//            changeTxt()
+//        }
 
         "Test".lastChar()
 
@@ -32,7 +31,7 @@ class TestActivity : AppCompatActivity() {
     }
 
     private fun changeTxt() {
-        TestTxt.text = "change the text"
+//        TestTxt.text = "change the text"
     }
 
 }
